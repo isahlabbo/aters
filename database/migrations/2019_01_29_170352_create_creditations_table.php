@@ -15,6 +15,9 @@ class CreateCreditationsTable extends Migration
     {
         Schema::create('creditations', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('polling_unit_id');
+            $table->integer('start');
+            $table->integer('end');
             $table->timestamps();
         });
     }

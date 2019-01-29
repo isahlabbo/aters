@@ -15,6 +15,8 @@ class CreatePollingUnitIncidencesTable extends Migration
     {
         Schema::create('polling_unit_incidences', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('polling_unit_id');
+            $table->integer('incidenc_id');
             $table->timestamps();
         });
     }

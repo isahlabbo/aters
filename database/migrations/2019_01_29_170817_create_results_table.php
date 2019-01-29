@@ -15,6 +15,12 @@ class CreateResultsTable extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('polling_unit_id');
+            $table->integer('apc');
+            $table->integer('pdp');
+            $table->integer('sdp');
+            $table->integer('in_valid');
+            $table->integer('un_use');
             $table->timestamps();
         });
     }

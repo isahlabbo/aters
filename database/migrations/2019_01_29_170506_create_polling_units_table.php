@@ -15,6 +15,8 @@ class CreatePollingUnitsTable extends Migration
     {
         Schema::create('polling_units', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('ward_id');
+            $table->string('name');
             $table->timestamps();
         });
     }
