@@ -8,7 +8,7 @@ class PollingUnit extends Model
 {
     protected $guarded = [];
 
-    public function pollingUnitIncidence()
+    public function pollingUnitIncidences()
     {
     	$this->hasMany(PollingUnitIncidence::class);
     }
