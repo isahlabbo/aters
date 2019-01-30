@@ -24,6 +24,6 @@ class Bakale
 			'GUN GUMA/GUNGUMA',
 			'SHEBRA PRIMARY SCH. (SHEBRA MAGAJI)',
 			'SHIYAR DELLA BAKALE (BAKALE/DORAI)'
-		]
+		];
 	}
 }

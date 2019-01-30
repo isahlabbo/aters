@@ -1,11 +1,11 @@
 <?php
-	public /**
+	/**
 	* 
 	*/
 	class Binji
 	{
 		
-		function __construct(argument)
+		function __construct()
 		{
 			# code...
 			 $this->pollingUnit();

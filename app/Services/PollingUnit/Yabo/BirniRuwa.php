@@ -20,6 +20,6 @@ class BirniRuwa
 			'KANFATARE',
 			'BIRSAWA/DALIJEN',
 			'KUMA TOYI BARADE / KUMATOYI MAIYAKI'
-		]
+		];
 	}
 }
