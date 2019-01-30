@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Tureta
+namespace App\Services\PollingUnit\Tureta
 /**
 * this class will return all polling units of the class
 */
