@@ -7,7 +7,7 @@ namespace App\Services\PollingUnit;
 class Arkilla
 {
 	
-	function __construct(argument)
+	function __construct()
 	{
 		$this->pollingUnits();
 	}

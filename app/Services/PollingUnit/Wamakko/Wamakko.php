@@ -8,7 +8,7 @@ namespace App\Services\PollingUnit;
 class Wamakko
 {
 	
-	function __construct(argument)
+	function __construct()
 	{
 		$this->pollingUnits();
 	}

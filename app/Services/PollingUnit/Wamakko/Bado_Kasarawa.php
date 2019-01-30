@@ -7,7 +7,7 @@ namespace App\Services\PollingUnit;
 class Bado_Kasarawa
 {
 	
-	function __construct(argument)
+	function __construct()
 	{
 		$this->pollingUnits();
 	}

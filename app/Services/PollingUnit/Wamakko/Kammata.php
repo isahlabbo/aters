@@ -8,7 +8,7 @@ namespace App\Services\PollingUnit;
 class Kammata
 {
 	
-	function __construct(argument)
+	function __construct()
 	{
 		$this->pollingUnits();
 	}

@@ -8,7 +8,7 @@ namespace App\Services\PollingUnit;
 class Gumbi_Wajake
 {
 	
-	function __construct(argument)
+	function __construct()
 	{
 		$this->pollingUnits();
 	}

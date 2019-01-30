@@ -8,7 +8,7 @@ namespace App\Services\PollingUnit;
 class K_Kimba_Gedawa
 {
 	
-	function __construct(argument)
+	function __construct()
 	{
 		$this->pollingUnits();
 	}
