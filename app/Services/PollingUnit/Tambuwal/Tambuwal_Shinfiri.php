@@ -1,0 +1,53 @@
+<?php
+namespace App\Services\PollingUnit\Tambuwal
+/**
+* this class will return polling unit of this class
+*/
+
+class Tambuwal_Shinfiri
+{
+	function __construct()
+	{
+	    $this->pollingUnits();
+	}
+
+	protected function pollingUnits()
+	{
+		return [
+			'ILLELA FAKO ‐ DANHILI',
+			'ILLELA DALBEJIYA',
+			'ILLELA MANIYA / M.P.S',
+			'ILLELA RINAYE',		
+			'KALGAWA TSOHUWAR TASHA',
+			'KANURI M.P.S ‐ M.P.S KANWURI',
+			'HAUSA DAN MANGORO ‐ DANHILI',
+			'SHIYAR AJIYA K.YAMMA ‐ DANHILI',
+			'SHAGON GORO ‐ SHAGON GORO',
+			'HAUSAWA LALLE ‐ DANHILI',
+			'SHIYAR AJIYA JNI ‐ J.N.I MPS',
+			'KOFAR YAMMA FILIN KWALLO ‐ FILIN KWALLO',
+			'HAUSAWA KASUWA GARI',
+			'TAKALMAWA ‐ DAN FILI'
+			'SABONGARI DISPENSARY ‐ DISPENSARY',
+			'SABON GARI ADUWA ‐ ADUWA',
+			'ALJANNARE ‐ ALJANNARE M.P.S',
+			'DAN YALLI MAI BANDE DOROWA',
+			'KAURARE / YALE ‐ MPS',
+			'SHIFIRI M.P.S. SHINFIRI',
+			'GARZAU',
+			'UNGUWAR NOMA ‐ UNGUWAR NOMA',
+			'GANGARE/RAMUN TAMA PRI. SCH.',
+			'ZOMAWA MPS ‐ MPS ZOMAWA',
+			'KARGAT/ CHAKARI ‐ MPS KARGAT',
+			'RAKUMA/MABERA ‐ MPS MABERA',
+			'GGSS TAMBUWAL ‐ GSS TAMBUWAL',
+			'ADUWAR YAR‐A HOLE‐ADUWA BAKIN TITI',
+			'SHIYAR M SHEKARI ‐ DANMANGORO',
+			'MASALLACIN DAN GIGALA',
+			'TAMBUWAL DARIYAWA COMMUNITY BANK',
+		];
+	}
+}
+
+
+
