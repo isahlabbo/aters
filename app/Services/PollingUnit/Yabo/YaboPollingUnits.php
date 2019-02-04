@@ -15,7 +15,7 @@ class YaboPollingUnits
 	{
         return [
         	
-        	['name'=>'Bakale','pollingUnits'=> new Bakale],
+        	['name'=>'Bakale','pollingUnits'=> 'test'],
         	['name'=>'Bingaje','pollingUnits'=> new Bingaje],
         	['name'=>'Binji','pollingUnits'=> new Binji],
         	['name'=>'Birni Ruwa','pollingUnits'=> new BirniRuwa],

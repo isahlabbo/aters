@@ -23,7 +23,7 @@ class Bagida_Lukkingo
 			"DANMADI ‐ DANMADI PRI.SCHOOL",
 			"DANMADI KASUWA ‐ KASUWA",
 			"ABDU JAKI ‐ KASUWA",
-			"LUKKINGO MAKKAWA ‐ KANWURI LUKKINGO",,
+			"LUKKINGO MAKKAWA ‐ KANWURI LUKKINGO",
 			"MARADU BABBA ‐ MARADUN KANWURI",
 			"MARADU BABBA ‐ MARADUN PRI.SCHOOL",
 			"GANUWA S/GALADIMA ‐ GANUWA PRI.SCHOOL I",
@@ -38,3 +38,13 @@ class Bagida_Lukkingo
 		];
 	}
 }
+
+// "BAGIDA S/YAMMA ‐ DANHILI I",
+			// 
+			// 
+			// 
+			// 
+			// 
+			// 
+			// 
+			// 
