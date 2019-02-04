@@ -9,7 +9,7 @@ class Isa
 	
 	function __construct()
 	{
-		$this->wards();
+		$this->wards = $this->wards();
 	}
 
 	public function wards()

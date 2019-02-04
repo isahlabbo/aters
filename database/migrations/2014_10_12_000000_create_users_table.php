@@ -17,6 +17,8 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->integer('lga_id')->nullable();
             $table->integer('polling_unit_id')->nullable();
+            $table->integer('ward_id')->nullable();
+            $table->char('code');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

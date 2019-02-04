@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\PollingUnit\SokotoNorth
+namespace App\Services\PollingUnit\SokotoNorth;
 /**
 * this class will return polling Units of the class
 */
@@ -9,7 +9,7 @@ class MagajinGariB
 	
 	function __construct()
 	{
-		$this->PollingUnits();
+		$this->pollingUnits = $this->PollingUnits();
 	}
 
 	public function pollingUnits()
@@ -22,8 +22,8 @@ class MagajinGariB
 			'SHIYAR HAKIMI BALA',
 			'SHYAR /CHIKA FANTA',
 			'SH/ALH.DAHIRU',
-			'KOFAR KADE SALIHU ANKA PRIMARY SCHOOL I (SHIYAR D/FARIJO 'A')',
-			'KOFAR KADE SALIHU ANKA PRIMARY SCHOOL II (SHIYAR D/FARIJO 'B')',
+			"KOFAR KADE SALIHU ANKA PRIMARY SCHOOL I (SHIYAR D/FARIJO 'A')",
+			"KOFAR KADE SALIHU ANKA PRIMARY SCHOOL II (SHIYAR D/FARIJO 'B')",
 			'SH/ABDUL SODANGI',
 			'G/INNO YARGWAMNA',
 			'NEAR MASALLACIN GARKAR ALH. YUSUF SA’IDU (G/ISA SHEHU KAMBA)',

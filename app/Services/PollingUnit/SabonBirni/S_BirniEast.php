@@ -1,4 +1,5 @@
 <?php
+namespace App\Services\PollingUnit\SabonBirni;
 
 /**
 * this class return the array of polling unit of the class
@@ -8,7 +9,7 @@ class S_BirniEast
 	
 	function __construct()
 	{
-		$this->pollingUnits()
+		$this->pollingUnits = $this->pollingUnits();
 	}
 
 	protected function pollingUnits()

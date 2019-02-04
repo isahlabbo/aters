@@ -9,7 +9,7 @@ class G_Bubu_G_Yaro
 	
 	function __construct()
 	{
-		$this->pollingUnits();
+		$this->pollingUnits = $this->pollingUnits();
 	}
 
 	protected function pollingUnits()

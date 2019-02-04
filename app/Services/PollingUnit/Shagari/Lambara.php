@@ -8,13 +8,13 @@ class Lambara
 	
 	function __construct()
 	{
-		$this->pollingUnits();
+		$this->pollingUnits = $this->pollingUnits();
 	}
 
 	protected function pollingUnits()
 	{
 		return [
-			'LAMBARA ‐ MODEL PRI.SCHOOL,'
+			'LAMBARA ‐ MODEL PRI.SCHOOL',
 			'LAMBARA ‐ SHIYAR KOFAR',
 			'DAN HILI (ILLELA KAURA DABOR)',
 			'DUWOJI/DALIJAN /DUNDEJI OPEN SPACE (DUWOJI/DALIJAN /DUNDEJI)',

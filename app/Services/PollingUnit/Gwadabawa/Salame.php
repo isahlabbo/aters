@@ -1,0 +1,31 @@
+<?php
+namespace App\Services\PollingUnit\Gwadabawa;
+	
+	class Salame
+	{
+		
+		function __construct()
+		{
+			# code...
+			$this->pollingUnits =  $this->pollingUnits();
+		}
+
+		public function pollingUnits(){
+			return [
+				'JUMAT PMS, SHIYAR JEKADA',
+				'BAKIN KASUWA (LIBRARY SHIYAR JAKADA)',
+				'PRY SCH, ALMATAWA',
+				'OPEN SPACE, SHIYAR HAKIMI DOKA (SHIYAR HAKIMI DOKA)',
+				'NEAR OLD WELL SHIYAR ABU DABOWA (SHIYAR HAKIMI ABU DABOWA)',
+				'PRY SCH, DABUWASA T. ZAKI',
+				'PRIMARY SCHOOL KILIYAR SODANGI (YAR BULUTU KILIYA SODANGI)',
+				'UNDER TREE SHADE MARANAWA (SHIYAR HAKIMI MARANAWA)',
+				'YANTAWAYA, SH. TUDUN BARAYA',
+				'NEAR MOSQUE KOFAR MAGAJI (SHIYAR HAKIMI KOFAR MAGAJI)',
+				'PRIMARY SCHOOL TUNGAR SHANU (DISPENSARY TUGA SHANU)',
+				'PRIMARY SCHOOL DAN ABBA (DISPENSARY DAN ABBA)',
+				'DISPENSARY, DAN ABBA',
+				'BINGA TOWN BONGA'
+			];
+		}
+	}

@@ -8,7 +8,7 @@ class Binji
 	
 	function __construct()
 	{
-		$this->pollingUnits();
+		$this->pollingUnits = $this->pollingUnits();
 	}
 
 	protected  function pollingUnits()

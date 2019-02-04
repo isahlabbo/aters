@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\PollingUnit\Tambuwal
+namespace App\Services\PollingUnit\Tambuwal;
 /**
 * this class will return polling unit of this class
 */
@@ -9,7 +9,7 @@ class Bakaya_SabonBirni
 {
 	function __construct()
 	{
-	    $this->pollingUnits();
+	    $this->pollingUnits = $this->pollingUnits();
 	}
 
 	protected function pollingUnits()

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\PollingUnit\SokotoNorth
+namespace App\Services\PollingUnit\SokotoNorth;
 /**
 * this class will return polling Units of the class
 */
@@ -9,7 +9,7 @@ class WaziriA
 	
 	function __construct()
 	{
-		$this->PollingUnits();
+		$this->pollingUnits = $this->PollingUnits();
 	}
 
 	public function pollingUnits()

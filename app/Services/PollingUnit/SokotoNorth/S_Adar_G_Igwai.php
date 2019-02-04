@@ -1,7 +1,7 @@
-
 <?php
 
-namespace App\Services\PollingUnit\SokotoNorth
+namespace App\Services\PollingUnit\SokotoNorth;
+
 /**
 * this class will return polling Units of the class
 */
@@ -10,7 +10,7 @@ class S_Adar_G_Igwai
 	
 	function __construct()
 	{
-		$this->PollingUnits();
+		$this->pollingUnits = $this->PollingUnits();
 	}
 
 	public function pollingUnits()
@@ -18,7 +18,7 @@ class S_Adar_G_Igwai
 		return [
 			'SH/MAIGORO ‐ SH/MAIGORO',
 			'SH/ALIYU DIN GYADI',
-			'NEAR MAGASAR NAMA (MAHOTAR/TATUMBI 'A')',
+			'NEAR MAGASAR NAMA (MAHOTAR/TATUMBI "A")',
 			'MAHOTAR DANTATUMBI B YANSANDA',
 			'UNIVERSITY QUARTERS ‐ UNIVERSITY QUARTERS',
 			'SH/MAI MAN GYADA',

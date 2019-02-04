@@ -1,7 +1,7 @@
-
 <?php
 
-namespace App\Services\PollingUnit\SokotoNorth
+namespace App\Services\PollingUnit\SokotoNorth;
+
 /**
 * this class will return polling Units of the class
 */
@@ -10,14 +10,14 @@ class S_Adar_Gandu
 	
 	function __construct()
 	{
-		$this->PollingUnits();
+		$this->pollingUnits = $this->PollingUnits();
 	}
 
 	public function pollingUnits()
 	{
 		return [
-			'OPEN SPACE OPPOSITE GIDAN MAGAJIN GARI (MAGAJI GARI 'A')',
-			'MAGAJIN GARI 'B' ‐ MAGAJIN GARI 'B'',
+			"OPEN SPACE OPPOSITE GIDAN MAGAJIN GARI (MAGAJI GARI 'A')",
+			"MAGAJIN GARI 'B' ‐ MAGAJIN GARI 'B'",
 			'GARKAR BARWA',
 			'ALKALI MIKA’ILU PRIMARY SCHOOL (GARKAR YAR MAGARWA)',
 			'GARKAR BELLO MAIGORO',

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\PollingUnit\Tangaza
+namespace App\Services\PollingUnit\Tangaza;
 /**
 * this class will return the polling units of the class
 */
@@ -9,7 +9,7 @@ class Tangaza
 	
 	function __construct()
 	{
-		$this->pollingUnits();
+		$this->pollingUnits = $this->pollingUnits();
 	}
 
 	protected function pollingUnits()

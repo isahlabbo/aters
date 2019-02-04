@@ -1,14 +1,12 @@
 <?php
-	/**
-	* 
-	*/
+namespace App\Services\PollingUnit\Binji;
+	
 	class Binji
 	{
 		
 		function __construct()
 		{
-			# code...
-			 $this->pollingUnit();
+			$this->pollingUnits = $this->pollingUnits();
 		}
 
 		public function pollingUnits(){

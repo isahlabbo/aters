@@ -10,7 +10,7 @@ class K_Kimba_Gedawa
 	
 	function __construct()
 	{
-		$this->pollingUnits();
+		$this->pollingUnits = $this->pollingUnits();
 	}
 
 	protected function pollingUnits()

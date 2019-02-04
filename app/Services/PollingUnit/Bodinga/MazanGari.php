@@ -1,0 +1,39 @@
+<?php
+namespace App\Services\PollingUnit\Bodinga;
+	
+	class MazanGari
+	{
+		
+		function __construct()
+		{
+			# code...
+			 $this->pollingUnits = $this->pollingUnits();
+		}
+
+		public function pollingUnits(){
+			return [
+				'PRY SCH, KAURA MIWYO',
+				'S/HAKIMI D/BABARBARE (SHIYAR HAKIMI, DAN BABARBARE)',
+				'PRY SCH, TANDARAWA',
+				'SHIYAR HAKIMI, KIMBA KAURARE',
+				'HURUMI PRY SCH, HURUMI',
+				'SHIYAR MAGAJI, KABAWA',
+				'ADULT EDUCATION SHIYAR MAGAJI, JIRGA (S/MAGAJI JIRGA)',
+				'DISPENSARY SHIYAR FULANI, JIRGA (S/FULANI JIRGA)',
+				'SHIYAR MAGAJI, SIRE MAIGISHIRI',
+				'MAKARANTA (S/MAGAJI, SIRE KAKA)',
+				'PRY SCH, DAN NARBA',
+				'SHIYAR HAKIMI, TUDUN MANU',
+				'FANFO SH.MAGAJI, TUDUN NUFAWA',
+				'SHIYAR MAGAJI, RUMBU',
+				'SHIYAR HARIMI, KAURA IYARA',
+				'DISPENSARY SHIYAR KAURARE, MAZAN GARI (S/KAURARE MAZAN GARI)',
+				'PRY SCH, GWARKO',
+				'PRY SCH, BUTURU',
+				'PRY SCH, RUGA GADO',
+				'SHIYAR HAKIMI, KULODO',
+				'KAURAMIYO ADULT EDUCATION KAURAMIYO',
+				'ABDUL SALAMU KAURAMIYO'
+			];
+		}
+	}

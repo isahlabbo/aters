@@ -10,7 +10,7 @@ class G_Hamidu_G_Kaya
 	
 	function __construct()
 	{
-		$this->pollingUnits();
+		$this->pollingUnits = $this->pollingUnits();
 	}
 
 	protected function pollingUnits()

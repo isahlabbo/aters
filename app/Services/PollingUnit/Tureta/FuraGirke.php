@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\PollingUnit\Tureta
+namespace App\Services\PollingUnit\Tureta;
 /**
 * this class will return all polling units of the class
 */
@@ -9,7 +9,7 @@ class FuraGirke
 	
 	function __construct()
 	{
-		$this->pollingUnits()
+		$this->pollingUnits = $this->pollingUnits();
 	}
 
 	protected function pollingUnits()

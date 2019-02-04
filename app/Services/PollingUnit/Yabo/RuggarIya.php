@@ -3,12 +3,12 @@ namespace App\Services\PollingUnit\Yabo;
 /**
 * 
 */
-class RuggarIlya
+class RuggarIya
 {
 	
 	function __construct()
 	{
-		$this->pollingUnits();
+		$this->pollingUnits = $this->pollingUnits();
 	}
 
 	protected  function pollingUnits()

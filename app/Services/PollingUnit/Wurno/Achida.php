@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\PollingUnit\Worno
+namespace App\Services\PollingUnit\Wurno;
 /**
 * this class will retun the polling unit of class
 */
@@ -9,8 +9,9 @@ class Achida
 	
 	function __construct()
 	{
-		$this->pollingUnits();
+		$this->pollingUnits = $this->pollingUnits();
 	}
+
 	protected function pollingUnits()
 	{
 		return [

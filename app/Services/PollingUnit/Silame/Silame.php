@@ -9,7 +9,7 @@ class Silame
 {
 	function __construct()
 	{
-		$this->pollingUnits();
+		$this->pollingUnits = $this->pollingUnits();
 	}
 
 	protected function pallingUnit()

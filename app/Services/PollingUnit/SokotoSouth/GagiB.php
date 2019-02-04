@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\PollingUnit\SokotoSouth
+namespace App\Services\PollingUnit\SokotoSouth;
 /**
 * this class will return the pollin unit of the class
 */
@@ -9,7 +9,7 @@ class GagiB
 	
 	function __construct()
 	{
-		$this->pollingUnits();
+		$this->pollingUnits = $this->pollingUnits();
 	}
 
 	protected function pollingUnits()

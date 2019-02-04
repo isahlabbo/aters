@@ -1,0 +1,43 @@
+<?php
+namespace App\Services\PollingUnit\Illela;
+	
+	class Illela
+	{
+		
+		function __construct()
+		{
+			# code...
+			$this->pollingUnits =  $this->pollingUnits();
+		}
+
+		public function pollingUnits(){
+			return [
+				'SHIYAR BAWA II TSOHUWARKOTU',
+				'SHIYAR LIHODA SONANI',
+				'SHIYAR BAWA MAKARANTA',
+				'SHIYAR UBANDA WAKI / KAWURU',
+				'TSOHUWAR TASHA S/TUDUN AMARWA',
+				'SHIYAR TUDU MAKARANTA',
+				'A M PRI. SCH. (FILIN HAMZA SHIYAR NAMATA)',
+				'SHIYAR NAMATA SHIYAR MAIUNGUWA',
+				'SHIYAR MAMATA',
+				'TUDUN GUDALEKWA / KWARA',
+				'SHIYAR UBANDAWAKI G/TANKO MAIHIRDE',
+				'SHIYAR BAWA III G/KIFI',
+				'SHIYAR MAIDAWA II, GIDAN DANLIYOSO',
+				'SHIYAR BAWA / FILI DAN WAZAM',
+				'TUDUN GUDALE MAIRUWA I',
+				'TUDUN GUDALE MAIRUWA II',
+				'SHIYAR NAMATA',
+				'GIDAN KYASU, GIDAN KYASU',
+				'SH/UBANDAWAKI / G/YARMA',
+				'SH / BAWA MAKARANTA',
+				'SHIYAR BAWA, V. ABIYARIMA',
+				'SH/NAMATA G.G.S.S',
+				'SHIYAR NAMATA, HILIN NAMATA/SH/MADAWA ISNOMAU',
+				'NIGERIA NIGER MARKET (SHIYAR BAWA GIDAN S/SHANU)',
+				'SH/LIHIDDA MAKARANTA SONANE',
+				'SH/SABON GARI AMARAWA GAWO'
+			];
+		}
+	}

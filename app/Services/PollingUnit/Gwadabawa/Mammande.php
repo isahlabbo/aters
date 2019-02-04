@@ -1,0 +1,32 @@
+<?php
+namespace App\Services\PollingUnit\Gwadabawa;
+	
+	class Mammande
+	{
+		
+		function __construct()
+		{
+			# code...
+			$this->pollingUnits =  $this->pollingUnits();
+		}
+
+		public function pollingUnits(){
+			return [
+				'NEAR OLD WELL SH. S. YAKI (SHIYAR SARKIN YAKI)',
+				'NEAR ISLAMIYYA (SHIYAR SARKIN YAKI GALADIMA)',
+				'NEAR OLD WELL JEMA (JEMA PRI. SCH. SHIYAR MAGAJI)',
+				'JEMA PRY SCH, SH. SHIYAR TUDU',
+				'JEMA PRY SCH, SH. BAICI',
+				'SHIYAR MUMMANA KOGA ZAMMA (SHIYAR MUMUNI KOLAR ZAMANA/MAMAN',
+				'PRIMARY SCHOOL BAMANA MADAWAKI (BAMANA MADAWAKI)',
+				'NEAR MOSQUE BAMANA MADAWAKI (BAMANA MADAWAKI SH/MAMMAN)',
+				'WURIN INJI, BAMANA SH. GANGARE',
+				'YAR KOFA, T/MASAWA/SH. ANARUWA',
+				'GIDAN ARDO, ZUGANA',
+				'UNDER TANK (SHIYAR ATIKU ZUGANA)',
+				'NEAR ISLAMIYYA CHIRAGAL (DISPENSARY CHARAGAL)',
+				'DAN FILI (DISPENSARY GIDAN TUNE)',
+				'NEAR ABBTOIR CHIRAGAL (SHIYAR ARDO ZUGAWA)'
+			];
+		}
+	}
