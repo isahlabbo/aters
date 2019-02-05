@@ -15,12 +15,12 @@ class CreateResultsTable extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('polling_unit_id');
-            $table->integer('apc');
-            $table->integer('pdp');
-            $table->integer('sdp');
-            $table->integer('in_valid');
-            $table->integer('un_use');
+            $table->integer('polling_unit_id')->unsigned()->nullable()->foreign()->refernces('id')->on('polling_units')->delete('restrict')->update('cascade');
+            $table->integer('apc')->default(0);
+            $table->integer('pdp')->default(0);
+            $table->integer('other')->default(0);
+            $table->integer('valid_vote')->default(0);
+            $table->integer('invalid_vote')->default(0);
             $table->timestamps();
         });
     }

@@ -10,14 +10,11 @@ class Lga extends Model
 
     public function wards()
     {
-    	$this->hasMany(Ward::class);
+    	return $this->hasMany('App\Ward');
     }
-    public function pollingUnits()
-    {
-    	$this->hasMany(PollingUnit::class);
-    }
+    
     public function user()
     {
-    	$this->hasOne(User::class);
+    	return $this->hasOne(User::class);
     }
 }

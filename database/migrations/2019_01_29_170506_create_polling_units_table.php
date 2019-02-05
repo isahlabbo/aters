@@ -15,8 +15,9 @@ class CreatePollingUnitsTable extends Migration
     {
         Schema::create('polling_units', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('ward_id');
+            $table->integer('ward_id')->unsigned()->nullable()->foreign()->refernces('id')->on('wards')->delete('restrict')->update('cascade');
             $table->string('name');
+            $table->integer('votes')->default(0);
             $table->timestamps();
         });
     }

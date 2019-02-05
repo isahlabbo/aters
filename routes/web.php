@@ -1,5 +1,6 @@
 <?php
 use App\Services\Sokoto;
+use App\Services\Register;
 use App\Services\CreateLocalGovernment;
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +16,10 @@ use App\Services\CreateLocalGovernment;
 Route::get('/', function () {
     return view('auth.login');
 });
-Route::get('/generate', function () {
-	$sokoto = new Sokoto;
-	dd($sokoto);
-    new CreateLocalGovernment($sokoto->localGovernments); 
-});
+
+Route::post('/accredited', 'HomeController@accredited');
+Route::post('/result', 'HomeController@result');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

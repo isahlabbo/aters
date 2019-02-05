@@ -23,24 +23,20 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function role()
-    {
-        $this->belongsTo(Role::class);
-    }
 
     public function pollingUnit()
     {
-        $this->belongsTo(PollingUnit::class);
+        return $this->belongsTo('App\PollingUnit');
     }
 
     public function lga()
     {
-        $this->belongsTo(Lga::class);
+        return $this->belongsTo(Lga::class);
     }
 
     public function ward()
     {
-        $this->belongsTo(Ward::class);
+        return $this->belongsTo('App\Ward');
     }
 
 }

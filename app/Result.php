@@ -10,6 +10,6 @@ class Result extends Model
 
     public function pollingUnit()
     {
-    	$this->belongs(PollingUnit::class);
+    	return $this->belongsTo('App\PollingUnit');
     }
 }

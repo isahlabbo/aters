@@ -8,6 +8,6 @@ class Creditation extends Model
 {
     public function pollingUnit()
     {
-    	$this->belongsTo(PollingUnit::class);
+    	return $this->belongsTo('App\PollingUnit');
     }
 }

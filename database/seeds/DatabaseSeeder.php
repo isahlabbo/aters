@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Lga;
+use App\Services\Register;
+use App\Services\Sokoto;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -11,6 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Lga::firstOrCreate(['name'=>'Sabon Birni']);
+        new Register(new Sokoto);
     }
 }

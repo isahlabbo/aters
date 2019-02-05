@@ -15,10 +15,10 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Key') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="text" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-                                @if ($errors->has('password'))
+                                <input id="password" type="text" placeholder="Enter your key" class="form-control{{ $errors->has('key') ? ' is-invalid' : '' }}" name="key" required>
+                                @if ($errors->has('key'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong>{{ $errors->first('key') }}</strong>
                                     </span>
                                 @endif
                             </div>
