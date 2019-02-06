@@ -2,6 +2,7 @@
 use App\Services\Sokoto;
 use App\Services\Register;
 use App\Services\CreateLocalGovernment;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,3 +24,4 @@ Route::post('/result', 'HomeController@result');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/add_result', 'HomeController@newResult');

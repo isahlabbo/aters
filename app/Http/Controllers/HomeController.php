@@ -24,12 +24,44 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    protected function localSummary()
     {
-
-        return view('home',['user'=>Auth()->User()]);
+        if(Auth()->User()->lga_id != null){
+            $acredited = 0;
+            $pdp = 0;
+            $apc = 0;
+            $valid_vote = 0;
+            $invalid_vote = 0;
+            $other = 0;
+            foreach(Auth()->User()->lga->wards as $ward){
+                foreach ($ward->pollingUnits as $pollingUnit) {
+                    $acredited = $acredited + $pollingUnit->votes;
+                    $pdp = $pdp + $pollingUnit->result->pdp;
+                    $apc = $apc + $pollingUnit->result->apc;
+                    $valid_vote = $valid_vote + $pollingUnit->result->valid_vote;
+                    $invalid_vote = $invalid_vote + $pollingUnit->result->invalid_vote;
+                    $other = $other + $pollingUnit->result->other;
+                    
+                }
+            }
+            return [
+                'acredited' => $acredited,
+                'pdp' => $pdp,
+                'apc' => $apc,
+                'valid_vote' => $valid_vote,
+                'invalid_vote' => $invalid_vote,
+                'other' => $other
+            ];
+        }else{
+            return [];
+        }
     }
 
+    public function index()
+    {
+        return view('home',['user'=>Auth()->User(),'summary'=>$this->localSummary()]);
+    }
+    
     public function accredited(Request $request)
     {
         Auth()->User()->pollingUnit->update(['votes'=>$request->votes]);
@@ -38,17 +70,32 @@ class HomeController extends Controller
     }
     public function result(Request $request)
     {
-
-        Auth()->User()->pollingUnit->result->update([
+        if(isset($request->id)){
+            $result = PollingUnit::find($request->id)->result->update([
             'pdp'=>$request->pdp,
             'apc'=>$request->apc,
             'other'=>$request->other,
             'valid_vote'=>$request->valid_vote,
             'invalid_vote'=>$request->invalid_vote
         ]);
-
+        }else{
+            $result = Auth()->User()->pollingUnit->result->update([
+                'pdp'=>$request->pdp,
+                'apc'=>$request->apc,
+                'other'=>$request->other,
+                'valid_vote'=>$request->valid_vote,
+                'invalid_vote'=>$request->invalid_vote
+            ]);
+        }
+        
+    
         session()->flash('message','Election result was sent successfully');
         return redirect('/home');
-    } 
-    
+    }
+
+    public function newResult(Request $request)
+    {
+        return view('new_result',['id'=>$request->id]);
+    }
+
 }
