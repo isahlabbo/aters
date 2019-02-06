@@ -36,7 +36,7 @@
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td>{{floor($summary['acredited']*100/$summary['acredited']) .'%'}}</td>
+                                    <td>{{$summary['acredited']}}</td>
                                     <td>{{$summary['pdp']}}</td>
                                     <td>{{$summary['other']}}</td>
                                     <td>{{$summary['valid_vote']}}</td>
@@ -82,9 +82,9 @@
                                                     </tr>
                                                     <tr>
                                                         <td></td>
-                                                        <td>{{floor($pollingUnit->votes/100*$pollingUnit->result->apc) .'%'}}</td>
-                                                        <td>{{floor($pollingUnit->votes/100*$pollingUnit->result->pdp) .'%'}}</td>
-                                                        <td>{{floor($pollingUnit->votes/100*$pollingUnit->result->other) .'%'}}</td>
+                                                        <td>{{round(($pollingUnit->result->apc/($pollingUnit->votes == 0 ? $pollingUnit->votes + 1 : $pollingUnit->votes + 0)) * 100, 1)}} %</td>
+                                                        <td>{{round(($pollingUnit->result->pdp/($pollingUnit->votes == 0 ? $pollingUnit->votes + 1 : $pollingUnit->votes + 0)) * 100, 1)}}</td>
+                                                        <td>{{round(($pollingUnit->result->other/($pollingUnit->votes == 0 ? $pollingUnit->votes + 1 : $pollingUnit->votes + 0)) * 100, 1)}}</td>
                                                         <td></td>
                                                         <td></td>
                                                     </tr>
@@ -150,7 +150,7 @@
                     <div class="card-body">
                         <form action="/result" method="post">
                             @csrf
-                            <input class="form-control" type="text" name="apc" placeholder="APC"><br>
+                            <input class="form-control" type="text" name="apc" placeholder="APC"><br>000a
                             <input class="form-control" type="text" name="pdp" placeholder="PDP"><br>
                             <input class="form-control" type="text" name="other" placeholder="OTHER"><br>
                             <input class="form-control" type="text" name="valid_vote" placeholder="VALID VOTE"><br>
