@@ -59,7 +59,16 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('home',['user'=>Auth()->User(),'summary'=>$this->localSummary()]);
+        if(Auth()->user()->lga_id == null){
+            $pollingUnits = null;
+        }else{
+            $count = 0;
+            foreach(Auth()->user()->lga->wards as $ward){
+                $count = $count + count($ward->pollingUnits);
+            }
+            $pollingUnits = $count;
+        }
+        return view('home',['pollingUnits'=>$pollingUnits,'user'=>Auth()->User(),'summary'=>$this->localSummary()]);
     }
     
     public function accredited(Request $request)
@@ -87,8 +96,6 @@ class HomeController extends Controller
                 'invalid_vote'=>$request->invalid_vote
             ]);
         }
-        
-    
         session()->flash('message','Election result was sent successfully');
         return redirect('/home');
     }

@@ -17,7 +17,8 @@ class CreatePollingUnitsTable extends Migration
             $table->increments('id');
             $table->integer('ward_id')->unsigned()->nullable()->foreign()->refernces('id')->on('wards')->delete('restrict')->update('cascade');
             $table->string('name');
-            $table->integer('votes')->default(0);
+            $table->integer('acredited')->default(0);
+            $table->integer('registered')->default(0);
             $table->timestamps();
         });
     }

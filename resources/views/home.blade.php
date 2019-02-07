@@ -9,7 +9,30 @@
             @if(session('message'))
                 {{session('message')}}
             @endif
-
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <table>
+                            <tr>
+                                <td width="300">Local Government Name</td>
+                                <td>{{$user->lga->name}}</td>
+                            </tr>
+                            <tr>
+                                <td>No Of Registered Votes</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>No Of Wards</td>
+                                <td>{{count($user->lga->wards)}}</td>
+                            </tr> 
+                            <tr>
+                                <td>No Of Polling Units</td>
+                                <td>{{$pollingUnits}}</td>
+                            </tr>   
+                        </table>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header h2">{{'Summary'}}</div>
@@ -121,15 +144,27 @@
         @else
         <div class="row justify-content-center">
             <div class="alert alert-success h4" >{{$user->pollingUnit->name.' APC Agent'}}</div>
-            @if($user->PollingUnit->votes == 0)
+            @if($user->pollingUnit->register == 0)
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header h3">How many Voters are accredated</div>
-
+                    <div class="card-header h3">How many Voters Registered</div>
                     <div class="card-body">
                         <form action="/accredited" method="post">
                             @csrf
-                            <input class="form-control" type="text" name="votes" placeholder="number of accredated voters"><br>
+                            <input class="form-control" type="text" name="Registered" placeholder="number of accredated voters"><br>
+                            <input type="submit" class="btn btn-primary" value="Send">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            @elseif($user->pollingUnit->acredited == 0)
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header h3">How many Voters are accredated</div>
+                    <div class="card-body">
+                        <form action="/accredited" method="post">
+                            @csrf
+                            <input class="form-control" type="text" name="accredited" placeholder="number of accredated voters"><br>
                             <input type="submit" class="btn btn-primary" value="Send">
                         </form>
                     </div>
@@ -160,11 +195,25 @@
                     <div class="card-body">
                         <form action="/result" method="post">
                             @csrf
-                            <input class="form-control" type="text" name="apc" placeholder="APC"><br>000a
-                            <input class="form-control" type="text" name="pdp" placeholder="PDP"><br>
-                            <input class="form-control" type="text" name="other" placeholder="OTHER"><br>
-                            <input class="form-control" type="text" name="valid_vote" placeholder="VALID VOTE"><br>
-                            <input class="form-control" type="text" name="invalid_vote" placeholder="INVALID VOTE"><br>
+                            <fieldset>
+                                <input class="form-control" type="text" name="apc" placeholder="APC"><br>
+                                <input class="form-control" type="text" name="pdp" placeholder="PDP"><br>
+                                <input class="form-control" type="text" name="other" placeholder="OTHER"><br>
+                                <input class="form-control" type="text" name="valid_vote" placeholder="VALID VOTE"><br><input class="form-control" type="text" name="invalid_vote" placeholder="INVALID VOTE">
+                            </fieldset>
+                            <fieldset>
+                                <input class="form-control" type="text" name="apc" placeholder="APC"><br>
+                                <input class="form-control" type="text" name="pdp" placeholder="PDP"><br>
+                                <input class="form-control" type="text" name="other" placeholder="OTHER"><br>
+                                <input class="form-control" type="text" name="valid_vote" placeholder="VALID VOTE"><br><input class="form-control" type="text" name="invalid_vote" placeholder="INVALID VOTE">
+                            </fieldset>
+                            <fieldset>
+                                <input class="form-control" type="text" name="apc" placeholder="APC"><br>
+                                <input class="form-control" type="text" name="pdp" placeholder="PDP"><br>
+                                <input class="form-control" type="text" name="other" placeholder="OTHER"><br>
+                                <input class="form-control" type="text" name="valid_vote" placeholder="VALID VOTE"><br><input class="form-control" type="text" name="invalid_vote" placeholder="INVALID VOTE">
+                            </fieldset>
+                            <br>
                             <input type="submit" class="btn btn-primary" value="Send">
                         </form>
                     </div>
