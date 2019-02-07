@@ -35,7 +35,7 @@
             </div>
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header h2">{{'Summary'}}</div>
+                    <div class="card-header h2">{{'Summary'}} </div>
                     <div class="card-body">
                         <table class="table table-default table-responsive">
                             <thead>
@@ -87,7 +87,7 @@
                             @foreach($ward->pollingUnits as $pollingUnit)    
                                 <div class="col-md-12">
                                     <div class="card">
-                                        <div class="card-header">{{$pollingUnit->name. ' POLLING UNITt'}}</div>
+                                        <div class="card-header">{{$pollingUnit->name. ' POLLING UNIT'}}</div>
                                         <div class="card-body">
                                             <table class="table table-responsive">
                                                 <thead>
@@ -144,7 +144,7 @@
         @else
         <div class="row justify-content-center">
             <div class="alert alert-success h4" >{{$user->pollingUnit->name.' APC Agent'}}</div>
-            @if($user->pollingUnit->register == 0)
+            @if($user->pollingUnit->registered == 0)
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header h3">How many Voters Registered</div>

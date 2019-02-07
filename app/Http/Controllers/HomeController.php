@@ -61,6 +61,7 @@ class HomeController extends Controller
     {
         if(Auth()->user()->lga_id == null){
             $pollingUnits = null;
+            $registered = null;
         }else{
             $unit = 0;
             $register = 0;
@@ -78,7 +79,13 @@ class HomeController extends Controller
     
     public function accredited(Request $request)
     {
-        Auth()->User()->pollingUnit->update(['votes'=>$request->votes]);
+        
+        if(isset($request->Registered)){
+            Auth()->User()->pollingUnit->update(['registered'=>$request->Registered]);
+        }else{
+            Auth()->User()->pollingUnit->update(['acredited'=>$request->accredited]);
+        }
+        
         session()->flash('message','Acredited voters was sent successfully');
         return redirect('/home');
     }
