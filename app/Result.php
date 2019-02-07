@@ -10,6 +10,11 @@ class Result extends Model
 
     public function pollingUnit()
     {
-    	return $this->belongsTo('App\PollingUnit');
+    	return $this->belongsTo(PollingUnit::class);
+    }
+
+    public function type()
+    {
+    	return $this->belongsTo(Type::class);
     }
 }

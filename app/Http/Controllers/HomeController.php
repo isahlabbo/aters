@@ -62,13 +62,18 @@ class HomeController extends Controller
         if(Auth()->user()->lga_id == null){
             $pollingUnits = null;
         }else{
-            $count = 0;
+            $unit = 0;
+            $register = 0;
             foreach(Auth()->user()->lga->wards as $ward){
-                $count = $count + count($ward->pollingUnits);
+                $unit = $unit + count($ward->pollingUnits);
+                foreach($ward->pollingUnits as $pollingUnit){
+                    $register = $register + $pollingUnit->registered;
+                }
             }
-            $pollingUnits = $count;
+            $pollingUnits = $unit;
+            $registered = $register;
         }
-        return view('home',['pollingUnits'=>$pollingUnits,'user'=>Auth()->User(),'summary'=>$this->localSummary()]);
+        return view('home',['register'=>$registered,'pollingUnits'=>$pollingUnits,'user'=>Auth()->User(),'summary'=>$this->localSummary()]);
     }
     
     public function accredited(Request $request)

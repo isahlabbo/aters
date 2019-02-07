@@ -19,7 +19,7 @@
                             </tr>
                             <tr>
                                 <td>No Of Registered Votes</td>
-                                <td></td>
+                                <td>{{$register}}</td>
                             </tr>
                             <tr>
                                 <td>No Of Wards</td>
@@ -80,14 +80,14 @@
             @foreach($user->lga->wards as $ward)
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-header h3">{{$ward->name}}</div>
+                        <div class="card-header h3">{{$ward->name.' Ward'}}</div>
                       
                         <div class="card-body">
                             <div class="row">
                             @foreach($ward->pollingUnits as $pollingUnit)    
                                 <div class="col-md-12">
                                     <div class="card">
-                                        <div class="card-header">{{$pollingUnit->name}}</div>
+                                        <div class="card-header">{{$pollingUnit->name. ' POLLING UNITt'}}</div>
                                         <div class="card-body">
                                             <table class="table table-responsive">
                                                 <thead>

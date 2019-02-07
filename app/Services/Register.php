@@ -7,6 +7,7 @@ use App\User;
 use App\Lga;
 use App\Ward;
 use App\Result;
+use App\Type;
 use App\PollingUnit;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,7 +23,10 @@ class Register
 
 	protected function createInfo()
 	{
-
+		$type = ['Presidential','Sentorial','Representative'];
+        foreach ($type as $name) {
+        	Type::create(['name'=>$name]);
+        }
 		foreach ($this->data as $data) {
 
 			foreach ($data as $lga) {
@@ -52,7 +56,11 @@ class Register
                                 //create polling unit 
 								$agent = PollingUnit::create(['name'=>$pollingUnit,'ward_id'=>$this_ward->id]);
 								// create polling unit result with zero values
-                                 Result::create(['polling_unit_id'=>$agent->id]);
+								for ($i=1; $i <= 3 ; $i++) { 
+									Result::create(['type_id'=>$i,'polling_unit_id'=>$agent->id]);
+								}
+                                
+                         
 								//create agent of the polling unit
 								User::create([
                                     'email'=>'a'.$this->agentCode($agent->id).'@apc.com',
