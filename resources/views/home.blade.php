@@ -14,33 +14,39 @@
                 <div class="card">
                     <div class="card-header h2">{{'Summary'}}</div>
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table table-default table-responsive">
                             <thead>
                                 <tr>
+                                    <th>Registered Votes</th>
                                     <th>Accredited</th>
                                     <th>APC</th>
                                     <th>PDP</th>
                                     <th>Other</th>
                                     <th>valid votes</th>
                                     <th>invalid votes</th>
+                                    <th>Total Votes cast</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td></td>
                                     <td>{{$summary['acredited']}}</td>
                                     <td>{{$summary['apc']}}</td>
                                     <td>{{$summary['pdp']}}</td>
                                     <td>{{$summary['other']}}</td>
                                     <td>{{$summary['valid_vote']}}</td>
                                     <td>{{$summary['invalid_vote']}}</td>
+                                    <td>{{$summary['invalid_vote']+$summary['valid_vote']}}</td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td>{{$summary['acredited']}}</td>
-                                    <td>{{$summary['pdp']}}</td>
-                                    <td>{{$summary['other']}}</td>
-                                    <td>{{$summary['valid_vote']}}</td>
-                                    <td>{{$summary['invalid_vote']}}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
 
                             </tbody>
@@ -60,25 +66,29 @@
                                     <div class="card">
                                         <div class="card-header">{{$pollingUnit->name}}</div>
                                         <div class="card-body">
-                                            <table class="table">
+                                            <table class="table table-responsive">
                                                 <thead>
                                                     <tr>
+                                                        <th>Registered Votes</th>
                                                         <th>Accredited</th>
                                                         <th>APC</th>
                                                         <th>PDP</th>
-                                                        <th>Other</th>
+                                                        <th>Others</th>
                                                         <th>valid</th>
                                                         <th>invalid</th>
+                                                        <th>Total Votes Cast</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
+                                                        <td>{{$pollingUnit->votes}}</td>
                                                         <td>{{$pollingUnit->votes}}</td>
                                                         <td>{{$pollingUnit->result->apc}}</td>
                                                         <td>{{$pollingUnit->result->pdp}}</td>
                                                         <td>{{$pollingUnit->result->other}}</td>
                                                         <td>{{$pollingUnit->result->valid}}</td>
                                                         <td>{{$pollingUnit->result->invalid}}</td>
+                                                        <td>{{$pollingUnit->result->invalid+$pollingUnit->result->valid}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td></td>
