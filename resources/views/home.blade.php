@@ -35,43 +35,113 @@
             </div>
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header h2">{{'Summary'}} </div>
+                    <div class="card-header h2">{{'Summary'}}</div>
                     <div class="card-body">
+                        <span class="h3">Presidential</span>
                         <table class="table table-default table-responsive">
                             <thead>
                                 <tr>
                                     <th>Registered Votes</th>
-                                    <th>Accredited</th>
+                                    <th>Acredited</th>
                                     <th>APC</th>
                                     <th>PDP</th>
-                                    <th>Other</th>
-                                    <th>valid votes</th>
-                                    <th>invalid votes</th>
-                                    <th>Total Votes cast</th>
+                                    <th>Others</th>
+                                    <th>Valid Votes</th>
+                                    <th>Invalid Votes</th>
+                                    <th>Total Votes Cast</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td></td>
-                                    <td>{{$summary['acredited']}}</td>
-                                    <td>{{$summary['apc']}}</td>
-                                    <td>{{$summary['pdp']}}</td>
-                                    <td>{{$summary['other']}}</td>
-                                    <td>{{$summary['valid_vote']}}</td>
-                                    <td>{{$summary['invalid_vote']}}</td>
-                                    <td>{{$summary['invalid_vote']+$summary['valid_vote']}}</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>{{$summary['acredited']}}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                    <td>{{$summary['registered'] == 0 ? 'Not Avalable' : $summary['registered']}}</td>
 
+                                    <td>{{$summary['acredited'] == 0 ? 'Not Avalable' : $summary['acredited']}}</td>
+
+                                    <td>{{$user->lga->result()['presidential']['apc'] == 0 ? 'Not Available' : $user->lga->result()['presidential']['apc']}}</td>
+
+                                    <td>{{$user->lga->result()['presidential']['pdp'] == 0 ? 'Not Available' : $user->lga->result()['presidential']['pdp']}}</td>
+
+                                    <td>{{$user->lga->result()['presidential']['other'] == 0 ? 'Not Available' : $user->lga->result()['presidential']['other']}}</td>
+
+                                    <td>{{$user->lga->result()['presidential']['apc']+$user->lga->result()['presidential']['pdp']+$user->lga->result()['presidential']['other'] == 0 ? 'Not Available' : $user->lga->result()['presidential']['apc']+$user->lga->result()['presidential']['pdp']+$user->lga->result()['presidential']['other']}}</td>
+
+                                    <td>{{$user->lga->result()['presidential']['invalid'] == 0 ? 'Not Available' : $user->lga->result()['presidential']['invalid']}}</td>
+
+                                    <td>{{$user->lga->result()['presidential']['invalid']+$user->lga->result()['presidential']['apc']+$user->lga->result()['presidential']['pdp']+$user->lga->result()['presidential']['other'] == 0 ? 'No Available' : $user->lga->result()['presidential']['invalid']+$user->lga->result()['presidential']['apc']+$user->lga->result()['presidential']['pdp']+$user->lga->result()['presidential']['other']}}</td>
+
+                                </tr>
+                                
+
+                            </tbody>
+                        </table>
+                        <span class="h3">Senatorial</span>
+                        <table class="table table-default table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Registered Votes</th>
+                                    <th>Acredited</th>
+                                    <th>APC</th>
+                                    <th>PDP</th>
+                                    <th>Others</th>
+                                    <th>Valid Votes</th>
+                                    <th>Invalid Votes</th>
+                                    <th>Total Votes Cast</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{$summary['registered'] == 0 ? 'Not Avalable' : $summary['registered']}}</td>
+
+                                    <td>{{$summary['acredited'] == 0 ? 'Not Avalable' : $summary['acredited']}}</td>
+
+                                    <td>{{$user->lga->result()['senatorial']['apc'] == 0 ? 'Not Available' : $user->lga->result()['senatorial']['apc']}}</td>
+
+                                    <td>{{$user->lga->result()['senatorial']['pdp'] == 0 ? 'Not Available' : $user->lga->result()['senatorial']['pdp']}}</td>
+
+                                    <td>{{$user->lga->result()['senatorial']['other'] == 0 ? 'Not Available' : $user->lga->result()['senatorial']['other']}}</td>
+
+                                    <td>{{$user->lga->result()['senatorial']['apc']+$user->lga->result()['senatorial']['pdp']+$user->lga->result()['senatorial']['other'] == 0 ? 'Not Available' : $user->lga->result()['senatorial']['apc']+$user->lga->result()['senatorial']['pdp']+$user->lga->result()['senatorial']['other']}}</td>
+
+                                    <td>{{$user->lga->result()['senatorial']['invalid'] == 0 ? 'Not Available' : $user->lga->result()['senatorial']['invalid']}}</td>
+
+                                    <td>{{$user->lga->result()['senatorial']['invalid']+$user->lga->result()['senatorial']['apc']+$user->lga->result()['senatorial']['pdp']+$user->lga->result()['senatorial']['other'] == 0 ? 'No Available' : $user->lga->result()['senatorial']['invalid']+$user->lga->result()['senatorial']['apc']+$user->lga->result()['senatorial']['pdp']+$user->lga->result()['senatorial']['other']}}</td>
+                                </tr>
+                                
+
+                            </tbody>
+                        </table>
+                        <span class="h3">Representative</span>
+                        <table class="table table-default table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Registered Votes</th>
+                                    <th>Acredited</th>
+                                    <th>APC</th>
+                                    <th>PDP</th>
+                                    <th>Others</th>
+                                    <th>Valid Votes</th>
+                                    <th>Invalid Votes</th>
+                                    <th>Total Votes Cast</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{$summary['registered'] == 0 ? 'Not Avalable' : $summary['registered']}}</td>
+
+                                    <td>{{$summary['acredited'] == 0 ? 'Not Avalable' : $summary['acredited']}}</td>
+
+                                    <td>{{$user->lga->result()['representative']['apc'] == 0 ? 'Not Available' : $user->lga->result()['representative']['apc']}}</td>
+
+                                    <td>{{$user->lga->result()['representative']['pdp'] == 0 ? 'Not Available' : $user->lga->result()['representative']['pdp']}}</td>
+
+                                    <td>{{$user->lga->result()['representative']['other'] == 0 ? 'Not Available' : $user->lga->result()['representative']['other']}}</td>
+
+                                    <td>{{$user->lga->result()['representative']['apc']+$user->lga->result()['representative']['pdp']+$user->lga->result()['representative']['other'] == 0 ? 'Not Available' : $user->lga->result()['representative']['apc']+$user->lga->result()['representative']['pdp']+$user->lga->result()['representative']['other']}}</td>
+
+                                    <td>{{$user->lga->result()['representative']['invalid'] == 0 ? 'Not Available' : $user->lga->result()['representative']['invalid']}}</td>
+
+                                    <td>{{$user->lga->result()['representative']['invalid']+$user->lga->result()['representative']['apc']+$user->lga->result()['representative']['pdp']+$user->lga->result()['representative']['other'] == 0 ? 'No Available' : $user->lga->result()['representative']['invalid']+$user->lga->result()['representative']['apc']+$user->lga->result()['representative']['pdp']+$user->lga->result()['representative']['other']}}</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -81,7 +151,6 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header h3">{{$ward->name.' Ward'}}</div>
-                      
                         <div class="card-body">
                             <div class="row">
                             @foreach($ward->pollingUnits as $pollingUnit)    
@@ -89,6 +158,9 @@
                                     <div class="card">
                                         <div class="card-header">{{$pollingUnit->name. ' POLLING UNIT'}}</div>
                                         <div class="card-body">
+                                            @foreach($pollingUnit->results as $result)
+                                            @if($result->type_id == 1)
+                                            <span class="h3">presidential</span>
                                             <table class="table table-responsive">
                                                 <thead>
                                                     <tr>
@@ -97,33 +169,83 @@
                                                         <th>APC</th>
                                                         <th>PDP</th>
                                                         <th>Others</th>
-                                                        <th>valid</th>
-                                                        <th>invalid</th>
+                                                        <th>Valid Votes</th>
+                                                        <th>Invalid Votes</th>
                                                         <th>Total Votes Cast</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td>{{$pollingUnit->votes}}</td>
-                                                        <td>{{$pollingUnit->votes}}</td>
-                                                        <td>{{$pollingUnit->result->apc}}</td>
-                                                        <td>{{$pollingUnit->result->pdp}}</td>
-                                                        <td>{{$pollingUnit->result->other}}</td>
-                                                        <td>{{$pollingUnit->result->valid}}</td>
-                                                        <td>{{$pollingUnit->result->invalid}}</td>
-                                                        <td>{{$pollingUnit->result->invalid+$pollingUnit->result->valid}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td></td>
-                                                        <td>{{round(($pollingUnit->result->apc/($pollingUnit->votes == 0 ? $pollingUnit->votes + 1 : $pollingUnit->votes + 0)) * 100, 1)}} %</td>
-                                                        <td>{{round(($pollingUnit->result->pdp/($pollingUnit->votes == 0 ? $pollingUnit->votes + 1 : $pollingUnit->votes + 0)) * 100, 1)}}</td>
-                                                        <td>{{round(($pollingUnit->result->other/($pollingUnit->votes == 0 ? $pollingUnit->votes + 1 : $pollingUnit->votes + 0)) * 100, 1)}}</td>
-                                                        <td></td>
-                                                        <td></td>
+                                                        <td>{{$pollingUnit->registered == 0 ? 'Not Available' : $pollingUnit->registered}}</td>
+                                                        <td>{{$pollingUnit->acredited == 0 ? 'Not Available' : $pollingUnit->acredited}}</td>
+                                                        <td>{{$result->apc == 0 ? 'Not Available' : $result->apc}}</td>
+                                                        <td>{{$result->pdp == 0 ? 'Not Available' : $result->pdp}}</td>
+                                                        <td>{{$result->other == 0 ? 'Not Available' : $result->other}}</td>
+                                                        <td>{{$result->valid_vote == 0 ? 'Not Available' : $result->valid_vote}}</td>
+                                                        <td>{{$result->invalid_vote == 0 ? 'Not Available' : $result->invalid_vote}}</td>
+                                                        <td>{{$result->valid_vote + $result->invalid_vote == 0 ? 'Not Available' : $result->valid_vote + $result->invalid_vote}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            @if($pollingUnit->votes == 0 && $pollingUnit->result->apc == 0)
+                                            @elseif($result->type_id == 2)
+                                            <span class="h3">presidential</span>
+                                            <table class="table table-responsive">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Registered Votes</th>
+                                                        <th>Accredited</th>
+                                                        <th>APC</th>
+                                                        <th>PDP</th>
+                                                        <th>Others</th>
+                                                        <th>Valid</th>
+                                                        <th>Invalid</th>
+                                                        <th>Total Votes Cast</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{$pollingUnit->registered == 0 ? 'Not Available' : $pollingUnit->registered}}</td>
+                                                        <td>{{$pollingUnit->acredited == 0 ? 'Not Available' : $pollingUnit->acredited}}</td>
+                                                        <td>{{$result->apc == 0 ? 'Not Available' : $result->apc}}</td>
+                                                        <td>{{$result->pdp == 0 ? 'Not Available' : $result->pdp}}</td>
+                                                        <td>{{$result->other == 0 ? 'Not Available' : $result->other}}</td>
+                                                        <td>{{$result->valid_vote == 0 ? 'Not Available' : $result->valid_vote}}</td>
+                                                        <td>{{$result->invalid_vote == 0 ? 'Not Available' : $result->invalid_vote}}</td>
+                                                        <td>{{$result->valid_vote + $result->invalid_vote == 0 ? 'Not Available' : $result->valid_vote + $result->invalid_vote}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            @else
+                                            <span class="h3">Representative</span>
+                                            <table class="table table-responsive">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Registered Votes</th>
+                                                        <th>Accredited</th>
+                                                        <th>APC</th>
+                                                        <th>PDP</th>
+                                                        <th>Others</th>
+                                                        <th>Valid</th>
+                                                        <th>Invalid</th>
+                                                        <th>Total Votes Cast</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{$pollingUnit->registered == 0 ? 'Not Available' : $pollingUnit->registered}}</td>
+                                                        <td>{{$pollingUnit->acredited == 0 ? 'Not Available' : $pollingUnit->acredited}}</td>
+                                                        <td>{{$result->apc == 0 ? 'Not Available' : $result->apc}}</td>
+                                                        <td>{{$result->pdp == 0 ? 'Not Available' : $result->pdp}}</td>
+                                                        <td>{{$result->other == 0 ? 'Not Available' : $result->other}}</td>
+                                                        <td>{{$result->valid_vote == 0 ? 'Not Available' : $result->valid_vote}}</td>
+                                                        <td>{{$result->invalid_vote == 0 ? 'Not Available' : $result->invalid_vote}}</td>
+                                                        <td>{{$result->valid_vote + $result->invalid_vote == 0 ? 'Not Available' : $result->valid_vote + $result->invalid_vote}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            @endif
+                                            @endforeach
+                                            @if($pollingUnit->submitted() == false)
                                             <form action="/add_result" method="post">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{$pollingUnit->id}}">
@@ -143,7 +265,7 @@
         </div>
         @else
         <div class="row justify-content-center">
-            <div class="alert alert-success h4" >{{$user->pollingUnit->name.' APC Agent'}}</div>
+            <div class="alert alert-success h4" >{{$user->pollingUnit->name.' APC AGENT'}}</div>
             @if($user->pollingUnit->registered == 0)
             <div class="col-sm-12">
                 <div class="card">
@@ -151,7 +273,7 @@
                     <div class="card-body">
                         <form action="/accredited" method="post">
                             @csrf
-                            <input class="form-control" type="text" name="Registered" placeholder="number of accredated voters"><br>
+                            <input class="form-control" type="text" name="registered" placeholder="number of accredated voters"><br>
                             <input type="submit" class="btn btn-primary" value="Send">
                         </form>
                     </div>
@@ -164,7 +286,7 @@
                     <div class="card-body">
                         <form action="/accredited" method="post">
                             @csrf
-                            <input class="form-control" type="text" name="accredited" placeholder="number of accredated voters"><br>
+                            <input class="form-control" type="text" name="acredited" placeholder="number of accredated voters"><br>
                             <input type="submit" class="btn btn-primary" value="Send">
                         </form>
                     </div>
@@ -187,31 +309,34 @@
                     </div>
                 </div>
             </div>
-           @elseif($user->pollingUnit->result->apc == 0)
+           @elseif($submitted == false)
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header h3">Send Result</div>
+                    <div class="card-header h3">SEND RESULT</div>
 
                     <div class="card-body">
                         <form action="/result" method="post">
                             @csrf
                             <fieldset>
-                                <input class="form-control" type="text" name="apc" placeholder="APC"><br>
-                                <input class="form-control" type="text" name="pdp" placeholder="PDP"><br>
-                                <input class="form-control" type="text" name="other" placeholder="OTHER"><br>
-                                <input class="form-control" type="text" name="valid_vote" placeholder="VALID VOTE"><br><input class="form-control" type="text" name="invalid_vote" placeholder="INVALID VOTE">
+                                <legend>presidential ELECTION RESULT</legend>
+                                <input class="form-control" type="text" name="presidential_apc" placeholder="APC"><br>
+                                <input class="form-control" type="text" name="presidential_pdp" placeholder="PDP"><br>
+                                <input class="form-control" type="text" name="presidential_other" placeholder="OTHER"><br>
+                                <input class="form-control" type="text" name="presidential_invalid_vote" placeholder="INVALID VOTE">
                             </fieldset>
                             <fieldset>
-                                <input class="form-control" type="text" name="apc" placeholder="APC"><br>
-                                <input class="form-control" type="text" name="pdp" placeholder="PDP"><br>
-                                <input class="form-control" type="text" name="other" placeholder="OTHER"><br>
-                                <input class="form-control" type="text" name="valid_vote" placeholder="VALID VOTE"><br><input class="form-control" type="text" name="invalid_vote" placeholder="INVALID VOTE">
+                                <legend>presidential ELECTION RESULT</legend>
+                                <input class="form-control" type="text" name="presidential_apc" placeholder="APC"><br>
+                                <input class="form-control" type="text" name="presidential_pdp" placeholder="PDP"><br>
+                                <input class="form-control" type="text" name="presidential_other" placeholder="OTHER"><br>
+                                <input class="form-control" type="text" name="presidential_invalid_vote" placeholder="INVALID VOTE">
                             </fieldset>
                             <fieldset>
-                                <input class="form-control" type="text" name="apc" placeholder="APC"><br>
-                                <input class="form-control" type="text" name="pdp" placeholder="PDP"><br>
-                                <input class="form-control" type="text" name="other" placeholder="OTHER"><br>
-                                <input class="form-control" type="text" name="valid_vote" placeholder="VALID VOTE"><br><input class="form-control" type="text" name="invalid_vote" placeholder="INVALID VOTE">
+                                <legend>REPRESENTATIVE ELECTION RESULT</legend>
+                                <input class="form-control" type="text" name="representative_apc" placeholder="APC"><br>
+                                <input class="form-control" type="text" name="representative_pdp" placeholder="PDP"><br>
+                                <input class="form-control" type="text" name="representative_other" placeholder="OTHER"><br>
+                                <input class="form-control" type="text" name="representative_invalid_vote" placeholder="INVALID VOTE">
                             </fieldset>
                             <br>
                             <input type="submit" class="btn btn-primary" value="Send">

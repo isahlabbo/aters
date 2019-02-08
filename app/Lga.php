@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Services\Summary as ElectionResultSummary;
 class Lga extends Model
 {
+    use ElectionResultSummary;
+    
 	protected $guarded = [];
 
     public function wards()

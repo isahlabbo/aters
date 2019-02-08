@@ -18,13 +18,24 @@ class PollingUnit extends Model
     	return $this->hasMany('App\User');
     }
 
-    public function result()
+    public function results()
     {
-    	return $this->hasOne(Result::class);
+    	return $this->hasMany(Result::class);
     }
 
     public function ward()
     {
     	return $this->belongsTo('App\Ward');
+    }
+
+    public function submitted()
+    {
+        $flag = true;
+        foreach($this->results as $result){
+            if($result->apc == 0){
+                $flag = false; 
+            }
+        }
+        return $flag;
     }
 }
