@@ -19,7 +19,7 @@
                             </tr>
                             <tr>
                                 <td>No Of Registered Votes</td>
-                                <td>{{$register}}</td>
+                                <td>{{$register == 0 ? 'Not Available' : $register}}</td>
                             </tr>
                             <tr>
                                 <td>No Of Wards</td>
