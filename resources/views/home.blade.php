@@ -160,7 +160,7 @@
                                         <div class="card-body">
                                             @foreach($pollingUnit->results as $result)
                                             @if($result->type_id == 1)
-                                            <span class="h3">presidential</span>
+                                            <span class="h3">Presidential</span>
                                             <table class="table table-responsive">
                                                 <thead>
                                                     <tr>
@@ -188,7 +188,7 @@
                                                 </tbody>
                                             </table>
                                             @elseif($result->type_id == 2)
-                                            <span class="h3">presidential</span>
+                                            <span class="h3">Senatorial</span>
                                             <table class="table table-responsive">
                                                 <thead>
                                                     <tr>
