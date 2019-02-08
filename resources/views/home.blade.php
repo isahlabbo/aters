@@ -318,18 +318,18 @@
                         <form action="/result" method="post">
                             @csrf
                             <fieldset>
-                                <legend>presidential ELECTION RESULT</legend>
+                                <legend>PRESIDENTIAL ELECTION RESULT</legend>
                                 <input class="form-control" type="text" name="presidential_apc" placeholder="APC"><br>
                                 <input class="form-control" type="text" name="presidential_pdp" placeholder="PDP"><br>
                                 <input class="form-control" type="text" name="presidential_other" placeholder="OTHER"><br>
                                 <input class="form-control" type="text" name="presidential_invalid_vote" placeholder="INVALID VOTE">
                             </fieldset>
                             <fieldset>
-                                <legend>presidential ELECTION RESULT</legend>
-                                <input class="form-control" type="text" name="presidential_apc" placeholder="APC"><br>
-                                <input class="form-control" type="text" name="presidential_pdp" placeholder="PDP"><br>
-                                <input class="form-control" type="text" name="presidential_other" placeholder="OTHER"><br>
-                                <input class="form-control" type="text" name="presidential_invalid_vote" placeholder="INVALID VOTE">
+                                <legend>SENATORIAL ELECTION RESULT</legend>
+                                <input class="form-control" type="text" name="senatorial_apc" placeholder="APC"><br>
+                                <input class="form-control" type="text" name="senatorial_pdp" placeholder="PDP"><br>
+                                <input class="form-control" type="text" name="senatorial_other" placeholder="OTHER"><br>
+                                <input class="form-control" type="text" name="senatorial_invalid_vote" placeholder="INVALID VOTE">
                             </fieldset>
                             <fieldset>
                                 <legend>REPRESENTATIVE ELECTION RESULT</legend>

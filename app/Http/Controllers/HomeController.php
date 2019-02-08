@@ -80,7 +80,7 @@ class HomeController extends Controller
             $pollingUnits = $unit;
             $registered = $register;
         }
-        
+
         return view('home',['submitted'=>$submitted,'register'=>$registered,'pollingUnits'=>$pollingUnits,'user'=>Auth()->User(),'summary'=>$this->localSummary()]);
     }
     
