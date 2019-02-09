@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-header h3">PRESIDENTIAL</div>
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table table->responsive">
                             <thead>
                                 <tr>
                                     <th>Registered Votes</th>
@@ -51,7 +51,7 @@
                                 <div class="card">
                                     <div class="card-header h3">{{$senate['name']}}</div>
                                     <div class="card-body">
-                                        <table class="table">
+                                        <table class="table table->responsive">
                                             <thead>
                                                 <tr>
                                                     <th>Registered Votes</th>
@@ -92,12 +92,12 @@
                     <div class="card-header h3">REPRESENTATIVE</div>
                     <div class="card-body">
                         <div class="row">
-
+                            @foreach($representative as $representative)
                             <div class="col-md-12">
                                 <div class="card">
-                                    <div class="card-header h3">REPRESENTATIVE</div>
+                                    <div class="card-header h3">{{$representative['name']}}</div>
                                     <div class="card-body">
-                                        <table class="table">
+                                        <table class="table table->responsive">
                                             <thead>
                                                 <tr>
                                                     <th>Registered Votes</th>
@@ -110,11 +110,23 @@
                                                     <th>Total Votes Cast</th>
                                                 </tr>
                                             </thead>
-                                            
+                                            <tbody>
+                                                <tr>
+                                                    <td>{{$representative['result']['registered'] == 0 ? 'Not Available' : $representative['result']['registered']}}</td>
+                                                    <td>{{$representative['result']['acredited'] == 0 ? 'Not Available' : $representative['result']['acredited']}}</td>
+                                                    <td>{{$representative['result']['apc'] == 0 ? 'Not Available' : $representative['result']['apc']}}</td>
+                                                    <td>{{$representative['result']['pdp'] == 0 ? 'Not Available' : $representative['result']['pdp']}}</td>
+                                                    <td>{{$representative['result']['other'] == 0 ? 'Not Available' : $representative['result']['other']}}</td>
+                                                    <td>{{$representative['result']['apc']+$representative['result']['pdp']+$representative['result']['other'] == 0 ? 'Not Available' : $representative['result']['apc']+$representative['result']['pdp']+$representative['result']['other']}}</td>
+                                                    <td>{{$representative['result']['invalid'] == 0 ? 'Not Available' : $representative['result']['invalid']}}</td>
+                                                    <td>{{$representative['result']['invalid']+$representative['result']['apc']+$representative['result']['pdp']+$representative['result']['other'] == 0 ? 'Not Available' : $representative['result']['invalid']+$representative['result']['apc']+$representative['result']['pdp']+$representative['result']['other']}}</td>
+                                                </tr>
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
                             
                         </div>
                     </div>

@@ -11,6 +11,7 @@ use App\Http\Requests\ElectionResultFormRequest;
 use App\Http\Requests\ElectionFormRequest;
 use App\Services\Collation\Presidential;
 use App\Services\Collation\Senatorial;
+use App\Services\Collation\Representative;
 
 class HomeController extends Controller
 {
@@ -62,9 +63,11 @@ class HomeController extends Controller
     public function index()
     {
         if(Auth()->user()->code == 'collation'){
+            $representative = new Representative();
+            
             $senatorial = new Senatorial();
             $presidential = new Presidential();
-              return view('home',['presidential'=> $presidential->result,'senatorial'=>$senatorial->result, 'user'=>Auth()->User()]);
+              return view('home',['representative'=>$representative->result,'presidential'=> $presidential->result,'senatorial'=>$senatorial->result, 'user'=>Auth()->User()]);
         }else{
             $submitted = true;
             if(Auth()->user()->lga_id == null){
