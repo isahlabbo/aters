@@ -23,6 +23,11 @@ class Register
 
 	protected function createInfo()
 	{
+		User::create([
+            'email'=>'collation@apc.com',
+			'code'=>'collation',
+			'password'=>Hash::make('collation')
+		]);
 		$type = ['Presidential','Sentorial','Representative'];
         foreach ($type as $name) {
         	Type::create(['name'=>$name]);

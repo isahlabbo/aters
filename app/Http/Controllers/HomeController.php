@@ -9,6 +9,8 @@ use App\PollingUnit;
 use App\Result;
 use App\Http\Requests\ElectionResultFormRequest;
 use App\Http\Requests\ElectionFormRequest;
+use App\Services\Collation\Presidential;
+use App\Services\Collation\Senatorial;
 
 class HomeController extends Controller
 {
@@ -59,29 +61,34 @@ class HomeController extends Controller
 
     public function index()
     {
-        $submitted = true;
-        if(Auth()->user()->lga_id == null){
-            $pollingUnits = null;
-            $registered = null;
-            foreach(Auth()->user()->pollingUnit->results as $result){
-                if($result->apc == 0){
-                    $submitted = false; 
-                }
-            }
+        if(Auth()->user()->code == 'collation'){
+            $senatorial = new Senatorial();
+            $presidential = new Presidential();
+              return view('home',['presidential'=> $presidential->result,'senatorial'=>$senatorial->result, 'user'=>Auth()->User()]);
         }else{
-            $unit = 0;
-            $register = 0;
-            foreach(Auth()->user()->lga->wards as $ward){
-                $unit = $unit + count($ward->pollingUnits);
-                foreach($ward->pollingUnits as $pollingUnit){
-                    $register = $register + $pollingUnit->registered;
+            $submitted = true;
+            if(Auth()->user()->lga_id == null){
+                $pollingUnits = null;
+                $registered = null;
+                foreach(Auth()->user()->pollingUnit->results as $result){
+                    if($result->apc == 0){
+                        $submitted = false; 
+                    }
                 }
+            }else{
+                $unit = 0;
+                $register = 0;
+                foreach(Auth()->user()->lga->wards as $ward){
+                    $unit = $unit + count($ward->pollingUnits);
+                    foreach($ward->pollingUnits as $pollingUnit){
+                        $register = $register + $pollingUnit->registered;
+                    }
+                }
+                $pollingUnits = $unit;
+                $registered = $register;
             }
-            $pollingUnits = $unit;
-            $registered = $register;
-        }
-
-        return view('home',['submitted'=>$submitted,'register'=>$registered,'pollingUnits'=>$pollingUnits,'user'=>Auth()->User(),'summary'=>$this->localSummary()]);
+            return view('home',['submitted'=>$submitted,'register'=>$registered,'pollingUnits'=>$pollingUnits,'user'=>Auth()->User(),'summary'=>$this->localSummary()]);
+        } 
     }
     
     public function accredited(ElectionFormRequest $request)

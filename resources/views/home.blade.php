@@ -2,8 +2,126 @@
 
 @section('content')
 <div class="container">
-    
-        @if($user->lga_id != null)
+        @if($user->code == 'collation')
+        <div class="alert alert-success">SOKOTO APC 2019 ELECTION DASHBOARD COLLATION CENTER</div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header h3">PRESIDENTIAL</div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Registered Votes</th>
+                                    <th>Acredited</th>
+                                    <th>APC</th>
+                                    <th>PDP</th>
+                                    <th>Others</th>
+                                    <th>Valid Votes</th>
+                                    <th>Invalid Votes</th>
+                                    <th>Total Votes Cast</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{$presidential['registered'] == 0 ? 'Not Available' : $presidential['registered']}}</td>
+                                    <td>{{$presidential['acredited'] == 0 ? 'Not Available' : $presidential['acredited']}}</td>
+                                    <td>{{$presidential['apc'] == 0 ? 'Not Available' : $presidential['apc']}}</td>
+                                    <td>{{$presidential['pdp'] == 0 ? 'Not Available' : $presidential['pdp']}}</td>
+                                    <td>{{$presidential['other'] == 0 ? 'Not Available' : $presidential['other']}}</td>
+                                    <td>{{$presidential['other']+$presidential['apc']+$presidential['pdp'] == 0 ? 'Not Available' : $presidential['other']+$presidential['apc']+$presidential['pdp']}}</td>
+                                    <td>{{$presidential['invalid'] == 0 ? 'Not Available' : $presidential['invalid']}}</td>
+                                    <td>{{$presidential['invalid']+$presidential['other']+$presidential['apc']+$presidential['pdp'] == 0 ? 'Not Available' : $presidential['invalid']+$presidential['other']+$presidential['apc']+$presidential['pdp']}}</td>
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header h3">SENATORIAL</div>
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach($senatorial as $senate)
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header h3">{{$senate['name']}}</div>
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Registered Votes</th>
+                                                    <th>Acredited</th>
+                                                    <th>APC</th>
+                                                    <th>PDP</th>
+                                                    <th>Others</th>
+                                                    <th>Valid Votes</th>
+                                                    <th>Invalid Votes</th>
+                                                    <th>Total Votes Cast</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>{{$senate['result']['registered'] == 0 ? 'Not Available' : $senate['result']['registered']}}</td>
+                                                    <td>{{$senate['result']['acredited'] == 0 ? 'Not Available' : $senate['result']['acredited']}}</td>
+                                                    <td>{{$senate['result']['apc'] == 0 ? 'Not Available' : $senate['result']['apc']}}</td>
+                                                    <td>{{$senate['result']['pdp'] == 0 ? 'Not Available' : $senate['result']['pdp']}}</td>
+                                                    <td>{{$senate['result']['other'] == 0 ? 'Not Available' : $senate['result']['other']}}</td>
+                                                    <td>{{$senate['result']['apc']+$senate['result']['pdp']+$senate['result']['other'] == 0 ? 'Not Available' : $senate['result']['apc']+$senate['result']['pdp']+$senate['result']['other']}}</td>
+                                                    <td>{{$senate['result']['invalid'] == 0 ? 'Not Available' : $senate['result']['invalid']}}</td>
+                                                    <td>{{$senate['result']['invalid']+$senate['result']['apc']+$senate['result']['pdp']+$senate['result']['other'] == 0 ? 'Not Available' : $senate['result']['invalid']+$senate['result']['apc']+$senate['result']['pdp']+$senate['result']['other']}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header h3">REPRESENTATIVE</div>
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header h3">REPRESENTATIVE</div>
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Registered Votes</th>
+                                                    <th>Acredited</th>
+                                                    <th>APC</th>
+                                                    <th>PDP</th>
+                                                    <th>Others</th>
+                                                    <th>Valid Votes</th>
+                                                    <th>Invalid Votes</th>
+                                                    <th>Total Votes Cast</th>
+                                                </tr>
+                                            </thead>
+                                            
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @elseif($user->lga_id != null)
         <div class="alert alert-success h3" >{{$user->lga->name.' Local Governement 2019 Election Report'}}</div>
         <div class="row justify-content-center">
             @if(session('message'))

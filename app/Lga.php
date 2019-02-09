@@ -19,4 +19,25 @@ class Lga extends Model
     {
     	return $this->hasOne(User::class);
     }
+
+    public function registered()
+    {
+        $registered = 0;
+        foreach ($this->wards as $ward) {
+            foreach ($ward->pollingUnits as $pollingUnit) {
+                $registered = $registered + $pollingUnit->registered;
+            }
+        }
+        return $registered;
+    }
+    public function acredited()
+    {
+        $acredited = 0;
+        foreach ($this->wards as $ward) {
+            foreach ($ward->pollingUnits as $pollingUnit) {
+                $acredited = $acredited + $pollingUnit->acredited;
+            }
+        }
+        return $acredited;
+    }
 }
