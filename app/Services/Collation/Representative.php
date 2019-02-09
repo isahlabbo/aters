@@ -4,8 +4,9 @@ namespace App\Services\Collation;
 * this class will return the sumary of election result at representative level
 */
 use App\Services\Collation\Senatorial;
+use App\Lga;
 
-class Representative extends Senatorial
+class Representative
 {
 	
 	function __construct()
@@ -114,6 +115,36 @@ class Representative extends Senatorial
             '8',
 		];
 		return $this->getResult($lga);
+	}
+	protected function getResult($array)
+	{   
+	    $pdp = 0;
+		$apc = 0;
+		$other = 0;
+        $invalid = 0;
+        $registered = 0;
+        $acredited = 0;
+
+		foreach ($array as $lga) {
+			$lga = Lga::find($lga);
+			$lga_result = $lga->result();
+            $pdp = $pdp + $lga_result['representative']['pdp'];
+            $apc = $apc + $lga_result['representative']['apc'];
+            $other = $other + $lga_result['representative']['other'];
+            $invalid = $invalid + $lga_result['representative']['invalid'];
+            $registered = $registered + $lga->registered();
+            $acredited = $acredited + $lga->acredited();
+  			
+  		}
+
+		return [
+            'pdp' => $pdp,
+            'apc' => $apc,
+            'other' => $other,
+            'invalid' => $invalid,
+            'acredited' => $acredited,
+            'registered' => $registered
+		];
 	}
 
 }
