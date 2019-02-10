@@ -6,13 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Incidence extends Model
 {
+	protected $guarded = [];
+	
     public function pollingUnitIncidence()
     {
-    	$this->hasOne(PollingUnitIncidence::class);
+    	return $this->BelongsTo('App\PollingUnitIncidence');
     }
 
     public function evidence()
     {
-    	$this->belongsTo(Evidence::class);
+    	return $this->hasOne('App\Evidence');
     }
 }

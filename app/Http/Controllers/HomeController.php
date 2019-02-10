@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Ward;
 use App\Lga;
 use App\PollingUnit;
+use App\Incidence;
 use App\Result;
 use App\Http\Requests\ElectionResultFormRequest;
 use App\Http\Requests\ElectionFormRequest;
@@ -154,6 +155,13 @@ class HomeController extends Controller
     public function newResult(Request $request)
     {
         return view('new_result',['id'=>$request->id]);
+    }
+    public function incidence(Request $request, Incidence $incidence)
+    {
+        $new_incidence = $incidence->firstOrCreate(['name'=>$request->incidence]);
+        $poll = $new_incidence->pollingUnitIncidence()->create(['polling_unit_id'=>Auth()->User()->polling_unit_id, 'incidence_id'=>$new_incidence->id]);
+        session()->flash('message','The was sent successfully');
+        return redirect('/home');
     }
 
 }

@@ -403,7 +403,7 @@
                     <div class="card-body">
                         <form action="/accredited" method="post">
                             @csrf
-                            <input class="form-control" type="text" name="registered" placeholder="number of accredated voters"><br>
+                            <input class="form-control" type="text" name="registered" placeholder="number of registered voters"><br>
                             <input type="submit" class="btn btn-primary" value="Send">
                         </form>
                     </div>
@@ -422,23 +422,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header h3">Report incidence</div>
-
-                    <div class="card-body">
-                        <form action="#" method="post">
-                            @csrf
-                            <button class="btn btn-danger btn-block">Violence</button>
-                            <button class="btn btn-danger btn-block">Valot Snatching</button>
-                            <button class="btn btn-danger btn-block">Vote Saling</button>
-                            <button class="btn btn-danger btn-block">Vote Buying</button>
-                            <button class="btn btn-danger btn-block">Absence of Security</button>
-                            <button class="btn btn-danger btn-block">Late Arrival Of Material Or Staff</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            @include('incidence')
            @elseif($submitted == false)
             <div class="col-sm-12">
                 <div class="card">
