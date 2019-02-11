@@ -7,7 +7,7 @@ namespace App\Services\PollingUnit\Goronyo;
 		function __construct()
 		{
 			# code...
-			$this->pollingUnits =  $this->pollingUnit();
+			$this->pollingUnits =  $this->pollingUnits();
 		}
 
 		public function pollingUnits(){

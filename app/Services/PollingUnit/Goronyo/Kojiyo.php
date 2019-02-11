@@ -7,7 +7,7 @@ namespace App\Services\PollingUnit\Goronyo;
 		function __construct()
 		{
 			# code...
-			$this->pollingUnits =  $this->pollingUnit();
+			$this->pollingUnits =  $this->pollingUnits();
 		}
 
 		public function pollingUnits(){
@@ -17,5 +17,6 @@ namespace App\Services\PollingUnit\Goronyo;
 				'GAMIHAR HURI, GANIHAR HURI',
 				'DARBABIYA DARBABIYA',
 				'MALABA, MALABA'
+			];
 		}
 	}

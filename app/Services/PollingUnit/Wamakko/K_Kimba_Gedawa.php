@@ -1,7 +1,6 @@
-
 <?php
 
-namespace App\Services\PollingUnit;
+namespace App\Services\PollingUnit\Wamakko;
 /**
 * this class will reurn polling units of this class
 */

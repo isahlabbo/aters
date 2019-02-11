@@ -7,7 +7,7 @@ namespace App\Services\PollingUnit\Goronyo;
 		function __construct()
 		{
 			# code...
-			$this->pollingUnits =  $this->pollingUnit();
+			$this->pollingUnits =  $this->pollingUnits();
 		}
 
 		public function pollingUnits(){
@@ -19,5 +19,6 @@ namespace App\Services\PollingUnit\Goronyo;
 				'DAN FILI (ILLELA DAWAGARE)',
 				'YAR’KOFA (DANJORO)',
 				'RIJIYA M/SALIHU (KUDA KUDA)'
+			];
 		}
 	}

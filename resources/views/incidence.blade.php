@@ -1,6 +1,6 @@
 <div class="col-sm-12">
     <div class="card">
-        <div class="card-header h3">Report incidence</div>
+        <div class="card-header h3" style="color: white; background-color: seagreen;">Report incidence</div>
 
         <div class="card-body">
             <form action="/incidence" method="post">

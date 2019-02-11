@@ -21,7 +21,7 @@ class DangeShuniPollingUnits
         	['name'=>'Giere','pollingUnits'=> new Giere],
         	['name'=>'Rikina','pollingUnits'=> new Rikina],
         	['name'=>'Rudu','pollingUnits'=> new Rudu],
-        	['name'=>'RuggarGidado','pollingUnits'=> new Rikina],
+        	['name'=>'Ruggar Gidado','pollingUnits'=> new RuggarGidado],
         	['name'=>'Shuni','pollingUnits'=> new Shuni],
         	['name'=>'Tsafanade','pollingUnits'=> new Tsafanade],
         	['name'=>'Tuntube','pollingUnits'=> new Tuntube],

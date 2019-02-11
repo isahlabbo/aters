@@ -7,7 +7,7 @@ namespace App\Services\PollingUnit\Goronyo;
 		function __construct()
 		{
 			# code...
-			$this->pollingUnits =  $this->pollingUnit();
+			$this->pollingUnits =  $this->pollingUnits();
 		}
 
 		public function pollingUnits(){
@@ -20,5 +20,6 @@ namespace App\Services\PollingUnit\Goronyo;
 				'GIDAN TUDU, GIDAN TUDU',
 				'DAN FILI (KUMUINIYA/FURAGIRKE)',
 				'TULUTTU, TULUTTU PRY SCH'
+			];
 		}
 	}

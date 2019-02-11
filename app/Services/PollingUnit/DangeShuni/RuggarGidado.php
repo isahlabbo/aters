@@ -6,7 +6,6 @@ namespace App\Services\PollingUnit\DangeShuni;
 		
 		function __construct()
 		{
-			# code...
 			$this->pollingUnits =  $this->pollingUnits();
 		}
 

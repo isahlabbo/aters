@@ -7,7 +7,7 @@ namespace App\Services\PollingUnit\Goronyo;
 		function __construct()
 		{
 			# code...
-			$this->pollingUnits =  $this->pollingUnit();
+			$this->pollingUnits =  $this->pollingUnits();
 		}
 
 		public function pollingUnits(){
@@ -28,5 +28,6 @@ namespace App\Services\PollingUnit\Goronyo;
 				"YAR’CHEDIYA (SHIYAR MABA YANCHEDIYA, SHINAKA)",
 				'SHIYAR MABA, AJA SHINAKA',
 				'MASARI, MASARI'
+			];
 		}
 	}

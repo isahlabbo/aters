@@ -165,9 +165,9 @@
             </div>
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header h2">{{'Summary'}}</div>
+                    <div class="card-header h2" style="color: white; background-color: seagreen">{{'Summary'}}</div>
                     <div class="card-body">
-                        <span class="h3">Presidential</span>
+                        <span class="h3" style="color: seagreen">Presidential</span>
                         <table class="table table-default table-responsive">
                             <thead>
                                 <tr>
@@ -204,7 +204,7 @@
 
                             </tbody>
                         </table>
-                        <span class="h3">Senatorial</span>
+                        <span class="h3" style="color: seagreen">Senatorial</span>
                         <table class="table table-default table-responsive">
                             <thead>
                                 <tr>
@@ -240,7 +240,7 @@
 
                             </tbody>
                         </table>
-                        <span class="h3">Representative</span>
+                        <span class="h3" style="color: seagreen">Representative</span>
                         <table class="table table-default table-responsive">
                             <thead>
                                 <tr>
@@ -280,17 +280,17 @@
             @foreach($user->lga->wards as $ward)
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-header h3">{{$ward->name.' Ward'}} {{count($ward->pollingUnits).' POLLING UNITS'}}</div>
+                        <div class="card-header h3"  style="background-color: seagreen;color:white">{{$ward->name.' Ward'}} {{count($ward->pollingUnits).' POLLING UNITS'}}</div>
                         <div class="card-body">
                             <div class="row">
                             @foreach($ward->pollingUnits as $pollingUnit)    
                                 <div class="col-md-12">
                                     <div class="card">
-                                        <div class="card-header">{{$pollingUnit->name. ' POLLING UNIT'}}</div>
+                                        <div class="card-header" style="background-color: seagreen; color: white">{{$pollingUnit->name. ' POLLING UNIT'}} {{'CODE '. $pollingUnit->user->code}}</div>
                                         <div class="card-body">
                                             @foreach($pollingUnit->results as $result)
                                             @if($result->type_id == 1)
-                                            <span class="h3">Presidential</span>
+                                            <span class="h3" style="color: seagreen;">Presidential</span>
                                             <table class="table table-responsive">
                                                 <thead>
                                                     <tr>
@@ -318,7 +318,7 @@
                                                 </tbody>
                                             </table>
                                             @elseif($result->type_id == 2)
-                                            <span class="h3">Senatorial</span>
+                                            <span class="h3" style="color: seagreen">Senatorial</span>
                                             <table class="table table-responsive">
                                                 <thead>
                                                     <tr>
@@ -346,7 +346,7 @@
                                                 </tbody>
                                             </table>
                                             @else
-                                            <span class="h3">Representative</span>
+                                            <span class="h3" style="color: seagreen">Representative</span>
                                             <table class="table table-responsive">
                                                 <thead>
                                                     <tr>
@@ -399,7 +399,7 @@
             @if($user->pollingUnit->registered == 0)
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header h3">How many Voters Registered</div>
+                    <div class="card-header h3" style="background-color: seagreen; color: white;">How many Voters Registered</div>
                     <div class="card-body">
                         <form action="/accredited" method="post">
                             @csrf
@@ -412,7 +412,7 @@
             @elseif($user->pollingUnit->acredited == 0)
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header h3">How many Voters are accredated</div>
+                    <div class="card-header h3"style="background-color: seagreen; color: white;">How many Voters are accredated</div>
                     <div class="card-body">
                         <form action="/accredited" method="post">
                             @csrf
@@ -426,27 +426,27 @@
            @elseif($submitted == false)
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header h3">SEND RESULT</div>
+                    <div class="card-header h3" style="background-color: seagreen; color: white;">SEND RESULT</div>
 
                     <div class="card-body">
                         <form action="/result" method="post">
                             @csrf
                             <fieldset>
-                                <legend>PRESIDENTIAL ELECTION RESULT</legend>
+                                <legend style="color: seagreen">PRESIDENTIAL ELECTION RESULT</legend>
                                 <input class="form-control" type="text" name="presidential_apc" placeholder="APC"><br>
                                 <input class="form-control" type="text" name="presidential_pdp" placeholder="PDP"><br>
                                 <input class="form-control" type="text" name="presidential_other" placeholder="OTHER"><br>
                                 <input class="form-control" type="text" name="presidential_invalid_vote" placeholder="INVALID VOTE">
                             </fieldset>
                             <fieldset>
-                                <legend>SENATORIAL ELECTION RESULT</legend>
+                                <legend style="color: seagreen">SENATORIAL ELECTION RESULT</legend>
                                 <input class="form-control" type="text" name="senatorial_apc" placeholder="APC"><br>
                                 <input class="form-control" type="text" name="senatorial_pdp" placeholder="PDP"><br>
                                 <input class="form-control" type="text" name="senatorial_other" placeholder="OTHER"><br>
                                 <input class="form-control" type="text" name="senatorial_invalid_vote" placeholder="INVALID VOTE">
                             </fieldset>
                             <fieldset>
-                                <legend>REPRESENTATIVE ELECTION RESULT</legend>
+                                <legend style="color: seagreen">REPRESENTATIVE ELECTION RESULT</legend>
                                 <input class="form-control" type="text" name="representative_apc" placeholder="APC"><br>
                                 <input class="form-control" type="text" name="representative_pdp" placeholder="PDP"><br>
                                 <input class="form-control" type="text" name="representative_other" placeholder="OTHER"><br>

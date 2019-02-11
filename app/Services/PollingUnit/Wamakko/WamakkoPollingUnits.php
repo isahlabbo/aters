@@ -23,7 +23,7 @@ class WamakkoPollingUnits
         	['name'=>'G/Hamidu/G/Kaya','pollingUnits'=> new G_Hamidu_G_Kaya],
         	['name'=>'Gumbi / Wajake','pollingUnits'=> new Gumbi_Wajake],
         	['name'=>'Gwamatse','pollingUnits'=> new Gwamatse],
-        	['name'=>'K/Kimba/Gedawa','pollingUnits'=> new k_Kimba_Gedawa],
+        	['name'=>'K/Kimba/Gedawa','pollingUnits'=> new K_Kimba_Gedawa],
         	['name'=>'Kalanbaina / Girabshi','pollingUnits'=> new Kalanbaina_Girabshi],
         	['name'=>'Kammata','pollingUnits'=> new Kammata],
         	['name'=>'Wamakko','pollingUnits'=> new Wamakko],
