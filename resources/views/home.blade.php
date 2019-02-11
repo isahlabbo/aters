@@ -280,7 +280,7 @@
             @foreach($user->lga->wards as $ward)
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-header h3">{{$ward->name.' Ward'}}</div>
+                        <div class="card-header h3">{{$ward->name.' Ward'}} {{count($ward->pollingUnits).' POLLING UNITS'}}</div>
                         <div class="card-body">
                             <div class="row">
                             @foreach($ward->pollingUnits as $pollingUnit)    
@@ -458,23 +458,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header h3">Report incidence</div>
-
-                    <div class="card-body">
-                        <form action="#" method="post">
-                            @csrf
-                            <button class="btn btn-danger btn-block">Violence</button>
-                            <button class="btn btn-danger btn-block">Valot Snatching</button>
-                            <button class="btn btn-danger btn-block">Vote Saling</button>
-                            <button class="btn btn-danger btn-block">Vote Buying</button>
-                            <button class="btn btn-danger btn-block">Absence of Security</button>
-                            <button class="btn btn-danger btn-block">Late Arrival Of Material Or Staff</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            @include('incidence')
             @else
                 <div class="alert alert-success h4" >{{'Thanks for using our Applictaion in 2019 '}}</div>  
             @endif

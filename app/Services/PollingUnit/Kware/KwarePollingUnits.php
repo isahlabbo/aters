@@ -19,7 +19,7 @@ class KwarePollingUnits
         	['name'=>'Bankanu','pollingUnits'=> new Bankanu],
         	['name'=>'Basansan','pollingUnits'=> new Basansan],
         	['name'=>'Durbawa','pollingUnits'=> new Durbawa],
-        	['name'=>'G/Modibbo','pollingUnits'=> new Kuchi],
+        	['name'=>'G/Modibbo','pollingUnits'=> new G_Modibbo],
         	['name'=>'G/Rugga','pollingUnits'=> new G_Rugga],
         	['name'=>'Kabanga','pollingUnits'=> new Kabanga],
         	['name'=>'Kware','pollingUnits'=> new Kware],

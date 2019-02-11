@@ -17,7 +17,8 @@ class WamakkoPollingUnits
         return [
         	
         	['name'=>'Arkilla','pollingUnits'=> new Arkilla],
-        	['name'=>'Bado / Kasarawa','pollingUnits'=> new Bado_Kasarawa],
+                ['name'=>'Bado / Kasarawa','pollingUnits'=> new Bado_Kasarawa],
+        	['name'=>'DUNDAYE / GUMBURAWA','pollingUnits'=> new Dundaye_Gumburawa],
         	['name'=>'G/Bubu/G/Yaro','pollingUnits'=> new G_Bubu_G_Yaro],
         	['name'=>'G/Hamidu/G/Kaya','pollingUnits'=> new G_Hamidu_G_Kaya],
         	['name'=>'Gumbi / Wajake','pollingUnits'=> new Gumbi_Wajake],
