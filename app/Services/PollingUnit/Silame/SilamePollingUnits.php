@@ -18,7 +18,8 @@ class SilamePollingUnits
         	
         	['name'=>'Gande East','pollingUnits'=> new GandeEast],
         	['name'=>'Gande West','pollingUnits'=> new GandeWest],
-        	['name'=>'Katami North','pollingUnits'=> new KatamiNorth],
+                ['name'=>'Katami North','pollingUnits'=> new KatamiNorth],
+        	['name'=>'Katami South','pollingUnits'=> new KatamiSouth],
                 ['name'=>'Kubodu North','pollingUnits'=> new KuboduN],
                 ['name'=>'Kubodu South','pollingUnits'=> new KuboduS],
         	['name'=>'Labani','pollingUnits'=> new Labani],
