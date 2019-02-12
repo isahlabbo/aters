@@ -12,7 +12,7 @@ class GandeWest
 		$this->pollingUnits = $this->pollingUnits();
 	}
 
-	protected function pallingUnit()
+	protected function pollingUnits()
 	{
 		return[
 			'GAUKAI/PRI.SCHOOL',

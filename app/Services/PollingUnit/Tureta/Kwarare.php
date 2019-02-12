@@ -15,7 +15,11 @@ class Kwarare
 	protected function pollingUnits()
 	{
 		return [
-
+			'KAURA ‐ KWARARE PRI.SCHOOL I',
+			'KAURA ‐ KWARARE PRI.SCHOOL II',
+			'KAURA NIZZAMIYYA',
+			"GIDAN BA'ARE",
+			'RAFIN GORA ‐ RAFIN GORA'
 		];
 	}
 }

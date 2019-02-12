@@ -1,5 +1,5 @@
 <?php
-namespace App\Services\PollingUnits\Silame;
+namespace App\Services\PollingUnit\Silame;
 
 /**
 * this class binji ward array and create their polling unit
@@ -19,9 +19,8 @@ class SilamePollingUnits
         	['name'=>'Gande East','pollingUnits'=> new GandeEast],
         	['name'=>'Gande West','pollingUnits'=> new GandeWest],
         	['name'=>'Katami North','pollingUnits'=> new KatamiNorth],
-        	['name'=>'Katami South','pollingUnits'=> new KatamiSouth],
-        	['name'=>'Kubodu North','pollingUnits'=> new KuboduNorth],
-        	['name'=>'Kubodu South','pollingUnits'=> new KuboduSouth],
+                ['name'=>'Kubodu North','pollingUnits'=> new KuboduN],
+                ['name'=>'Kubodu South','pollingUnits'=> new KuboduS],
         	['name'=>'Labani','pollingUnits'=> new Labani],
         	['name'=>'Marafa East','pollingUnits'=> new MarafaEast],
         	['name'=>'Marafa West','pollingUnits'=> new MarafaWest],

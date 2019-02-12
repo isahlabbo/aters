@@ -12,7 +12,7 @@ class MarafaWest
 		$this->pollingUnits = $this->pollingUnits();
 	}
 
-	protected function pallingUnit()
+	protected function pollingUnits()
 	{
 		return[
 			'TUNGAR ABDU/SHIYAR MAGAJI',

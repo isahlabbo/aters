@@ -12,7 +12,7 @@ class KatamiSouth
 		$this->pollingUnits = $this->pollingUnits();
 	}
 
-	protected function pallingUnit()
+	protected function pollingUnits()
 	{
 		return[
 			'SHIYAR GANDU/BAKIN KOLI',

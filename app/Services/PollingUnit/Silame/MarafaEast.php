@@ -12,7 +12,7 @@ class MarafaEast
 		$this->pollingUnits = $this->pollingUnits();
 	}
 
-	protected function pallingUnit()
+	protected function pollingUnits()
 	{
 		return[
 			'PRIMARY SCHOOL GUNKIN MAGAJI (GIDAN MAGAJI)',

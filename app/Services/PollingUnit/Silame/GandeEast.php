@@ -12,7 +12,7 @@ class GandeEast
 		$this->pollingUnits = $this->pollingUnits();
 	}
 
-	protected function pallingUnit()
+	protected function pollingUnits()
 	{
 		return[
 			'DARGANA/MODEL PRI.SCHOOL',

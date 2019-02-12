@@ -16,7 +16,6 @@ class SabonBirniPollingUnits
 	{
         return [
         	['name'=>'Gangara','pollingUnits'=> new Gangara],
-        	['name'=>'Kagara','pollingUnits'=> new Kagara],
         	['name'=>'Kalgo','pollingUnits'=> new Kalgo],
         	['name'=>'Kurawa','pollingUnits'=> new Kurawa],
         	['name'=>'Lajinge','pollingUnits'=> new Lajinge],

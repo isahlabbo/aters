@@ -5,7 +5,7 @@ namespace App\Services\PollingUnit\Silame;
 /**
 * this class will return the polling units of all the 
 */
-class KuboduSouth
+class KuboduS
 {
 	function __construct()
 	{

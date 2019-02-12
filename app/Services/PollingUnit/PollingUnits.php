@@ -17,7 +17,7 @@ use App\Services\PollingUnit\Kware\KwarePollingUnits;
 use App\Services\PollingUnit\Rabah\RabahPollingUnits;
 use App\Services\PollingUnit\SabonBirni\SabonBirniPollingUnits;
 use App\Services\PollingUnit\Shagari\ShagariPollingUnits;
-use App\Services\PollingUnit\silame\silamePollingUnits;
+use App\Services\PollingUnit\Silame\SilamePollingUnits;
 use App\Services\PollingUnit\SokotoNorth\SokotoNorthPollingUnits;
 use App\Services\PollingUnit\SokotoSouth\SokotoSouthPollingUnits;
 use App\Services\PollingUnit\Tambuwal\TambuwalPollingUnits;
@@ -26,6 +26,7 @@ use App\Services\PollingUnit\Tureta\TuretaPollingUnits;
 use App\Services\PollingUnit\Wamakko\WamakkoPollingUnits;
 use App\Services\PollingUnit\Wurno\WurnoPollingUnits;
 use App\Services\PollingUnit\Yabo\YaboPollingUnits;
+
 class pollingUnits
 {	
 	function __construct($lga)
@@ -103,8 +104,11 @@ class pollingUnits
 			case 'Wurno':
 				$pollingUnits = new WurnoPollingUnits;
 				break;
-			default:
+			case 'Yabo':
 				$pollingUnits = new YaboPollingUnits;
+				break;
+			default:
+				
 				break;
 
 		}
