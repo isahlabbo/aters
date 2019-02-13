@@ -22,7 +22,7 @@ class SabonBirniPollingUnits
         	['name'=>'Makuwana','pollingUnits'=> new Makuwana],
         	['name'=>'S/Birni East','pollingUnits'=> new S_BirniEast],
         	['name'=>'S/Birni West','pollingUnits'=> new S_BirniWest],
-        	['name'=>'Tagawa','pollingUnits'=> new Tagawa],
+        	['name'=>'Gatawa','pollingUnits'=> new Tagawa],
         	['name'=>'Tara','pollingUnits'=> new Tara],
         	['name'=>'Tsamaye','pollingUnits'=> new Tsamaye],
         	['name'=>'Unguwar Lalle','pollingUnits'=> new UnguwarLalle],

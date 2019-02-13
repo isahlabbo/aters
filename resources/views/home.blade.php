@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header h3">PRESIDENTIAL</div>
+                    <div class="card-header h3"  style="color: white; background-color: seagreen">PRESIDENTIAL</div>
                     <div class="card-body">
                         <table class="table table->responsive">
                             <thead>
@@ -43,13 +43,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header h3">SENATORIAL</div>
+                    <div class="card-header h3"  style="color: white; background-color: seagreen">SENATORIAL</div>
                     <div class="card-body">
                         <div class="row">
                             @foreach($senatorial as $senate)
                             <div class="col-md-12">
                                 <div class="card">
-                                    <div class="card-header h3">{{$senate['name']}}</div>
+                                    <div class="card-header h3"  style="color: white; background-color: seagreen">{{$senate['name']}}</div>
                                     <div class="card-body">
                                         <table class="table table->responsive">
                                             <thead>
@@ -89,13 +89,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header h3">REPRESENTATIVE</div>
+                    <div class="card-header h3"  style="color: white; background-color: seagreen">REPRESENTATIVE</div>
                     <div class="card-body">
                         <div class="row">
                             @foreach($representative as $representative)
                             <div class="col-md-12">
                                 <div class="card">
-                                    <div class="card-header h3">{{$representative['name']}}</div>
+                                    <div class="card-header h3"  style="color: white; background-color: seagreen" >{{$representative['name']}}</div>
                                     <div class="card-body">
                                         <table class="table table->responsive">
                                             <thead>
@@ -204,7 +204,7 @@
 
                             </tbody>
                         </table>
-                        <span class="h3" style="color: seagreen">Senatorial</span>
+                        <span class="h3" style="color: white; background-color: seagreen">Senatorial</span>
                         <table class="table table-default table-responsive">
                             <thead>
                                 <tr>
