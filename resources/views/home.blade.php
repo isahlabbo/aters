@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+
         @if($user->code == 'collation')
         <div class="alert alert-success">SOKOTO APC 2019 ELECTION DASHBOARD COLLATION CENTER</div>
         <div class="row">
@@ -9,6 +11,20 @@
                 <div class="card">
                     <div class="card-header h3"  style="color: white; background-color: seagreen">PRESIDENTIAL</div>
                     <div class="card-body">
+                    @php
+                        $presidentialChart = new App\Charts\ResultChart;
+                        $presidentialChart->labels(['APC', 'PDP', 'OTHERS',]);
+                        $presidentialChart->dataset('Presidential Result', 'pie',[
+                            $presidential['apc'],
+                            $presidential['pdp'],
+                            $presidential['other']
+                        ])->backgroundColor(['#6da252', '#00c0ef', '#F56954'])
+                        ->fill(true);
+                    @endphp
+                    <div class="col md-12">
+                        {!! $presidentialChart->container() !!}
+                        {!! $presidentialChart->script() !!}
+                    </div>
                         <table class="table table->responsive">
                             <thead>
                                 <tr>
@@ -32,7 +48,7 @@
                                     <td>{{$presidential['other']+$presidential['apc']+$presidential['pdp'] == 0 ? 'Not Available' : $presidential['other']+$presidential['apc']+$presidential['pdp']}}</td>
                                     <td>{{$presidential['invalid'] == 0 ? 'Not Available' : $presidential['invalid']}}</td>
                                     <td>{{$presidential['invalid']+$presidential['other']+$presidential['apc']+$presidential['pdp'] == 0 ? 'Not Available' : $presidential['invalid']+$presidential['other']+$presidential['apc']+$presidential['pdp']}}</td>
-                                    
+
                                 </tr>
                             </tbody>
                         </table>
@@ -47,10 +63,27 @@
                     <div class="card-body">
                         <div class="row">
                             @foreach($senatorial as $senate)
-                            <div class="col-md-12">
+                            <div class="">
                                 <div class="card">
                                     <div class="card-header h3"  style="color: white; background-color: seagreen">{{$senate['name']}}</div>
                                     <div class="card-body">
+                                        <div class="row">
+                                            <div class="card-body">
+                                            @php 
+                                                $chart = new App\Charts\ResultChart;
+                                                $chart->labels(['APC', 'PDP', 'OTHERS',]);
+                                                $chart->dataset('Presidential Result', 'pie',[
+                                                    $senate['result']['apc'],
+                                                    $senate['result']['pdp'],
+                                                    $senate['result']['other']
+                                                ])->backgroundColor(['#6da252', '#00c0ef', '#F56954'])
+                                                ->fill(true);
+                                            @endphp
+                                            <div class="col md-12">
+                                                {!! $chart->container() !!}
+                                                {!! $chart->script() !!}
+                                            </div>
+                                        </div>
                                         <table class="table table->responsive">
                                             <thead>
                                                 <tr>
@@ -97,6 +130,20 @@
                                 <div class="card">
                                     <div class="card-header h3"  style="color: white; background-color: seagreen" >{{$representative['name']}}</div>
                                     <div class="card-body">
+                                         @php 
+                                                $chart = new App\Charts\ResultChart;
+                                                $chart->labels(['APC', 'PDP', 'OTHERS',]);
+                                                $chart->dataset('Presidential Result', 'pie',[
+                                                    $representative['result']['apc'],
+                                                    $representative['result']['pdp'],
+                                                    $representative['result']['other']
+                                                ])->backgroundColor(['#6da252', '#00c0ef', '#F56954'])
+                                                ->fill(true);
+                                            @endphp
+                                            <div class="col md-12">
+                                                {!! $chart->container() !!}
+                                                {!! $chart->script() !!}
+                                            </div>
                                         <table class="table table->responsive">
                                             <thead>
                                                 <tr>
@@ -127,7 +174,7 @@
                                 </div>
                             </div>
                             @endforeach
-                            
+
                         </div>
                     </div>
                 </div>
@@ -154,11 +201,11 @@
                             <tr>
                                 <td>No Of Wards</td>
                                 <td>{{count($user->lga->wards)}}</td>
-                            </tr> 
+                            </tr>
                             <tr>
                                 <td>No Of Polling Units</td>
                                 <td>{{$pollingUnits}}</td>
-                            </tr>   
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -200,7 +247,7 @@
                                     <td>{{$user->lga->result()['presidential']['invalid']+$user->lga->result()['presidential']['apc']+$user->lga->result()['presidential']['pdp']+$user->lga->result()['presidential']['other'] == 0 ? 'No Available' : $user->lga->result()['presidential']['invalid']+$user->lga->result()['presidential']['apc']+$user->lga->result()['presidential']['pdp']+$user->lga->result()['presidential']['other']}}</td>
 
                                 </tr>
-                                
+
 
                             </tbody>
                         </table>
@@ -236,7 +283,7 @@
 
                                     <td>{{$user->lga->result()['senatorial']['invalid']+$user->lga->result()['senatorial']['apc']+$user->lga->result()['senatorial']['pdp']+$user->lga->result()['senatorial']['other'] == 0 ? 'No Available' : $user->lga->result()['senatorial']['invalid']+$user->lga->result()['senatorial']['apc']+$user->lga->result()['senatorial']['pdp']+$user->lga->result()['senatorial']['other']}}</td>
                                 </tr>
-                                
+
 
                             </tbody>
                         </table>
@@ -283,7 +330,7 @@
                         <div class="card-header h3"  style="background-color: seagreen;color:white">{{$ward->name.' Ward'}} {{count($ward->pollingUnits).' POLLING UNITS'}}</div>
                         <div class="card-body">
                             <div class="row">
-                            @foreach($ward->pollingUnits as $pollingUnit)    
+                            @foreach($ward->pollingUnits as $pollingUnit)
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-header" style="background-color: seagreen; color: white">{{$pollingUnit->name. ' POLLING UNIT'}} {{'CODE '. $pollingUnit->user->code}}</div>
@@ -385,12 +432,12 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach 
-                            </div>   
+                            @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
-        
+
             @endforeach
         </div>
         @else
@@ -460,9 +507,9 @@
             </div>
             @include('incidence')
             @else
-                <div class="alert alert-success h4" >{{'Thanks for using our Applictaion in 2019 '}}</div>  
+                <div class="alert alert-success h4" >{{'Thanks for using our Applictaion in 2019 '}}</div>
             @endif
-        </div>    
+        </div>
         @endif
 </div>
 @endsection
