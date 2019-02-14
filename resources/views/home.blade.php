@@ -1,15 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<div class="container p-5">
+
 
         @if($user->code == 'collation')
-        <div class="alert alert-success">SOKOTO APC 2019 ELECTION DASHBOARD COLLATION CENTER</div>
+        <div class=" text-center">
+            <h1>{{ config('app.name') }} DASHBOARD COLLATION CENTER</h1>
+        </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header h3">PRESIDENTIAL</div>
+                <div class="card ">
+                    <div class="card-header text-white h1 text-center bg-dark">PRESIDENTIAL</div>
                     <div class="card-body">
                     @php
                         $presidentialChart = new App\Charts\ResultChart;
@@ -25,33 +27,35 @@
                         {!! $presidentialChart->container() !!}
                         {!! $presidentialChart->script() !!}
                     </div>
-                        <table class="table table->responsive">
-                            <thead>
-                                <tr>
-                                    <th>Registered Votes</th>
-                                    <th>Acredited</th>
-                                    <th>APC</th>
-                                    <th>PDP</th>
-                                    <th>Others</th>
-                                    <th>Valid Votes</th>
-                                    <th>Invalid Votes</th>
-                                    <th>Total Votes Cast</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{{$presidential['registered'] == 0 ? 'Not Available' : $presidential['registered']}}</td>
-                                    <td>{{$presidential['acredited'] == 0 ? 'Not Available' : $presidential['acredited']}}</td>
-                                    <td>{{$presidential['apc'] == 0 ? 'Not Available' : $presidential['apc']}}</td>
-                                    <td>{{$presidential['pdp'] == 0 ? 'Not Available' : $presidential['pdp']}}</td>
-                                    <td>{{$presidential['other'] == 0 ? 'Not Available' : $presidential['other']}}</td>
-                                    <td>{{$presidential['other']+$presidential['apc']+$presidential['pdp'] == 0 ? 'Not Available' : $presidential['other']+$presidential['apc']+$presidential['pdp']}}</td>
-                                    <td>{{$presidential['invalid'] == 0 ? 'Not Available' : $presidential['invalid']}}</td>
-                                    <td>{{$presidential['invalid']+$presidential['other']+$presidential['apc']+$presidential['pdp'] == 0 ? 'Not Available' : $presidential['invalid']+$presidential['other']+$presidential['apc']+$presidential['pdp']}}</td>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Registered Votes</th>
+                                        <th>Acredited</th>
+                                        <th>APC</th>
+                                        <th>PDP</th>
+                                        <th>Others</th>
+                                        <th>Valid Votes</th>
+                                        <th>Invalid Votes</th>
+                                        <th>Total Votes Cast</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{$presidential['registered'] == 0 ? 'Not Available' : $presidential['registered']}}</td>
+                                        <td>{{$presidential['acredited'] == 0 ? 'Not Available' : $presidential['acredited']}}</td>
+                                        <td>{{$presidential['apc'] == 0 ? 'Not Available' : $presidential['apc']}}</td>
+                                        <td>{{$presidential['pdp'] == 0 ? 'Not Available' : $presidential['pdp']}}</td>
+                                        <td>{{$presidential['other'] == 0 ? 'Not Available' : $presidential['other']}}</td>
+                                        <td>{{$presidential['other']+$presidential['apc']+$presidential['pdp'] == 0 ? 'Not Available' : $presidential['other']+$presidential['apc']+$presidential['pdp']}}</td>
+                                        <td>{{$presidential['invalid'] == 0 ? 'Not Available' : $presidential['invalid']}}</td>
+                                        <td>{{$presidential['invalid']+$presidential['other']+$presidential['apc']+$presidential['pdp'] == 0 ? 'Not Available' : $presidential['invalid']+$presidential['other']+$presidential['apc']+$presidential['pdp']}}</td>
 
-                                </tr>
-                            </tbody>
-                        </table>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -59,13 +63,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header h3">SENATORIAL</div>
+                    <div class="card-header h1 text-white text-center bg-dark">SENATORIAL</div>
                     <div class="card-body">
                         <div class="row">
                             @foreach($senatorial as $senate)
                             <div class="">
                                 <div class="card">
-                                    <div class="card-header h3">{{$senate['name']}}</div>
+                                    <div class="card-header text-white bg-secondary">{{$senate['name']}}</div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="card-body">
@@ -84,32 +88,34 @@
                                                 {!! $chart->script() !!}
                                             </div>
                                         </div>
-                                        <table class="table table->responsive">
-                                            <thead>
-                                                <tr>
-                                                    <th>Registered Votes</th>
-                                                    <th>Acredited</th>
-                                                    <th>APC</th>
-                                                    <th>PDP</th>
-                                                    <th>Others</th>
-                                                    <th>Valid Votes</th>
-                                                    <th>Invalid Votes</th>
-                                                    <th>Total Votes Cast</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>{{$senate['result']['registered'] == 0 ? 'Not Available' : $senate['result']['registered']}}</td>
-                                                    <td>{{$senate['result']['acredited'] == 0 ? 'Not Available' : $senate['result']['acredited']}}</td>
-                                                    <td>{{$senate['result']['apc'] == 0 ? 'Not Available' : $senate['result']['apc']}}</td>
-                                                    <td>{{$senate['result']['pdp'] == 0 ? 'Not Available' : $senate['result']['pdp']}}</td>
-                                                    <td>{{$senate['result']['other'] == 0 ? 'Not Available' : $senate['result']['other']}}</td>
-                                                    <td>{{$senate['result']['apc']+$senate['result']['pdp']+$senate['result']['other'] == 0 ? 'Not Available' : $senate['result']['apc']+$senate['result']['pdp']+$senate['result']['other']}}</td>
-                                                    <td>{{$senate['result']['invalid'] == 0 ? 'Not Available' : $senate['result']['invalid']}}</td>
-                                                    <td>{{$senate['result']['invalid']+$senate['result']['apc']+$senate['result']['pdp']+$senate['result']['other'] == 0 ? 'Not Available' : $senate['result']['invalid']+$senate['result']['apc']+$senate['result']['pdp']+$senate['result']['other']}}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Registered Votes</th>
+                                                        <th>Acredited</th>
+                                                        <th>APC</th>
+                                                        <th>PDP</th>
+                                                        <th>Others</th>
+                                                        <th>Valid Votes</th>
+                                                        <th>Invalid Votes</th>
+                                                        <th>Total Votes Cast</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{$senate['result']['registered'] == 0 ? 'Not Available' : $senate['result']['registered']}}</td>
+                                                        <td>{{$senate['result']['acredited'] == 0 ? 'Not Available' : $senate['result']['acredited']}}</td>
+                                                        <td>{{$senate['result']['apc'] == 0 ? 'Not Available' : $senate['result']['apc']}}</td>
+                                                        <td>{{$senate['result']['pdp'] == 0 ? 'Not Available' : $senate['result']['pdp']}}</td>
+                                                        <td>{{$senate['result']['other'] == 0 ? 'Not Available' : $senate['result']['other']}}</td>
+                                                        <td>{{$senate['result']['apc']+$senate['result']['pdp']+$senate['result']['other'] == 0 ? 'Not Available' : $senate['result']['apc']+$senate['result']['pdp']+$senate['result']['other']}}</td>
+                                                        <td>{{$senate['result']['invalid'] == 0 ? 'Not Available' : $senate['result']['invalid']}}</td>
+                                                        <td>{{$senate['result']['invalid']+$senate['result']['apc']+$senate['result']['pdp']+$senate['result']['other'] == 0 ? 'Not Available' : $senate['result']['invalid']+$senate['result']['apc']+$senate['result']['pdp']+$senate['result']['other']}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -122,13 +128,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header h3">REPRESENTATIVE</div>
+                    <div class="card-header h1 text-white text-center bg-dark">REPRESENTATIVE</div>
                     <div class="card-body">
                         <div class="row">
                             @foreach($representative as $representative)
                             <div class="col-md-12">
                                 <div class="card">
-                                    <div class="card-header h3">{{$representative['name']}}</div>
+                                    <div class="card-header h3 text-white bg-secondary">{{$representative['name']}}</div>
                                     <div class="card-body">
                                          @php 
                                                 $chart = new App\Charts\ResultChart;
@@ -144,32 +150,34 @@
                                                 {!! $chart->container() !!}
                                                 {!! $chart->script() !!}
                                             </div>
-                                        <table class="table table->responsive">
-                                            <thead>
-                                                <tr>
-                                                    <th>Registered Votes</th>
-                                                    <th>Acredited</th>
-                                                    <th>APC</th>
-                                                    <th>PDP</th>
-                                                    <th>Others</th>
-                                                    <th>Valid Votes</th>
-                                                    <th>Invalid Votes</th>
-                                                    <th>Total Votes Cast</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>{{$representative['result']['registered'] == 0 ? 'Not Available' : $representative['result']['registered']}}</td>
-                                                    <td>{{$representative['result']['acredited'] == 0 ? 'Not Available' : $representative['result']['acredited']}}</td>
-                                                    <td>{{$representative['result']['apc'] == 0 ? 'Not Available' : $representative['result']['apc']}}</td>
-                                                    <td>{{$representative['result']['pdp'] == 0 ? 'Not Available' : $representative['result']['pdp']}}</td>
-                                                    <td>{{$representative['result']['other'] == 0 ? 'Not Available' : $representative['result']['other']}}</td>
-                                                    <td>{{$representative['result']['apc']+$representative['result']['pdp']+$representative['result']['other'] == 0 ? 'Not Available' : $representative['result']['apc']+$representative['result']['pdp']+$representative['result']['other']}}</td>
-                                                    <td>{{$representative['result']['invalid'] == 0 ? 'Not Available' : $representative['result']['invalid']}}</td>
-                                                    <td>{{$representative['result']['invalid']+$representative['result']['apc']+$representative['result']['pdp']+$representative['result']['other'] == 0 ? 'Not Available' : $representative['result']['invalid']+$representative['result']['apc']+$representative['result']['pdp']+$representative['result']['other']}}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Registered Votes</th>
+                                                        <th>Acredited</th>
+                                                        <th>APC</th>
+                                                        <th>PDP</th>
+                                                        <th>Others</th>
+                                                        <th>Valid Votes</th>
+                                                        <th>Invalid Votes</th>
+                                                        <th>Total Votes Cast</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{$representative['result']['registered'] == 0 ? 'Not Available' : $representative['result']['registered']}}</td>
+                                                        <td>{{$representative['result']['acredited'] == 0 ? 'Not Available' : $representative['result']['acredited']}}</td>
+                                                        <td>{{$representative['result']['apc'] == 0 ? 'Not Available' : $representative['result']['apc']}}</td>
+                                                        <td>{{$representative['result']['pdp'] == 0 ? 'Not Available' : $representative['result']['pdp']}}</td>
+                                                        <td>{{$representative['result']['other'] == 0 ? 'Not Available' : $representative['result']['other']}}</td>
+                                                        <td>{{$representative['result']['apc']+$representative['result']['pdp']+$representative['result']['other'] == 0 ? 'Not Available' : $representative['result']['apc']+$representative['result']['pdp']+$representative['result']['other']}}</td>
+                                                        <td>{{$representative['result']['invalid'] == 0 ? 'Not Available' : $representative['result']['invalid']}}</td>
+                                                        <td>{{$representative['result']['invalid']+$representative['result']['apc']+$representative['result']['pdp']+$representative['result']['other'] == 0 ? 'Not Available' : $representative['result']['invalid']+$representative['result']['apc']+$representative['result']['pdp']+$representative['result']['other']}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
