@@ -39,4 +39,9 @@ class User extends Authenticatable
         return $this->belongsTo('App\Ward');
     }
 
+    public function center()
+    {
+        return $this->belongsTo(Center::class);
+    }
+
 }

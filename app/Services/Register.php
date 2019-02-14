@@ -8,6 +8,7 @@ use App\Lga;
 use App\Ward;
 use App\Result;
 use App\Type;
+use App\Center;
 use App\PollingUnit;
 use Illuminate\Support\Facades\Hash;
 
@@ -23,11 +24,26 @@ class Register
 
 	protected function createInfo()
 	{
+		$centers = ['SOKOTO CENTER', 'SOKOTO EAST', 'SOKOTO SOUTH'];
+
+		foreach ($centers as $center) {
+			$userCenter = Center::firstOrCreate(['name'=>$center]);
+			$code = substr(md5($userCenter->id), 0, 8);
+			$userCenter->user()->create([
+                'email'=>$code.'@apc.com',
+				'code'=>$code,
+				'password'=>Hash::make($code)
+			]);
+		}
+
+		$code = substr(md5('collation'),0, 8);
 		User::create([
-            'email'=>'collation@apc.com',
-			'code'=>'collation',
-			'password'=>Hash::make('collation')
+            'email'=>$code.'@apc.com',
+			'code'=>$code,
+			'password'=>Hash::make($code),
+			
 		]);
+
 		$type = ['Presidential','Sentorial','Representative'];
         foreach ($type as $name) {
         	Type::create(['name'=>$name]);
@@ -40,11 +56,11 @@ class Register
 				$local = Lga::create(['name'=>$lga['name']]);
 
 				//create the user if the local government
-				User::create([
-		            'email'=>'l'.$this->localCode($local->id).'@apc.com',
-					'code'=>'l'.$this->localCode($local->id),
-					'password'=>Hash::make('l'.$this->localCode($local->id)),
-		            'lga_id'=>$local->id
+				$code = substr(md5($local->id.'l'),0, 8);
+				$local->user()->create([
+		            'email'=>$code.'@apc.com',
+					'code'=>$code,
+					'password'=>Hash::make($code),
 				]);
 
 				foreach ($lga['wards'] as $wards) {
@@ -59,7 +75,7 @@ class Register
 							foreach ($pollingUnits as $pollingUnit) {
                                 
                                 //create polling unit 
-								$agent = PollingUnit::create(['name'=>$pollingUnit,'ward_id'=>$this_ward->id]);
+								$agent = $this_ward->pollingUnits()->create(['name'=>$pollingUnit,'ward_id'=>$this_ward->id]);
 								// create polling unit result with zero values
 								for ($i=1; $i <= 3 ; $i++) { 
 									Result::create(['type_id'=>$i,'polling_unit_id'=>$agent->id]);
@@ -67,11 +83,11 @@ class Register
                                 
                          
 								//create agent of the polling unit
-								User::create([
+								$agent->user()->create([
                                     'email'=>'a'.$this->agentCode($agent->id).'@apc.com',
 									'code'=>'a'.$this->agentCode($agent->id),
 									'password'=>Hash::make('a'.$this->agentCode($agent->id)),
-									'polling_unit_id' => $agent->id
+		
 								]);
 							}
 

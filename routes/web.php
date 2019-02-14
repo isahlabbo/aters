@@ -3,6 +3,8 @@ use App\Services\Sokoto;
 use App\Services\Register;
 use App\Services\CreateLocalGovernment;
 use App\Lga;
+use App\Center;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,15 +25,7 @@ Route::post('/accredited', 'HomeController@accredited');
 Route::post('/result', 'HomeController@result');
 
 Auth::routes();
-Route::get('/code', function(){
-    $lgs = [];
 
-    for ($i=1; $i <=23 ; $i++) { 
-    	$lga[] = Lga::find($i);
-    }
-    
-    return view('pu_code',['count'=>1,'lga'=>$lga]);
-});
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/add_result', 'HomeController@newResult');
 Route::post('/incidence', 'HomeController@incidence');

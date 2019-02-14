@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->integer('lga_id')->unsigned()->nullable()->foreign()->refernces('id')->on('lgas')->delete('restrict')->update('cascade');;
             $table->integer('polling_unit_id')->unsigned()->nullable()->foreign()->refernces('id')->on('polling_units')->delete('restrict')->update('cascade');
             $table->integer('ward_id')->unsigned()->nullable()->foreign()->refernces('id')->on('wards')->delete('restrict')->update('cascade');
+            $table->integer('center_id')->unsigned()->nullable()->foreign()->refernces('id')->on('centers')->delete('restrict')->update('cascade');
             $table->char('code');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
