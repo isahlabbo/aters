@@ -32,7 +32,7 @@
                                     <td>{{$presidential['other']+$presidential['apc']+$presidential['pdp'] == 0 ? 'Not Available' : $presidential['other']+$presidential['apc']+$presidential['pdp']}}</td>
                                     <td>{{$presidential['invalid'] == 0 ? 'Not Available' : $presidential['invalid']}}</td>
                                     <td>{{$presidential['invalid']+$presidential['other']+$presidential['apc']+$presidential['pdp'] == 0 ? 'Not Available' : $presidential['invalid']+$presidential['other']+$presidential['apc']+$presidential['pdp']}}</td>
-                                    
+
                                 </tr>
                             </tbody>
                         </table>
@@ -127,14 +127,16 @@
                                 </div>
                             </div>
                             @endforeach
-                            
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         @elseif($user->lga_id != null)
-        <div class="alert alert-success h3" >{{$user->lga->name.' Local Governement 2019 Election Report'}}</div>
+        <div class=" text-center">
+            <h1>{{ $user->lga->name }} Local Government 2019 Election Report</h1>
+        </div>
         <div class="row justify-content-center">
             @if(session('message'))
                 {{session('message')}}
@@ -142,7 +144,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <table>
+                        <table class="table table-bordered">
                             <tr>
                                 <td width="300">Local Government Name</td>
                                 <td>{{$user->lga->name}}</td>
@@ -154,21 +156,21 @@
                             <tr>
                                 <td>No Of Wards</td>
                                 <td>{{count($user->lga->wards)}}</td>
-                            </tr> 
+                            </tr>
                             <tr>
                                 <td>No Of Polling Units</td>
                                 <td>{{$pollingUnits}}</td>
-                            </tr>   
+                            </tr>
                         </table>
                     </div>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header h2" style="color: white; background-color: seagreen">{{'Summary'}}</div>
+                    <div class="card-header h1 bg-dark text-white">Summary</div>
                     <div class="card-body">
-                        <span class="h3" style="color: seagreen">Presidential</span>
-                        <table class="table table-default table-responsive">
+                        <span class="h3 text-dark">Presidential</span>
+                        <table class="table table-bordered table-responsive">
                             <thead>
                                 <tr>
                                     <th>Registered Votes</th>
@@ -200,12 +202,12 @@
                                     <td>{{$user->lga->result()['presidential']['invalid']+$user->lga->result()['presidential']['apc']+$user->lga->result()['presidential']['pdp']+$user->lga->result()['presidential']['other'] == 0 ? 'No Available' : $user->lga->result()['presidential']['invalid']+$user->lga->result()['presidential']['apc']+$user->lga->result()['presidential']['pdp']+$user->lga->result()['presidential']['other']}}</td>
 
                                 </tr>
-                                
+
 
                             </tbody>
                         </table>
-                        <span class="h3" style="color: white; background-color: seagreen">Senatorial</span>
-                        <table class="table table-default table-responsive">
+                        <span class="h3 text-dark">Senatorial</span>
+                        <table class="table table-bordered table-responsive">
                             <thead>
                                 <tr>
                                     <th>Registered Votes</th>
@@ -236,12 +238,12 @@
 
                                     <td>{{$user->lga->result()['senatorial']['invalid']+$user->lga->result()['senatorial']['apc']+$user->lga->result()['senatorial']['pdp']+$user->lga->result()['senatorial']['other'] == 0 ? 'No Available' : $user->lga->result()['senatorial']['invalid']+$user->lga->result()['senatorial']['apc']+$user->lga->result()['senatorial']['pdp']+$user->lga->result()['senatorial']['other']}}</td>
                                 </tr>
-                                
+
 
                             </tbody>
                         </table>
-                        <span class="h3" style="color: seagreen">Representative</span>
-                        <table class="table table-default table-responsive">
+                        <span class="h3 text-dark">Representative</span>
+                        <table class="table table-bordered table-responsive">
                             <thead>
                                 <tr>
                                     <th>Registered Votes</th>
@@ -278,20 +280,21 @@
                 </div>
             </div>
             @foreach($user->lga->wards as $ward)
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header h3"  style="background-color: seagreen;color:white">{{$ward->name.' Ward'}} {{count($ward->pollingUnits).' POLLING UNITS'}}</div>
+                        <div class="card-header h2 bg-dark text-white">{{$ward->name.' Ward'}} ( {{count($ward->pollingUnits)}} POLLING UNITS )</div>
                         <div class="card-body">
                             <div class="row">
-                            @foreach($ward->pollingUnits as $pollingUnit)    
+                            @foreach($ward->pollingUnits as $key => $pollingUnit)
                                 <div class="col-md-12">
                                     <div class="card">
-                                        <div class="card-header" style="background-color: seagreen; color: white">{{$pollingUnit->name. ' POLLING UNIT'}} {{'CODE '. $pollingUnit->user->code}}</div>
+                                        <div class="card-header h3 bg-secondary text-white">({{ ++$key }}) -  {{$pollingUnit->name}}, CODE {{$pollingUnit->user->code}}</div>
                                         <div class="card-body">
                                             @foreach($pollingUnit->results as $result)
                                             @if($result->type_id == 1)
-                                            <span class="h3" style="color: seagreen;">Presidential</span>
-                                            <table class="table table-responsive">
+                                            <span class="h3">Presidential</span>
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered">
                                                 <thead>
                                                     <tr>
                                                         <th>Registered Votes</th>
@@ -317,9 +320,11 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                            </div>
                                             @elseif($result->type_id == 2)
-                                            <span class="h3" style="color: seagreen">Senatorial</span>
-                                            <table class="table table-responsive">
+                                            <span class="h3">Senatorial</span>
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered">
                                                 <thead>
                                                     <tr>
                                                         <th>Registered Votes</th>
@@ -345,9 +350,11 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                            </div>
                                             @else
-                                            <span class="h3" style="color: seagreen">Representative</span>
-                                            <table class="table table-responsive">
+                                            <span class="h3">Representative</span>
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered">
                                                 <thead>
                                                     <tr>
                                                         <th>Registered Votes</th>
@@ -373,6 +380,7 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                            </div>
                                             @endif
                                             @endforeach
                                             @if($pollingUnit->submitted() == false)
@@ -385,12 +393,12 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach 
-                            </div>   
+                            @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
-        
+
             @endforeach
         </div>
         @else
@@ -460,9 +468,9 @@
             </div>
             @include('incidence')
             @else
-                <div class="alert alert-success h4" >{{'Thanks for using our Applictaion in 2019 '}}</div>  
+                <div class="alert alert-success h4" >{{'Thanks for using our Applictaion in 2019 '}}</div>
             @endif
-        </div>    
+        </div>
         @endif
 </div>
 @endsection
