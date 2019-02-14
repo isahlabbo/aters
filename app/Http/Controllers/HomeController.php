@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Ward;
 use App\Lga;
-use App\PollingUnit;
-use App\Incidence;
+use App\Ward;
 use App\Result;
-use App\Http\Requests\ElectionResultFormRequest;
-use App\Http\Requests\ElectionFormRequest;
-use App\Services\Collation\Presidential;
+use App\Incidence;
+use App\PollingUnit;
+use Illuminate\Http\Request;
 use App\Services\Collation\Senatorial;
+use App\Services\Collation\Presidential;
+use App\Http\Requests\ElectionFormRequest;
 use App\Services\Collation\Representative;
+use App\Http\Requests\ElectionResultFormRequest;
 
 class HomeController extends Controller
 {
@@ -63,9 +63,9 @@ class HomeController extends Controller
 
     public function index()
     {
-        if(Auth()->user()->code == 'collation'){
+        if(Auth()->user()->code == substr(md5('collation'), 0, 8)){
             $representative = new Representative();
-            
+
             $senatorial = new Senatorial();
             $presidential = new Presidential();
               return view('home',['representative'=>$representative->result,'presidential'=> $presidential->result,'senatorial'=>$senatorial->result, 'user'=>Auth()->User()]);
@@ -76,7 +76,7 @@ class HomeController extends Controller
                 $registered = null;
                 foreach(Auth()->user()->pollingUnit->results as $result){
                     if($result->apc == 0){
-                        $submitted = false; 
+                        $submitted = false;
                     }
                 }
             }else{
@@ -92,12 +92,12 @@ class HomeController extends Controller
                 $registered = $register;
             }
             return view('home',['submitted'=>$submitted,'register'=>$registered,'pollingUnits'=>$pollingUnits,'user'=>Auth()->User(),'summary'=>$this->localSummary()]);
-        } 
+        }
     }
-    
+
     public function accredited(ElectionFormRequest $request)
     {
-        
+
         if(isset($request->registered)){
             Auth()->User()->pollingUnit->update(['registered'=>$request->registered]);
         }else{
@@ -109,7 +109,7 @@ class HomeController extends Controller
     }
     public function result(Request $request)
     {
-        
+
         if(isset($request->id)){
 
             $pollingUnit = PollingUnit::find($request->id);
@@ -122,7 +122,7 @@ class HomeController extends Controller
 
         }
             $presidential_result = Result::where('polling_unit_id',$pollingUnit->id)->where('type_id',1);
-             
+
             $senatorial_result = Result::where('polling_unit_id',$pollingUnit->id)->where('type_id',2);
 
             $presentative_result = Result::where('polling_unit_id',$pollingUnit->id)->where('type_id',3);

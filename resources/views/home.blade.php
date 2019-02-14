@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-        @if($user->code == 'collation')
+        @if($user->code ==  substr(md5('collation'),0, 8))
         <div class="alert alert-success">SOKOTO APC 2019 ELECTION DASHBOARD COLLATION CENTER</div>
         <div class="row">
             <div class="col-md-12">
@@ -32,7 +32,7 @@
                                     <td>{{$presidential['other']+$presidential['apc']+$presidential['pdp'] == 0 ? 'Not Available' : $presidential['other']+$presidential['apc']+$presidential['pdp']}}</td>
                                     <td>{{$presidential['invalid'] == 0 ? 'Not Available' : $presidential['invalid']}}</td>
                                     <td>{{$presidential['invalid']+$presidential['other']+$presidential['apc']+$presidential['pdp'] == 0 ? 'Not Available' : $presidential['invalid']+$presidential['other']+$presidential['apc']+$presidential['pdp']}}</td>
-                                    
+
                                 </tr>
                             </tbody>
                         </table>
@@ -127,7 +127,7 @@
                                 </div>
                             </div>
                             @endforeach
-                            
+
                         </div>
                     </div>
                 </div>
@@ -154,11 +154,11 @@
                             <tr>
                                 <td>No Of Wards</td>
                                 <td>{{count($user->lga->wards)}}</td>
-                            </tr> 
+                            </tr>
                             <tr>
                                 <td>No Of Polling Units</td>
                                 <td>{{$pollingUnits}}</td>
-                            </tr>   
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -200,7 +200,7 @@
                                     <td>{{$user->lga->result()['presidential']['invalid']+$user->lga->result()['presidential']['apc']+$user->lga->result()['presidential']['pdp']+$user->lga->result()['presidential']['other'] == 0 ? 'No Available' : $user->lga->result()['presidential']['invalid']+$user->lga->result()['presidential']['apc']+$user->lga->result()['presidential']['pdp']+$user->lga->result()['presidential']['other']}}</td>
 
                                 </tr>
-                                
+
 
                             </tbody>
                         </table>
@@ -236,7 +236,7 @@
 
                                     <td>{{$user->lga->result()['senatorial']['invalid']+$user->lga->result()['senatorial']['apc']+$user->lga->result()['senatorial']['pdp']+$user->lga->result()['senatorial']['other'] == 0 ? 'No Available' : $user->lga->result()['senatorial']['invalid']+$user->lga->result()['senatorial']['apc']+$user->lga->result()['senatorial']['pdp']+$user->lga->result()['senatorial']['other']}}</td>
                                 </tr>
-                                
+
 
                             </tbody>
                         </table>
@@ -283,7 +283,7 @@
                         <div class="card-header h3"  style="background-color: seagreen;color:white">{{$ward->name.' Ward'}} {{count($ward->pollingUnits).' POLLING UNITS'}}</div>
                         <div class="card-body">
                             <div class="row">
-                            @foreach($ward->pollingUnits as $pollingUnit)    
+                            @foreach($ward->pollingUnits as $pollingUnit)
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-header" style="background-color: seagreen; color: white">{{$pollingUnit->name. ' POLLING UNIT'}} {{'CODE '. $pollingUnit->user->code}}</div>
@@ -385,12 +385,12 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach 
-                            </div>   
+                            @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
-        
+
             @endforeach
         </div>
         @else
@@ -460,9 +460,9 @@
             </div>
             @include('incidence')
             @else
-                <div class="alert alert-success h4" >{{'Thanks for using our Applictaion in 2019 '}}</div>  
+                <div class="alert alert-success h4" >{{'Thanks for using our Applictaion in 2019 '}}</div>
             @endif
-        </div>    
+        </div>
         @endif
 </div>
 @endsection
