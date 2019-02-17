@@ -65,25 +65,24 @@ class Senatorial
 
 	protected function getResult($array)
 	{   
-	    $pdp = 0;
+	      $pdp = 0;
 		$apc = 0;
 		$other = 0;
-        $invalid = 0;
-        $registered = 0;
-        $acredited = 0;
+            $invalid = 0;
+            $registered = 0;
+            $acredited = 0;
 
 		foreach ($array as $lga) {
-
 			$lga = Lga::find($lga);
-			$lga_result = $lga->result();
-            $pdp = $pdp + $lga_result['senatorial']['pdp'];
-            $apc = $apc + $lga_result['senatorial']['apc'];
-            $other = $other + $lga_result['senatorial']['other'];
-            $invalid = $invalid + $lga_result['senatorial']['invalid'];
-            $registered = $registered + $lga->registered();
-            $acredited = $acredited + $lga->acredited();
-			
-		}
+			$lga_result = $lga->summary();
+                  $pdp = $pdp + $lga_result['senatorial']['pdp'];
+                  $apc = $apc + $lga_result['senatorial']['apc'];
+                  $other = $other + $lga_result['senatorial']['other'];
+                  $invalid = $invalid + $lga_result['senatorial']['invalid'];
+                  $registered = $registered + $lga->registered();
+                  $acredited = $acredited + $lga->acredited();
+      			
+      		}
 
 		return [
             'pdp' => $pdp,

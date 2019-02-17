@@ -21,8 +21,11 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/test', function () {
+	new Register(new Sokoto());
+});
 Route::post('/accredited', 'HomeController@accredited');
-Route::post('/result', 'HomeController@result');
+Route::post('/result', 'ElectionResultController@sendResult');
 
 Auth::routes();
 

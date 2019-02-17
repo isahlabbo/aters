@@ -4,11 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Services\Summary as ElectionResultSummary;
+
 class Lga extends Model
 {
-    use ElectionResultSummary;
+   use ElectionResultSummary;
     
-	protected $guarded = [];
+	protected $fillable = ['name'];
 
     public function wards()
     {
@@ -19,25 +20,27 @@ class Lga extends Model
     {
     	return $this->hasOne(User::class);
     }
+    
+    public function availableResult()
+    {
+        $counter = 0;
+        foreach ($this->wards as $ward) {
+            foreach ($ward->pollingUnits as $pollingUnit) {
+                foreach ($pollingUnit->results as $result) {
+                    $flag = true;
+                    if($result->apc == 0){
+                        $flag = false;
+                    }
+                }
+                if($flag == true){
+                    $counter ++;
+                }
+            }
+        }
+        return $counter;
+    }
 
-    public function registered()
-    {
-        $registered = 0;
-        foreach ($this->wards as $ward) {
-            foreach ($ward->pollingUnits as $pollingUnit) {
-                $registered = $registered + $pollingUnit->registered;
-            }
-        }
-        return $registered;
-    }
-    public function acredited()
-    {
-        $acredited = 0;
-        foreach ($this->wards as $ward) {
-            foreach ($ward->pollingUnits as $pollingUnit) {
-                $acredited = $acredited + $pollingUnit->acredited;
-            }
-        }
-        return $acredited;
-    }
+    
+
+    
 }

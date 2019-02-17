@@ -127,7 +127,7 @@ class Representative
 
 		foreach ($array as $lga) {
 			$lga = Lga::find($lga);
-			$lga_result = $lga->result();
+			$lga_result = $lga->summary();
             $pdp = $pdp + $lga_result['representative']['pdp'];
             $apc = $apc + $lga_result['representative']['apc'];
             $other = $other + $lga_result['representative']['other'];

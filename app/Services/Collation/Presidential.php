@@ -15,26 +15,37 @@ class Presidential
 
 	protected function result()
 	{
+
 		$pdp = 0;
 		$apc = 0;
 		$other = 0;
         $invalid = 0;
         $registered = 0;
         $acredited = 0;
+        $lga_index = [];
+        for ($i=1; $i <= 23; $i++) {
+        	$lga_index[] = $i;
+        }
+		foreach ($lga_index as $index) {
 
-		for ($i=1; $i <= 23; $i++) {
-
-            $lga = Lga::find($i);
-			$lga_result = $lga->result();
-            $pdp = $pdp + $lga_result['presidential']['pdp'];
-            $apc = $apc + $lga_result['presidential']['apc'];
-            $other = $other + $lga_result['presidential']['other'];
-            $invalid = $invalid + $lga_result['presidential']['invalid'];
-            $registered = $registered + $lga->registered();
-            $acredited = $acredited + $lga->acredited();
+            $lga = Lga::find($index);
+            $pdp = $pdp + $lga->presidential()['pdp'];
+            $apc = $apc + $lga->presidential()['apc'];
+            $other = $other + $lga->presidential()['other'];
+            $valid = $invalid + $lga->presidential()['valid'];
+            $invalid = $invalid + $lga->presidential()['invalid'];
+            $registered = $registered + $lga->presidential()['registered'];
+            $acredited = $acredited + $lga->presidential()['acredited'];
 
 		}
-
+        dd([
+            'pdp' => $pdp,
+            'apc' => $apc,
+            'other' => $other,
+            'invalid' => $invalid,
+            'acredited' => $acredited,
+            'registered' => $registered
+		]);
 		return [
             'pdp' => $pdp,
             'apc' => $apc,

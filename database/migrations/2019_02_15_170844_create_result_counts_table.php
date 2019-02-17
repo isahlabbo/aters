@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateResultsTable extends Migration
+class CreateResultCountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,18 @@ class CreateResultsTable extends Migration
      */
     public function up()
     {
-        Schema::create('results', function (Blueprint $table) {
+        Schema::create('result_counts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('polling_unit_id')->unsigned()->nullable()->foreign()->refernces('id')->on('polling_units')->delete('restrict')->update('cascade');
-            $table->integer('type_id')->unsigned()->nullable()->foreign()->refernces('id')->on('types')->delete('restrict')->update('cascade');
             $table->integer('collation_id')->unsigned()->nullable()->foreign()->refernces('id')->on('collations')->delete('restrict')->update('cascade');
+            $table->integer('type_id')->unsigned()->nullable()->foreign()->refernces('id')->on('types')->delete('restrict')->update('cascade');
+            $table->integer('registered')->default(0);
+            $table->integer('acredited')->default(0);
+            $table->integer('valid')->default(0);
+            $table->integer('invalid')->default(0);
             $table->integer('apc')->default(0);
             $table->integer('pdp')->default(0);
             $table->integer('other')->default(0);
-            $table->integer('valid_vote')->default(0);
-            $table->integer('invalid_vote')->default(0);
+         
             $table->timestamps();
         });
     }
@@ -34,6 +36,6 @@ class CreateResultsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('results');
+        Schema::dropIfExists('result_counts');
     }
 }
