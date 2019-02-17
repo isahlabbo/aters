@@ -188,21 +188,21 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{{$user->lga->summary()['presidential']['registered'] == 0 ? 'Not Avalable' : $user->lga->summary()['presidential']['registered']}}</td>
+                                    <td>{{$summary['presidential'][0]->registered == 0 ? 'Not Available' : $summary['presidential'][0]->registered}}</td>
 
-                                    <td>{{$user->lga->summary()['presidential']['acredited'] == 0 ? 'Not Avalable' : $user->lga->summary()['presidential']['acredited']}}</td>
+                                    <td>{{$summary['presidential'][0]->acredited == 0 ? 'Not Available' : $summary['presidential'][0]->acredited}}</td>
 
-                                    <td>{{$user->lga->summary()['presidential']['apc'] == 0 ? 'Not Available' : $user->lga->summary()['presidential']['apc']}}</td>
+                                    <td>{{$summary['presidential'][0]->apc == 0 ? 'Not Available' : $summary['presidential'][0]->apc}}</td>
 
-                                    <td>{{$user->lga->summary()['presidential']['pdp'] == 0 ? 'Not Available' : $user->lga->summary()['presidential']['pdp']}}</td>
+                                    <td>{{$summary['presidential'][0]->pdp == 0 ? 'Not Available' : $summary['presidential'][0]->pdp}}</td>
 
-                                    <td>{{$user->lga->summary()['presidential']['other'] == 0 ? 'Not Available' : $user->lga->summary()['presidential']['other']}}</td>
+                                    <td>{{$summary['presidential'][0]->other == 0 ? 'Not Available' : $summary['presidential'][0]->other}}</td>
 
-                                    <td>{{$user->lga->summary()['presidential']['apc']+$user->lga->summary()['presidential']['pdp']+$user->lga->summary()['presidential']['other'] == 0 ? 'Not Available' : $user->lga->summary()['presidential']['apc']+$user->lga->summary()['presidential']['pdp']+$user->lga->summary()['presidential']['other']}}</td>
+                                    <td>{{$summary['presidential'][0]->valid == 0 ? 'Not Available' : $summary['presidential'][0]->valid}}</td>
 
-                                    <td>{{$user->lga->summary()['presidential']['invalid'] == 0 ? 'Not Available' : $user->lga->summary()['presidential']['invalid']}}</td>
+                                    <td>{{$summary['presidential'][0]->invalid == 0 ? 'Not Available' : $summary['presidential'][0]->invalid}}</td>
 
-                                    <td>{{$user->lga->summary()['presidential']['invalid']+$user->lga->summary()['presidential']['apc']+$user->lga->summary()['presidential']['pdp']+$user->lga->summary()['presidential']['other'] == 0 ? 'No Available' : $user->lga->summary()['presidential']['invalid']+$user->lga->summary()['presidential']['apc']+$user->lga->summary()['presidential']['pdp']+$user->lga->summary()['presidential']['other']}}</td>
+                                    <td>{{$summary['presidential'][0]->valid + $summary['presidential'][0]->invalid == 0 ? 'Not Available' : $summary['presidential'][0]->valid + $summary['presidential'][0]->invalid}}</td>
 
                                 </tr>
                                 
@@ -225,21 +225,21 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{{$user->lga->summary()['senatorial']['registered'] == 0 ? 'Not Avalable' : $user->lga->summary()['senatorial']['registered']}}</td>
+                                    <td>{{$summary['senatorial'][0]->registered == 0 ? 'Not Available' : $summary['senatorial'][0]->registered}}</td>
 
-                                    <td>{{$user->lga->summary()['senatorial']['acredited'] == 0 ? 'Not Avalable' : $user->lga->summary()['senatorial']['acredited']}}</td>
+                                    <td>{{$summary['senatorial'][0]->acredited == 0 ? 'Not Available' : $summary['senatorial'][0]->acredited}}</td>
 
-                                    <td>{{$user->lga->summary()['senatorial']['apc'] == 0 ? 'Not Available' : $user->lga->summary()['senatorial']['apc']}}</td>
+                                    <td>{{$summary['senatorial'][0]->apc == 0 ? 'Not Available' : $summary['senatorial'][0]->apc}}</td>
 
-                                    <td>{{$user->lga->summary()['senatorial']['pdp'] == 0 ? 'Not Available' : $user->lga->summary()['senatorial']['pdp']}}</td>
+                                    <td>{{$summary['senatorial'][0]->pdp == 0 ? 'Not Available' : $summary['senatorial'][0]->pdp}}</td>
 
-                                    <td>{{$user->lga->summary()['senatorial']['other'] == 0 ? 'Not Available' : $user->lga->summary()['senatorial']['other']}}</td>
+                                    <td>{{$summary['senatorial'][0]->other == 0 ? 'Not Available' : $summary['senatorial'][0]->other}}</td>
 
-                                    <td>{{$user->lga->summary()['senatorial']['apc']+$user->lga->summary()['senatorial']['pdp']+$user->lga->summary()['senatorial']['other'] == 0 ? 'Not Available' : $user->lga->summary()['senatorial']['apc']+$user->lga->summary()['senatorial']['pdp']+$user->lga->summary()['senatorial']['other']}}</td>
+                                    <td>{{$summary['senatorial'][0]->valid == 0 ? 'Not Available' : $summary['senatorial'][0]->valid}}</td>
 
-                                    <td>{{$user->lga->summary()['senatorial']['invalid'] == 0 ? 'Not Available' : $user->lga->summary()['senatorial']['invalid']}}</td>
+                                    <td>{{$summary['senatorial'][0]->invalid == 0 ? 'Not Available' : $summary['senatorial'][0]->invalid}}</td>
 
-                                    <td>{{$user->lga->summary()['senatorial']['invalid']+$user->lga->summary()['senatorial']['apc']+$user->lga->summary()['senatorial']['pdp']+$user->lga->summary()['senatorial']['other'] == 0 ? 'No Available' : $user->lga->summary()['senatorial']['invalid']+$user->lga->summary()['senatorial']['apc']+$user->lga->summary()['senatorial']['pdp']+$user->lga->summary()['senatorial']['other']}}</td>
+                                    <td>{{$summary['senatorial'][0]->valid + $summary['senatorial'][0]->invalid == 0 ? 'Not Available' : $summary['senatorial'][0]->valid + $summary['senatorial'][0]->invalid}}</td>
                                 </tr>
                                 
 
@@ -261,21 +261,21 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{{$user->lga->summary()['representative']['registered'] == 0 ? 'Not Avalable' : $user->lga->summary()['representative']['registered']}}</td>
+                                    <td>{{$summary['representative'][0]->registered == 0 ? 'Not Available' : $summary['representative'][0]->registered}}</td>
 
-                                    <td>{{$user->lga->summary()['representative']['acredited'] == 0 ? 'Not Avalable' : $user->lga->summary()['representative']['acredited']}}</td>
+                                    <td>{{$summary['representative'][0]->acredited == 0 ? 'Not Available' : $summary['representative'][0]->acredited}}</td>
 
-                                    <td>{{$user->lga->summary()['representative']['apc'] == 0 ? 'Not Available' : $user->lga->summary()['representative']['apc']}}</td>
+                                    <td>{{$summary['representative'][0]->apc == 0 ? 'Not Available' : $summary['representative'][0]->apc}}</td>
 
-                                    <td>{{$user->lga->summary()['representative']['pdp'] == 0 ? 'Not Available' : $user->lga->summary()['representative']['pdp']}}</td>
+                                    <td>{{$summary['representative'][0]->pdp == 0 ? 'Not Available' : $summary['representative'][0]->pdp}}</td>
 
-                                    <td>{{$user->lga->summary()['representative']['other'] == 0 ? 'Not Available' : $user->lga->summary()['representative']['other']}}</td>
+                                    <td>{{$summary['representative'][0]->other == 0 ? 'Not Available' : $summary['representative'][0]->other}}</td>
 
-                                    <td>{{$user->lga->summary()['representative']['apc'] + $user->lga->summary()['representative']['pdp'] + $user->lga->summary()['representative']['other'] == 0 ? 'Not Available' : $user->lga->summary()['representative']['apc'] + ($user->lga->summary()['representative']['pdp'] + $user->lga->summary()['representative']['other'])}}</td>
+                                    <td>{{$summary['representative'][0]->valid == 0 ? 'Not Available' : $summary['representative'][0]->valid}}</td>
 
-                                    <td>{{$user->lga->summary()['representative']['invalid'] == 0 ? 'Not Available' : $user->lga->summary()['representative']['invalid']}}</td>
+                                    <td>{{$summary['representative'][0]->invalid == 0 ? 'Not Available' : $summary['representative'][0]->invalid}}</td>
 
-                                    <td>{{$user->lga->summary()['representative']['invalid'] + $user->lga->summary()['representative']['apc'] + $user->lga->summary()['representative']['pdp'] + $user->lga->summary()['representative']['other'] == 0 ? 'No Available' : $user->lga->summary()['representative']['invalid'] + $user->lga->summary()['representative']['apc'] + $user->lga->summary()['representative']['pdp'] + $user->lga->summary()['representative']['other']}}</td>
+                                    <td>{{$summary['representative'][0]->valid + $summary['representative'][0]->invalid == 0 ? 'Not Available' : $summary['representative'][0]->valid + $summary['representative'][0]->invalid}}</td>
                                 </tr>
                             </tbody>
                         </table>

@@ -20,7 +20,12 @@ class Lga extends Model
     {
     	return $this->hasOne(User::class);
     }
-    
+
+    public function resultCounts()
+    {
+    	return $this->hasMany(LgaResultCount::class);
+    }
+
     public function availableResult()
     {
         $counter = 0;

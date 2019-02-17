@@ -171,6 +171,9 @@ class Register
 				//create local government
 				$local = Lga::create(['name'=>$lga['name']]);
 
+                for ($i=1; $i <= 3 ; $i++) { 
+                	$local->resultCounts()->create(['type_id'=>$i]);
+                }
 				//create the user if the local government
 				$code = substr(md5($local->id.'l'),0, 8);
 				$local->user()->create([

@@ -7,6 +7,7 @@ use App\Lga;
 use App\PollingUnit;
 use App\Incidence;
 use App\Result;
+use App\LgaResultCount;
 use Illuminate\Http\Request;
 use App\Http\Requests\ElectionResultFormRequest;
 
@@ -51,6 +52,16 @@ class ElectionResultController extends Controller
                 'acredited' => $count->acredited + $votes['acredited'],
                 'registered' => $count->registered + $votes['registered'],
             ]);
+            $lga = $this->lgaPresidentialCount($presidential_result);
+            $lga->update([
+                'apc' => $lga->apc + $request->presidential_apc,
+                'pdp' => $lga->pdp + $request->presidential_pdp,
+                'other' => $lga->other + $request->presidential_other,
+                'valid' => $lga->valid + $votes['valid'],
+                'invalid' => $lga->invalid + $votes['invalid'],
+                'acredited' => $lga->acredited + $votes['acredited'],
+                'registered' => $lga->registered + $votes['registered'],
+            ]);
             $senatorial_result->update([
                 'pdp'=>$request->senatorial_pdp,
                 'apc'=>$request->senatorial_apc,
@@ -70,7 +81,16 @@ class ElectionResultController extends Controller
                 'acredited' => $count->acredited + $votes['acredited'],
                 'registered' => $count->registered + $votes['registered'],
             ]);
-
+            $lga = $this->lgaSenatorialCount($senatorial_result);
+            $lga->update([
+                'apc' => $lga->apc + $request->senatorial_apc,
+                'pdp' => $lga->pdp + $request->senatorial_pdp,
+                'other' => $lga->other + $request->senatorial_other,
+                'valid' => $lga->valid + $votes['valid'],
+                'invalid' => $lga->invalid + $votes['invalid'],
+                'acredited' => $lga->acredited + $votes['acredited'],
+                'registered' => $lga->registered + $votes['registered'],
+            ]);
             $presentative_result->update([
                 'pdp'=>$request->representative_pdp,
                 'apc'=>$request->representative_apc,
@@ -91,7 +111,16 @@ class ElectionResultController extends Controller
                 'acredited' => $count->acredited + $votes['acredited'],
                 'registered' => $count->registered + $votes['registered'],
             ]);
-
+            $lga = $this->lgaRepresentativeCount($presentative_result);
+            $lga->update([
+                'apc' => $lga->apc + $request->representative_apc,
+                'pdp' => $lga->pdp + $request->representative_pdp,
+                'other' => $lga->other + $request->representative_other,
+                'valid' => $lga->valid + $votes['valid'],
+                'invalid' => $lga->invalid + $votes['invalid'],
+                'acredited' => $lga->acredited + $votes['acredited'],
+                'registered' => $lga->registered + $votes['registered'],
+            ]);
         session()->flash('message','Election result was sent successfully');
         return redirect('/home');
     }
@@ -100,6 +129,33 @@ class ElectionResultController extends Controller
     {
         foreach ($result->get() as $result) {
             return $result->collation->resultCount;
+        }
+    }
+    public function lgaPresidentialCount($result)
+    {
+        foreach ($result->get() as $result) {
+            $lga_id = $result->pollingUnit->ward->lga->id;
+            foreach (LgaResultCount::where(['lga_id'=>$lga_id, 'type_id'=>1])->get() as $result) {
+            	return $result;
+            }
+        }
+    }
+    public function lgaSenatorialCount($result)
+    {
+        foreach ($result->get() as $result) {
+            $lga_id = $result->pollingUnit->ward->lga->id;
+            foreach (LgaResultCount::where(['lga_id'=>$lga_id, 'type_id'=>2])->get() as $result) {
+            	return $result;
+            }
+        }
+    }
+    public function lgaRepresentativeCount($result)
+    {
+        foreach ($result->get() as $result) {
+            $lga_id = $result->pollingUnit->ward->lga->id;
+            foreach (LgaResultCount::where(['lga_id'=>$lga_id, 'type_id'=>3])->get() as $result) {
+            	return $result;
+            }
         }
     }
     public function getResultVotes($result)

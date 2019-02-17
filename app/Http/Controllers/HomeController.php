@@ -9,6 +9,7 @@ use App\PollingUnit;
 use App\Incidence;
 use App\Result;
 use App\ResultCount;
+use App\LgaResultCount;
 use App\Http\Requests\RegisteredFormRequest;
 use App\Http\Requests\AcreditedFormRequest;
 use App\Services\Collation\Presidential;
@@ -35,27 +36,11 @@ class HomeController extends Controller
     protected function localSummary()
     {
         if(Auth()->User()->lga_id != null){
-            $acredited = 0;
-            $registered = 0;
-            $pdp = 0;
-            $apc = 0;
-            $valid_vote = 0;
-            $invalid_vote = 0;
-            $other = 0;
-            foreach(Auth()->User()->lga->wards as $ward){
-                foreach ($ward->pollingUnits as $pollingUnit) {
-                    $acredited = $acredited + $pollingUnit->acredited;
-                    $registered = $registered + $pollingUnit->registered;
-                }
-            }
+            
             return [
-                'registered' => $registered,
-                'acredited' => $acredited,
-                'pdp' => $pdp,
-                'apc' => $apc,
-                'valid_vote' => $valid_vote,
-                'invalid_vote' => $invalid_vote,
-                'other' => $other
+                'presidential' => LgaResultCount::where(['lga_id'=>Auth()->User()->lga_id,'type_id'=>1])->get(),
+                'senatorial' => LgaResultCount::where(['lga_id'=>Auth()->User()->lga_id,'type_id'=>2])->get(),
+                'representative' => LgaResultCount::where(['lga_id'=>Auth()->User()->lga_id,'type_id'=>3])->get(),
             ];
         }else{
             return [];
@@ -108,6 +93,7 @@ class HomeController extends Controller
                 $pollingUnits = $unit;
                 $registered = $register;
             }
+            
             return view('home',['submitted'=>$submitted,'register'=>$registered,'pollingUnits'=>$pollingUnits,'user'=>Auth()->User(),'summary'=>$this->localSummary()]);
         } 
     }
