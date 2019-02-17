@@ -12,7 +12,7 @@ use App\Http\Requests\ElectionResultFormRequest;
 
 class ElectionResultController extends Controller
 {
-    public function sendResult(Request $request)
+    public function sendResult(ElectionResultFormRequest $request)
     {
         
         if(isset($request->id)){

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ElectionFormRequest extends FormRequest
+class AcreditedFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,13 +23,8 @@ class ElectionFormRequest extends FormRequest
      */
     public function rules()
     {
-        $input = [];
-
-        if($this->has('acredited')){
-            $input['acredited'] = 'required|integer';
-        }else{
-            $input['registered'] = 'required|integer';
-        }
-        return $input;
+        return [
+            'acredited' => 'required|integer'
+        ];
     }
 }

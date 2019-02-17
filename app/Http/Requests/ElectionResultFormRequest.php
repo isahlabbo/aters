@@ -27,19 +27,16 @@ class ElectionResultFormRequest extends FormRequest
             'senatorial_apc' => 'required|integer',
             'senatorial_pdp' => 'required|integer',
             'senatorial_other' => 'required|integer',
-            'senatorial_valid_vote' => 'required|integer',
             'senatorial_invalid_vote' => 'required|integer',
 
             'presidential_apc' => 'required|integer',
             'presidential_pdp' => 'required|integer',
             'presidential_other' => 'required|integer',
-            'presidential_valid_vote' => 'required|integer',
             'presidential_invalid_vote' => 'required|integer',
 
             'representative_apc' => 'required|integer',
             'representative_pdp' => 'required|integer',
             'representative_other' => 'required|integer',
-            'representative_valid_vote' => 'required|integer',
             'representative_invalid_vote' => 'required|integer'
         ];
     }

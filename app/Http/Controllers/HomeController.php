@@ -8,8 +8,9 @@ use App\Lga;
 use App\PollingUnit;
 use App\Incidence;
 use App\Result;
-use App\Http\Requests\ElectionResultFormRequest;
-use App\Http\Requests\ElectionFormRequest;
+use App\ResultCount;
+use App\Http\Requests\RegisteredFormRequest;
+use App\Http\Requests\AcreditedFormRequest;
 use App\Services\Collation\Presidential;
 use App\Services\Collation\Senatorial;
 use App\Services\Collation\Representative;
@@ -64,11 +65,27 @@ class HomeController extends Controller
     public function index()
     {
         if(Auth()->user()->collation_id == 1){
-            $representative = new Representative();
-            
-            $senatorial = new Senatorial();
-            $presidential = new Presidential();
-              return view('home',['representative'=>$representative->result,'presidential'=> $presidential->result,'senatorial'=>$senatorial->result, 'user'=>Auth()->User()]);
+            $representative = [
+                ['name'=>'SOKOTO NORTH / SOKOTO SOUTH','result'=>ResultCount::find(5)],
+                ['name'=>'WAMAKKO / KWARE','result'=>ResultCount::find(6)],
+                ['name'=>'SILAME / BINJI','result'=>ResultCount::find(7)],
+                ['name'=>'TANGAZA / GUDU','result'=>ResultCount::find(8)],
+                ['name'=>'TAMBUWAL / KEBBE','result'=>ResultCount::find(9)],
+                ['name'=>'YABO / SHAGARI','result'=>ResultCount::find(10)],
+                ['name'=>'BODINGA / DANGE SHUNI / TURETA','result'=>ResultCount::find(11)],
+                ['name'=>'WURNO / RABAH','result'=>ResultCount::find(12)],
+                ['name'=>'GORONYO / GADA','result'=>ResultCount::find(13)],
+                ['name'=>'SABON BIRNI / ISAH','result'=>ResultCount::find(14)],
+                ['name'=>'GWADABAWA / ILLELA','result'=>ResultCount::find(15)]
+           
+            ];
+            $senatorial = [
+                ['name'=>'SOKOTO CENTRAL','result'=>ResultCount::find(2)],
+                ['name'=>'SOKOTO EAST','result'=>ResultCount::find(3)],
+                ['name'=>'SOKOTO SOUTH','result'=>ResultCount::find(4)],
+            ];
+            $presidential = ['name'=>'PRESIDENTIAL','result'=>ResultCount::find(1)];
+            return view('home',['representative'=>$representative,'presidential'=> $presidential,'senatorial'=>$senatorial, 'user'=>Auth()->User()]);
         }else{
             $submitted = true;
             if(Auth()->user()->lga_id == null){
@@ -95,26 +112,23 @@ class HomeController extends Controller
         } 
     }
     
-    public function accredited(ElectionFormRequest $request)
+    public function accredited(AcreditedFormRequest $request)
     {
         
-        if(isset($request->registered)){
-            Auth()->User()->pollingUnit->update(['registered'=>$request->registered]);
-        }else{
-            Auth()->User()->pollingUnit->update(['acredited'=>$request->acredited]);
-        }
-
+        Auth()->User()->pollingUnit->update(['acredited'=>$request->acredited]);
+       
         session()->flash('message','Acredited voters was sent successfully');
         return redirect('/home');
     }
 
-    
-    public function getResultCount($result)
+    public function registered(RegisteredFormRequest $request)
     {
-        foreach ($result->get() as $result) {
-            return $result->collation->resultCount;
-        }
+        Auth()->User()->pollingUnit->update(['registered'=>$request->registered]);
+        session()->flash('message','registered voters was sent successfully');
+        return redirect('/home');
     }
+
+    
     public function newResult(Request $request)
     {
         return view('new_result',['id'=>$request->id]);

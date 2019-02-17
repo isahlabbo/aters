@@ -25,6 +25,7 @@ Route::get('/test', function () {
 	new Register(new Sokoto());
 });
 Route::post('/accredited', 'HomeController@accredited');
+Route::post('/registered', 'HomeController@registered');
 Route::post('/result', 'ElectionResultController@sendResult');
 
 Auth::routes();
