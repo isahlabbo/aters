@@ -47,7 +47,24 @@ class HomeController extends Controller
             return [];
         }
     }
-    public function getLgas()
+    protected function availableIncidences($value='')
+    {    $count = 0;
+        
+        foreach($this->getLgas() as $id){
+            $lga = Lga::find($id);
+            foreach($lga->wards as $ward){
+                foreach ($ward->pollingUnits as $pollingUnit) {
+                    foreach ($pollingUnit->pollingUnitIncidences as $pollingUnitIncidence) {
+                        if($pollingUnitIncidence->incidence->resolve == 0){
+                           $count ++;
+                        }
+                    }
+                }
+            }
+        }
+        return $count;
+    }
+    protected function getLgas()
     {
         switch (Auth()->User()->center_id) {
             case '1':
@@ -95,7 +112,7 @@ class HomeController extends Controller
             foreach ($this->getLgas() as $lga) {
                 $lgas[] = Lga::find($lga);
             }
-            return view('home',['user'=>Auth()->User(),'lgas'=>$lgas]);
+            return view('home',['user'=>Auth()->User(),'lgas'=>$lgas,'availableIncidence'=>$this->availableIncidences()]);
         }elseif(Auth()->User()->collation_id == 1){
             $representative = [
                 ['name'=>'SOKOTO NORTH / SOKOTO SOUTH','result'=>ResultCount::find(5)],

@@ -1,9 +1,12 @@
 @extends('layouts.app')
-
+@section('head')
+ <meta http-equiv=”refresh” content=”0.5" />
+@endsection
 @section('content')
 <div class="container">
         @if($user->center_id != null)
         <div class="h1 alert alert-success">{{$user->center->name.' INCIDENCE MANAGEMENT DASHBOARD'}}</div>
+        <div class="h1 alert alert-danger">{{'YOU HAVE ('.$availableIncidence.') UNRESOLVE INCIDENCE'}}</div>
         @foreach($lgas as $lga)
         <div class="row">
             <div class="col-sm-12">
@@ -20,16 +23,18 @@
                                             @foreach($ward->pollingUnits as $pollingUnit)
                                             <div class="row" >
                                                 @foreach($pollingUnit->pollingUnitIncidences as $incidence)
+                                                    @if($incidence->incidence->resolve == 0)
                                                     <div class="col-sm-12">
                                                         <div class="card">
                                                             <div class="card-header h4"  style="color: white; background-color: red">{{'NEW INCIDENCE'}}
-                                                                <form method="post" action="#">
+                                                                <form method="post" action="/edit_incidence">
                                                                     <input type="hidden" name="id" value="{{$incidence->incidence->id}}">
                                                                     <input type="submit" value="Edit Incidence" class="btn btn-danger" name="">
                                                                 </form>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @endif
                                                 @endforeach
                                             </div>
                                             @endforeach

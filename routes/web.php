@@ -27,6 +27,8 @@ Route::get('/test', function () {
 Route::post('/accredited', 'HomeController@accredited');
 Route::post('/registered', 'HomeController@registered');
 Route::post('/result', 'ElectionResultController@sendResult');
+Route::post('/resolve_incidence', 'IncidenceController@resolveIncidence');
+Route::post('/edit_incidence', 'IncidenceController@editIncidence');
 
 Auth::routes();
 
