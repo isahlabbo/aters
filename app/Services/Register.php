@@ -135,7 +135,7 @@ class Register
             $collation->resultCount()->create(['type_id'=>$type_id]);
         }
         $centers = [
-            'SOKOTO CENTER',
+            'SOKOTO CENTRAL',
 			'SOKOTO EAST', 
 			'SOKOTO SOUTH'
         ];
@@ -240,13 +240,5 @@ class Register
 		}
         return $code;
 	}
-	protected function localCode($code)
-	{
-		if($code < 10){
-			$code = '000'.$code;
-		}else{
-			$code = '00'.$code;
-		}
-        return $code;
-	}
+	
 }

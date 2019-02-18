@@ -10,7 +10,7 @@ class PollingUnit extends Model
 
     public function pollingUnitIncidences()
     {
-    	return $this->hasMany('App\PollingUnitIncidence');
+    	return $this->hasMany(PollingUnitIncidence::class);
     }
 
     public function user()

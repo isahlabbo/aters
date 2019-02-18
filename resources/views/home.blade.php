@@ -2,7 +2,48 @@
 
 @section('content')
 <div class="container">
-        @if($user->collation_id != null)
+        @if($user->center_id != null)
+        <div class="h1 alert alert-success">{{$user->center->name.' INCIDENCE MANAGEMENT DASHBOARD'}}</div>
+        @foreach($lgas as $lga)
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header h3"  style="color: white; background-color: seagreen">{{strtoupper($lga->name). ' LOCAL GOVEERNMENT'}}</div>
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach($lga->wards as $ward)
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-header h3"  style="color: white; background-color: seagreen">{{strtoupper($ward->name). ' WARD'}}
+                                        </div>
+                                        <div class="card-body">
+                                            @foreach($ward->pollingUnits as $pollingUnit)
+                                            <div class="row" >
+                                                @foreach($pollingUnit->pollingUnitIncidences as $incidence)
+                                                    <div class="col-sm-12">
+                                                        <div class="card">
+                                                            <div class="card-header h4"  style="color: white; background-color: red">{{'NEW INCIDENCE'}}
+                                                                <form method="post" action="#">
+                                                                    <input type="hidden" name="id" value="{{$incidence->incidence->id}}">
+                                                                    <input type="submit" value="Edit Incidence" class="btn btn-danger" name="">
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+        @elseif($user->collation_id != null)
         <div class="alert alert-success">SOKOTO APC 2019 ELECTION DASHBOARD COLLATION CENTER</div>
         <div class="row">
             <div class="col-md-12">

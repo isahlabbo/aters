@@ -16,6 +16,7 @@ class CreateIncidencesTable extends Migration
         Schema::create('incidences', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('resolve')->default('0');
             $table->timestamps();
         });
     }

@@ -33,6 +33,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
     protected function localSummary()
     {
         if(Auth()->User()->lga_id != null){
@@ -46,10 +47,56 @@ class HomeController extends Controller
             return [];
         }
     }
-
+    public function getLgas()
+    {
+        switch (Auth()->User()->center_id) {
+            case '1':
+                return [
+                    '16',
+                    '17',
+                    '21',
+                    '10',
+                    '15',
+                    '1',
+                    '19',
+                    '6'
+                ];
+                break;
+            case '2':
+                return [
+                    '7',
+                    '8',
+                    '4',
+                    '22',
+                    '12',
+                    '5',
+                    '13',
+                    '9'
+                ];
+                break;
+            
+            default:
+                return [
+                    '2', 
+                    '3', 
+                    '20', 
+                    '14', 
+                    '23', 
+                    '18', 
+                    '11' 
+                ];
+                break;
+        }
+    }
     public function index()
     {
-        if(Auth()->user()->collation_id == 1){
+        if(Auth()->User()->center_id != null){
+            $lgas = [];
+            foreach ($this->getLgas() as $lga) {
+                $lgas[] = Lga::find($lga);
+            }
+            return view('home',['user'=>Auth()->User(),'lgas'=>$lgas]);
+        }elseif(Auth()->User()->collation_id == 1){
             $representative = [
                 ['name'=>'SOKOTO NORTH / SOKOTO SOUTH','result'=>ResultCount::find(5)],
                 ['name'=>'WAMAKKO / KWARE','result'=>ResultCount::find(6)],
@@ -62,7 +109,6 @@ class HomeController extends Controller
                 ['name'=>'GORONYO / GADA','result'=>ResultCount::find(13)],
                 ['name'=>'SABON BIRNI / ISAH','result'=>ResultCount::find(14)],
                 ['name'=>'GWADABAWA / ILLELA','result'=>ResultCount::find(15)]
-           
             ];
             $senatorial = [
                 ['name'=>'SOKOTO CENTRAL','result'=>ResultCount::find(2)],
@@ -93,7 +139,7 @@ class HomeController extends Controller
                 $pollingUnits = $unit;
                 $registered = $register;
             }
-            
+
             return view('home',['submitted'=>$submitted,'register'=>$registered,'pollingUnits'=>$pollingUnits,'user'=>Auth()->User(),'summary'=>$this->localSummary()]);
         } 
     }

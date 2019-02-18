@@ -10,11 +10,11 @@ class PollingUnitIncidence extends Model
 
     public function pollingUnit()
     {
-    	$this->belongsTo(PollingUnit::class);
+    	return $this->belongsTo(PollingUnit::class);
     }
 
     public function incidence()
     {
-    	$this->belongsTo(Incidence::class);
+    	return $this->belongsTo(Incidence::class);
     }
 }
