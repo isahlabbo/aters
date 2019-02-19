@@ -10,12 +10,15 @@ class Ward extends Model
 
     public function pollingUnits()
     {
-    	return $this->hasMany('App\PollingUnit');
+    	return $this->hasMany(PollingUnit::class);
     }
-
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function lga()
     {
-    	return $this->belongsTo('App\Lga');
+    	return $this->belongsTo(Lga::class);
     }
 
     public function presidential()
@@ -49,14 +52,7 @@ class Ward extends Model
             'registered' => $registered
         ];
     }
- //    protected function hasResult($pollingUnit)
-	//    {
-	//    	foreach ($pollingUnit->result as $result) {
-	//    		if($result->apc != 0){
-	//    			return true;
-	//    		}
-	//    	}
-	// }
+ 
     public function senatorial()
     {
         $pdp = 0;

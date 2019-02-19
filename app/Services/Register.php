@@ -9,6 +9,7 @@ use App\Ward;
 use App\Result;
 use App\Type;
 use App\Center;
+use App\Incidence;
 use App\Collation;
 use App\PollingUnit;
 use Illuminate\Support\Facades\Hash;
@@ -122,7 +123,17 @@ class Register
             'SABON BIRNI / ISAH',
             'GWADABAWA / ILLELA'
 		];
-
+        $incidences = [
+            'Violence',  
+            'Valot Snatching',  
+            'Vote Selling',  
+            'Vote Buying',  
+            'Absence of Security',  
+            'Late Arrival Of Material Or Staff'
+        ];
+        foreach ($incidences as $incidence) {
+            Incidence::create(['name'=>$incidence]);
+        }
         foreach ($collations as $collation) {
         	$collation = Collation::create(['name'=>$collation]);
         	if($collation->id == 1){
@@ -188,11 +199,12 @@ class Register
 
                         //register ward
                         $this_ward = Ward::create(['name'=>$ward['name'],'lga_id'=>$local->id]);
-                        $code = substr(md5($local->id.'w'),0, 8);
-                        $this_ward->user()->create([
+                        $code = substr(md5($this_ward->id.'w'),0, 8);
+                        User::create([
 				            'email'=>$code.'@apc.com',
 							'code'=>$code,
 							'password'=>Hash::make($code),
+							'ward_id'=> $this_ward->id
 						]);
 						foreach ($ward['pollingUnits'] as $pollingUnits) {
                             

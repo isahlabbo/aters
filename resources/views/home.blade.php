@@ -1,10 +1,13 @@
 @extends('layouts.app')
 @section('head')
- <meta http-equiv=”refresh” content=”0.5" />
+ <meta http-equiv=”refresh” content="5" />
 @endsection
+
 @section('content')
 <div class="container">
-        @if($user->center_id != null)
+        @if($user->ward_id != null)
+            <div class="h1 alert alert-success">{{$user->center->name.' INCIDENCE MANAGEMENT DASHBOARD'}}</div>
+        @elseif($user->center_id != null)
         <div class="h1 alert alert-success">{{$user->center->name.' INCIDENCE MANAGEMENT DASHBOARD'}}</div>
         <div class="h1 alert alert-danger">{{'YOU HAVE ('.$availableIncidence.') UNRESOLVE INCIDENCE'}}</div>
         @foreach($lgas as $lga)
