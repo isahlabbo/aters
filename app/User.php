@@ -32,7 +32,7 @@ class User extends Authenticatable
 
     public function ward()
     {
-        return $this->hasOne(Ward::class);
+        return $this->belongsTo(Ward::class);
     }
 
     public function center()

@@ -34,4 +34,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/add_result', 'HomeController@newResult');
+Route::post('/edit_result', 'ElectionResultController@editResult');
 Route::post('/incidence', 'HomeController@incidence');

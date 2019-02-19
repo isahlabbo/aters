@@ -107,7 +107,9 @@ class HomeController extends Controller
     }
     public function index()
     {
-        if(Auth()->User()->center_id != null){
+        if(Auth()->User()->ward_id !=null){
+             return view('home',['user'=>Auth()->User()]);
+        }else if(Auth()->User()->center_id != null){
             $lgas = [];
             foreach ($this->getLgas() as $lga) {
                 $lgas[] = Lga::find($lga);

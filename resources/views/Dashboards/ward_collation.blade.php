@@ -1,6 +1,7 @@
-<div class="row">
+
 @foreach($user->ward->pollingUnits as $pollingUnit)
-    <div class="col-md-6">
+<div class="row">
+    <div class="col-md-12">
         <div class="card">
             <div class="card-header h3"  style="background-color: seagreen;color:white">{{$pollingUnit->name.' POLLING UNITS'}} {{'CODE '. $pollingUnit->user->code}}</div>
             <div class="card-body">          
@@ -10,8 +11,8 @@
                     <table class="table table-responsive">
                         <thead>
                             <tr>
-                                <th>Registered Votes</th>
-                                <th>Accredited</th>
+                                <th>Registered Voters</th>
+                                <th>Accredited Voters</th>
                                 <th>APC</th>
                                 <th>PDP</th>
                                 <th>Others</th>
@@ -91,16 +92,17 @@
                     </table>
                     @endif
                     @endforeach
-                    @if($pollingUnit->submitted() == false)
-                    <form action="/add_result" method="post">
+                    @if($pollingUnit->submitted() == true)
+                    <form action="/edit_result" method="post">
                         @csrf
                         <input type="hidden" name="id" value="{{$pollingUnit->id}}">
                         <input type="submit" class="btn btn-primary" value="Edit Result" >
                     </form>
                     @endif
-                </div>
+                
             </div>
         </div>   
     </div>
-@endforeach
 </div>
+<br>
+@endforeach

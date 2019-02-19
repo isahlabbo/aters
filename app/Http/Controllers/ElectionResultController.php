@@ -158,6 +158,51 @@ class ElectionResultController extends Controller
             }
         }
     }
+    public function editResult(Request $request)
+    {
+        $pollingUnit = PollingUnit::find($request->id);
+        $pollingUnits = [
+            'id' => $pollingUnit->id,
+            'acredited'=> $pollingUnit->acredited,
+            'registered'=>$pollingUnit->registered
+        ];
+        $presidential = null;
+        $senatorial = null;
+        $representative = null;
+        foreach ($pollingUnit->results as $result) {
+            switch ($result->type_id) {
+                case '1':
+                    $presidential = [
+                        'pdp' => $result->pdp,
+                        'apc' => $result->apc,
+                        'other' => $result->other,
+                        'invalid' => $result->invalid_vote,
+                    ];
+                    break;
+                
+                case '2':
+                    $senatorial = [
+                        'pdp' => $result->pdp,
+                        'apc' => $result->apc,
+                        'other' => $result->other,
+                        'invalid' => $result->invalid_vote,
+                    ];
+                    break;
+                
+                default:
+
+                    $representative = [
+                        'pdp' => $result->pdp,
+                        'apc' => $result->apc,
+                        'other' => $result->other,
+                        'invalid' => $result->invalid_vote,
+                    ];
+                   
+                    break;
+            }
+        }
+        return view('edit_result',['pollingUnit'=>$pollingUnits,'presidential'=>$presidential,'senatorial'=>$senatorial,'representative'=>$representative]);
+    }
     public function getResultVotes($result)
     {
         foreach ($result->get() as $result) {

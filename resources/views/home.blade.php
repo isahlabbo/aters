@@ -6,7 +6,8 @@
 @section('content')
 <div class="container">
         @if($user->ward_id != null)
-            <div class="h1 alert alert-success">{{$user->center->name.' INCIDENCE MANAGEMENT DASHBOARD'}}</div>
+            <div class="h1 alert alert-success">{{strtoupper($user->ward->name).' WARD COLLATION DASHBOARD'}}</div>
+            @include('Dashboards.ward_collation')
         @elseif($user->center_id != null)
         <div class="h1 alert alert-success">{{$user->center->name.' INCIDENCE MANAGEMENT DASHBOARD'}}</div>
         <div class="h1 alert alert-danger">{{'YOU HAVE ('.$availableIncidence.') UNRESOLVE INCIDENCE'}}</div>
@@ -62,8 +63,8 @@
                         <table class="table table->responsive">
                             <thead>
                                 <tr>
-                                    <th>Registered Votes</th>
-                                    <th>Acredited</th>
+                                    <th>Registered Voters</th>
+                                    <th>Acredited Voters</th>
                                     <th>APC</th>
                                     <th>PDP</th>
                                     <th>Others</th>
@@ -103,8 +104,8 @@
                                         <table class="table table->responsive">
                                             <thead>
                                                 <tr>
-                                                    <th>Registered Votes</th>
-                                                    <th>Acredited</th>
+                                                    <th>Registered Voters</th>
+                                                    <th>Acredited Voters</th>
                                                     <th>APC</th>
                                                     <th>PDP</th>
                                                     <th>Others</th>
@@ -149,8 +150,8 @@
                                         <table class="table table->responsive">
                                             <thead>
                                                 <tr>
-                                                    <th>Registered Votes</th>
-                                                    <th>Acredited</th>
+                                                    <th>Registered Voters</th>
+                                                    <th>Acredited Voters</th>
                                                     <th>APC</th>
                                                     <th>PDP</th>
                                                     <th>Others</th>
@@ -226,8 +227,8 @@
                         <table class="table table-default table-responsive">
                             <thead>
                                 <tr>
-                                    <th>Registered Votes</th>
-                                    <th>Acredited</th>
+                                    <th>Registered Voters</th>
+                                    <th>Acredited Voters</th>
                                     <th>APC</th>
                                     <th>PDP</th>
                                     <th>Others</th>
@@ -263,8 +264,8 @@
                         <table class="table table-default table-responsive">
                             <thead>
                                 <tr>
-                                    <th>Registered Votes</th>
-                                    <th>Acredited</th>
+                                    <th>Registered Voters</th>
+                                    <th>Acredited Voters</th>
                                     <th>APC</th>
                                     <th>PDP</th>
                                     <th>Others</th>
@@ -299,8 +300,8 @@
                         <table class="table table-default table-responsive">
                             <thead>
                                 <tr>
-                                    <th>Registered Votes</th>
-                                    <th>Acredited</th>
+                                    <th>Registered Voters</th>
+                                    <th>Acredited Voters</th>
                                     <th>APC</th>
                                     <th>PDP</th>
                                     <th>Others</th>
@@ -349,8 +350,8 @@
                                             <table class="table table-responsive">
                                                 <thead>
                                                     <tr>
-                                                        <th>Registered Votes</th>
-                                                        <th>Accredited</th>
+                                                        <th>Registered Voters</th>
+                                                        <th>Accredited Voters</th>
                                                         <th>APC</th>
                                                         <th>PDP</th>
                                                         <th>Others</th>
@@ -377,8 +378,8 @@
                                             <table class="table table-responsive">
                                                 <thead>
                                                     <tr>
-                                                        <th>Registered Votes</th>
-                                                        <th>Accredited</th>
+                                                        <th>Registered Voters</th>
+                                                        <th>Accredited Voters</th>
                                                         <th>APC</th>
                                                         <th>PDP</th>
                                                         <th>Others</th>
@@ -405,8 +406,8 @@
                                             <table class="table table-responsive">
                                                 <thead>
                                                     <tr>
-                                                        <th>Registered Votes</th>
-                                                        <th>Accredited</th>
+                                                        <th>Registered Voters</th>
+                                                        <th>Accredited Voters</th>
                                                         <th>APC</th>
                                                         <th>PDP</th>
                                                         <th>Others</th>
