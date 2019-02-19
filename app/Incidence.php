@@ -7,14 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Incidence extends Model
 {
 	protected $guarded = [];
-	
-    public function pollingUnitIncidence()
+
+    public function pollingUnitIncidences()
     {
-    	return $this->BelongsTo('App\PollingUnitIncidence');
+    	return $this->hasMany(PollingUnitIncidence::class);
     }
 
-    public function evidence()
-    {
-    	return $this->hasOne('App\Evidence');
-    }
 }

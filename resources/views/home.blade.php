@@ -28,7 +28,8 @@
                                                         <div class="card">
                                                             <div class="card-header h4"  style="color: white; background-color: red">{{'NEW INCIDENCE'}}
                                                                 <form method="post" action="/edit_incidence">
-                                                                    <input type="hidden" name="id" value="{{$incidence->incidence->id}}">
+                                                                    @csrf
+                                                                    <input type="hidden" name="id" value="{{$incidence->id}}">
                                                                     <input type="submit" value="Edit Incidence" class="btn btn-danger" name="">
                                                                 </form>
                                                             </div>

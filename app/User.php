@@ -12,8 +12,6 @@ class User extends Authenticatable
 
     protected $guarded = [];
     
-    
-
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -22,8 +20,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-
     public function pollingUnit()
     {
         return $this->belongsTo(PollingUnit::class);
@@ -36,7 +32,7 @@ class User extends Authenticatable
 
     public function ward()
     {
-        return $this->belongsTo('App\Ward');
+        return $this->hasOne(Ward::class);
     }
 
     public function center()

@@ -72,7 +72,7 @@ class HomeController extends Controller
                     '16',
                     '17',
                     '21',
-                    '10',
+                    '11',
                     '15',
                     '1',
                     '19',
@@ -100,7 +100,7 @@ class HomeController extends Controller
                     '14', 
                     '23', 
                     '18', 
-                    '11' 
+                    '10' 
                 ];
                 break;
         }
@@ -185,7 +185,7 @@ class HomeController extends Controller
     public function incidence(Request $request, Incidence $incidence)
     {
         $new_incidence = $incidence->firstOrCreate(['name'=>$request->incidence]);
-        $poll = $new_incidence->pollingUnitIncidence()->create(['polling_unit_id'=>Auth()->User()->polling_unit_id, 'incidence_id'=>$new_incidence->id]);
+        $poll = $new_incidence->pollingUnitIncidences()->create(['polling_unit_id'=>Auth()->User()->polling_unit_id, 'incidence_id'=>$new_incidence->id]);
         session()->flash('message','The was sent successfully');
         return redirect('/home');
     }

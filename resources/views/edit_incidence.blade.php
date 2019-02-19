@@ -8,22 +8,30 @@
 	        	<table>
 	        		<tr>
 	        			<td>LGA</td>
-	        			<td>{{$incidence->pollingUnit->ward->lga->name}}</td>
+	        			<td>{{strtoupper($incidence->pollingUnit->ward->lga->name)}}</td>
 	        		</tr>
 	        		<tr>
 	        			<td>WARD</td>
-	        			<td>{{$incidence->pollingUnit->ward->name}}</td>
+	        			<td>{{strtoupper($incidence->pollingUnit->ward->name)}}</td>
 	        		</tr>
 	        		<tr>
-	        			<td>POLLING UNIT</td>
-	        			<td>{{$incidence->pollingUnit->name}}</td>
+	        			<td width="220">POLLING UNIT</td>
+	        			<td>{{strtoupper($incidence->pollingUnit->name)}}</td>
+	        		</tr>
+	        		<tr>
+	        			<td>INCIDENCE TYPE</td>
+	        			<td>{{strtoupper($incidence->incidence->name)}}</td>
+	        		</tr>
+	        		<tr>
+	        			<td>DURATION</td>
+	        			<td>{{$incidence->duration()}}</td>
 	        		</tr>
 	        	</table>
 	            <form action="/resolve_incidence" method="post">
 	                @csrf
-	                <button name="id" class="btn btn-danger btn-block" value="{{$incidence->id}}">Resolved</button>
-	            </form>
-	            <a href="/home">GO BACK</a>
+	                <button name="id" class="btn btn-success btn-block" value="{{$incidence->id}}">Resolved</button>
+	            </form> <br>
+	            <a class="btn btn-warning btn-block" href="/home">GO BACK</a>
 	        </div>
 	    </div>
 	</div>

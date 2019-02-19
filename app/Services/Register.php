@@ -188,7 +188,12 @@ class Register
 
                         //register ward
                         $this_ward = Ward::create(['name'=>$ward['name'],'lga_id'=>$local->id]);
-
+                        $code = substr(md5($local->id.'w'),0, 8);
+                        $this_ward->user()->create([
+				            'email'=>$code.'@apc.com',
+							'code'=>$code,
+							'password'=>Hash::make($code),
+						]);
 						foreach ($ward['pollingUnits'] as $pollingUnits) {
                             
 							foreach ($pollingUnits as $pollingUnit) {

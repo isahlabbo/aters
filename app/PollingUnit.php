@@ -25,7 +25,7 @@ class PollingUnit extends Model
 
     public function ward()
     {
-    	return $this->belongsTo('App\Ward');
+    	return $this->belongsTo(Ward::class);
     }
 
     public function submitted()

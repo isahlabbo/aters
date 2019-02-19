@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class PollingUnitIncidence extends Model
 {
@@ -16,5 +17,10 @@ class PollingUnitIncidence extends Model
     public function incidence()
     {
     	return $this->belongsTo(Incidence::class);
+    }
+
+    public function duration()
+    {
+    return Carbon::create(date('Y',strtotime($this->created_at)), date('m',strtotime($this->created_at)), date('d',strtotime($this->created_at)), date('h',strtotime($this->created_at)), date('m',strtotime($this->created_at)), date('s',strtotime($this->created_at)))->diffForHumans();
     }
 }

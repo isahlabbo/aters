@@ -23,7 +23,7 @@ class Senatorial
             '16',
             '17',
             '21',
-            '10',
+            '11',
             '15',
             '1',
             '19',
@@ -41,7 +41,7 @@ class Senatorial
             '14', 
             '23', 
             '18', 
-            '11' 
+            '10' 
 
 		];
 		return $this->getResult($lga);
