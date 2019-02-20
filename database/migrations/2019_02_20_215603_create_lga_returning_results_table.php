@@ -15,6 +15,14 @@ class CreateLgaReturningResultsTable extends Migration
     {
         Schema::create('lga_returning_results', function (Blueprint $table) {
             $table->increments('id');
+             $table->integer('type_id')->unsigned()->nullable()->foreign()->refernces('id')->on('types')->delete('restrict')->update('cascade');
+            $table->integer('lga_id')->unsigned()->nullable()->foreign()->refernces('id')->on('lgas')->delete('restrict')->update('cascade');
+            $table->integer('registered');
+            $table->integer('acredited');
+            $table->integer('apc');
+            $table->integer('pdp');
+            $table->integer('other');
+            $table->integer('invalid');
             $table->timestamps();
         });
     }
