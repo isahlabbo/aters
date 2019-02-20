@@ -3,7 +3,7 @@
         <div class="card-header h3" style="color: white; background-color: seagreen;">Report incidence</div>
 
         <div class="card-body">
-            <form action="/incidence" method="post">
+            <form action="/new_incidence" method="post">
                 @csrf
                 <button name="incidence" class="btn btn-danger btn-block" value="Violence">Violence</button>
                 <button name="incidence" class="btn btn-danger btn-block" value="Valot Snatching">Valot Snatching</button>

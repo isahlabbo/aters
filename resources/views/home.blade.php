@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header h3"  style="color: white; background-color: seagreen">{{strtoupper($lga->name). ' LOCAL GOVEERNMENT'}}</div>
+                    <div class="card-header h3"  style="color: white; background-color: seagreen">{{strtoupper($lga->name). ' LOCAL GOVERNMENT'}}</div>
                     <div class="card-body">
                         <div class="row">
                             @foreach($lga->wards as $ward)
@@ -43,6 +43,11 @@
                                                 @endforeach
                                             </div>
                                             @endforeach
+                                            <form method="post" action="/ward_incidence">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{$ward->id}}">
+                                                <input type="submit" value="Insert Incidence" class="btn btn-success" name="">
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

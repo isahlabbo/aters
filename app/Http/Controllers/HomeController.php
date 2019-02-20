@@ -186,8 +186,13 @@ class HomeController extends Controller
     }
     public function incidence(Request $request, Incidence $incidence)
     {
-        $new_incidence = $incidence->firstOrCreate(['name'=>$request->incidence]);
-        $poll = $new_incidence->pollingUnitIncidences()->create(['polling_unit_id'=>Auth()->User()->polling_unit_id, 'incidence_id'=>$new_incidence->id]);
+        if(isset($request->id)){
+            dd('here');
+        }else{
+           $new_incidence = $incidence->firstOrCreate(['name'=>$request->incidence]);
+           $poll = $new_incidence->pollingUnitIncidences()->create(['polling_unit_id'=>Auth()->User()->polling_unit_id, 'incidence_id'=>$new_incidence->id]); 
+        }
+        
         session()->flash('message','The was sent successfully');
         return redirect('/home');
     }
