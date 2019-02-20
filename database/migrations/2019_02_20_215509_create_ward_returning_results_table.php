@@ -15,6 +15,14 @@ class CreateWardReturningResultsTable extends Migration
     {
         Schema::create('ward_returning_results', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('type_id')->unsigned()->nullable()->foreign()->refernces('id')->on('types')->delete('restrict')->update('cascade');
+            $table->integer('ward_id')->unsigned()->nullable()->foreign()->refernces('id')->on('wards')->delete('restrict')->update('cascade');
+            $table->integer('registered')->unsigned()->default(0);
+            $table->integer('acredited')->unsigned()->default(0);
+            $table->integer('apc')->unsigned()->default(0);
+            $table->integer('pdp')->unsigned()->default(0);
+            $table->integer('other')->unsigned()->default(0);
+            $table->integer('invalid')->unsigned()->default(0);
             $table->timestamps();
         });
     }

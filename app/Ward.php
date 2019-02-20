@@ -20,7 +20,10 @@ class Ward extends Model
     {
     	return $this->belongsTo(Lga::class);
     }
-
+    public function returningResults()
+    {
+        return $this->hasMany(WardReturningResult::class);
+    }
     public function presidential()
     {
         $pdp = 0;

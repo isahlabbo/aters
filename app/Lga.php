@@ -20,7 +20,10 @@ class Lga extends Model
     {
     	return $this->hasOne(User::class);
     }
-
+    public function returningResults()
+    {
+        return $this->hasMany(LgaReturningResult::class);
+    }
     public function resultCounts()
     {
     	return $this->hasMany(LgaResultCount::class);

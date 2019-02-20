@@ -105,7 +105,7 @@ class Register
     }
 	protected function createInfo()
 	{
-			
+		//populate 15 collations for presidential election	
 		$collations = [
 			'PRESIDENTIAL',
 			'SOKOTO CENTRAL',
@@ -123,6 +123,7 @@ class Register
             'SABON BIRNI / ISAH',
             'GWADABAWA / ILLELA'
 		];
+		//populate the incidences table
         $incidences = [
             'Violence',  
             'Valot Snatching',  
@@ -131,9 +132,11 @@ class Register
             'Absence of Security',  
             'Late Arrival Of Material Or Staff'
         ];
+        //insert all the incidences in the incidence table
         foreach ($incidences as $incidence) {
             Incidence::create(['name'=>$incidence]);
         }
+        //create all the collation centers
         foreach ($collations as $collation) {
         	$collation = Collation::create(['name'=>$collation]);
         	if($collation->id == 1){
@@ -145,11 +148,13 @@ class Register
         	}
             $collation->resultCount()->create(['type_id'=>$type_id]);
         }
+        //create array with three center representing our three zones
         $centers = [
             'SOKOTO CENTRAL',
 			'SOKOTO EAST', 
 			'SOKOTO SOUTH'
         ];
+        //create three zones using their array
 		foreach ($centers as $center) {
 			$userCenter = Center::firstOrCreate(['name'=>$center]);
 			$code = substr(md5($userCenter->id), 0, 8);
@@ -159,7 +164,7 @@ class Register
 				'password'=>Hash::make($code)
 			]);
 		}
-
+        //create collation user
 		$code = substr(md5('collation'),0, 8);
 		User::create([
             'email'=>$code.'@apc.com',
@@ -168,9 +173,9 @@ class Register
 			'collation_id' => 1
 			
 		]);
-
+        //populate types of election
 		$type = ['PRESIDENTIAL','SENATORIAL','HOUSE OF REPS'];
-
+        //create the three types of election
         foreach ($type as $name) {
         	Type::create(['name'=>$name]);
         }
@@ -181,11 +186,20 @@ class Register
                
 				//create local government
 				$local = Lga::create(['name'=>$lga['name']]);
-
+                //create local government returning officer
+                $code = substr(md5($local->id.'r'),0, 8);
+				$local->user()->create([
+		            'email'=>$code.'@apc.com',
+					'code'=>$code,
+					'password'=>Hash::make($code),
+					'returnnig'=> 1
+				]);
+                //create three returning result and result count for each lga
                 for ($i=1; $i <= 3 ; $i++) { 
                 	$local->resultCounts()->create(['type_id'=>$i]);
+                	$local->returningResult()->create(['type_id'=>$i]);
                 }
-				//create the user if the local government
+				//create the user of the local government for data entry
 				$code = substr(md5($local->id.'l'),0, 8);
 				$local->user()->create([
 		            'email'=>$code.'@apc.com',
@@ -200,12 +214,17 @@ class Register
                         //register ward
                         $this_ward = Ward::create(['name'=>$ward['name'],'lga_id'=>$local->id]);
                         $code = substr(md5($this_ward->id.'w'),0, 8);
-                        User::create([
+                        //create ward returning officer
+                        $this_ward->user()->create([
 				            'email'=>$code.'@apc.com',
 							'code'=>$code,
 							'password'=>Hash::make($code),
 							'ward_id'=> $this_ward->id
 						]);
+						//create three ward resturning result for 3 election
+						for ($i=1; $i <= 3 ; $i++) { 
+		                	$this_ward->returningResult()->create(['type_id'=>$i]);
+		                }
 						foreach ($ward['pollingUnits'] as $pollingUnits) {
                             
 							foreach ($pollingUnits as $pollingUnit) {

@@ -17,12 +17,12 @@ class CreateLgaReturningResultsTable extends Migration
             $table->increments('id');
              $table->integer('type_id')->unsigned()->nullable()->foreign()->refernces('id')->on('types')->delete('restrict')->update('cascade');
             $table->integer('lga_id')->unsigned()->nullable()->foreign()->refernces('id')->on('lgas')->delete('restrict')->update('cascade');
-            $table->integer('registered');
-            $table->integer('acredited');
-            $table->integer('apc');
-            $table->integer('pdp');
-            $table->integer('other');
-            $table->integer('invalid');
+            $table->integer('registered')->unsigned()->default(0);
+            $table->integer('acredited')->unsigned()->default(0);
+            $table->integer('apc')->unsigned()->default(0);
+            $table->integer('pdp')->unsigned()->default(0);
+            $table->integer('other')->unsigned()->default(0);
+            $table->integer('invalid')->unsigned()->default(0);
             $table->timestamps();
         });
     }
