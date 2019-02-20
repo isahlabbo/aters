@@ -12,6 +12,8 @@ use App\Center;
 use App\Incidence;
 use App\Collation;
 use App\PollingUnit;
+use App\LgaReturningResult;
+use App\WardReturningResult;
 use Illuminate\Support\Facades\Hash;
 
 class Register
@@ -192,12 +194,12 @@ class Register
 		            'email'=>$code.'@apc.com',
 					'code'=>$code,
 					'password'=>Hash::make($code),
-					'returnnig'=> 1
+					'returning'=> 1
 				]);
                 //create three returning result and result count for each lga
                 for ($i=1; $i <= 3 ; $i++) { 
                 	$local->resultCounts()->create(['type_id'=>$i]);
-                	$local->returningResult()->create(['type_id'=>$i]);
+                	$local->returningResults()->create(['type_id'=>$i]);
                 }
 				//create the user of the local government for data entry
 				$code = substr(md5($local->id.'l'),0, 8);
@@ -223,7 +225,7 @@ class Register
 						]);
 						//create three ward resturning result for 3 election
 						for ($i=1; $i <= 3 ; $i++) { 
-		                	$this_ward->returningResult()->create(['type_id'=>$i]);
+		                	$this_ward->returningResults()->create(['type_id'=>$i]);
 		                }
 						foreach ($ward['pollingUnits'] as $pollingUnits) {
                             
