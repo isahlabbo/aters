@@ -107,60 +107,65 @@ class HomeController extends Controller
     }
     public function index()
     {
-        if(Auth()->User()->ward_id !=null){
-             return view('home',['user'=>Auth()->User()]);
-        }else if(Auth()->User()->center_id != null){
-            $lgas = [];
-            foreach ($this->getLgas() as $lga) {
-                $lgas[] = Lga::find($lga);
-            }
-            return view('home',['user'=>Auth()->User(),'lgas'=>$lgas,'availableIncidence'=>$this->availableIncidences()]);
-        }elseif(Auth()->User()->collation_id == 1){
-            $representative = [
-                ['name'=>'SOKOTO NORTH / SOKOTO SOUTH','result'=>ResultCount::find(5)],
-                ['name'=>'WAMAKKO / KWARE','result'=>ResultCount::find(6)],
-                ['name'=>'SILAME / BINJI','result'=>ResultCount::find(7)],
-                ['name'=>'TANGAZA / GUDU','result'=>ResultCount::find(8)],
-                ['name'=>'TAMBUWAL / KEBBE','result'=>ResultCount::find(9)],
-                ['name'=>'YABO / SHAGARI','result'=>ResultCount::find(10)],
-                ['name'=>'BODINGA / DANGE SHUNI / TURETA','result'=>ResultCount::find(11)],
-                ['name'=>'WURNO / RABAH','result'=>ResultCount::find(12)],
-                ['name'=>'GORONYO / GADA','result'=>ResultCount::find(13)],
-                ['name'=>'SABON BIRNI / ISAH','result'=>ResultCount::find(14)],
-                ['name'=>'GWADABAWA / ILLELA','result'=>ResultCount::find(15)]
-            ];
-            $senatorial = [
-                ['name'=>'SOKOTO CENTRAL','result'=>ResultCount::find(2)],
-                ['name'=>'SOKOTO EAST','result'=>ResultCount::find(3)],
-                ['name'=>'SOKOTO SOUTH','result'=>ResultCount::find(4)],
-            ];
-            $presidential = ['name'=>'PRESIDENTIAL','result'=>ResultCount::find(1)];
-            return view('home',['representative'=>$representative,'presidential'=> $presidential,'senatorial'=>$senatorial, 'user'=>Auth()->User()]);
+        if(Auth()->User()->federal == 1){
+             return redirect('/ward_collation');
         }else{
-            $submitted = true;
-            if(Auth()->user()->lga_id == null){
-                $pollingUnits = null;
-                $registered = null;
-                foreach(Auth()->user()->pollingUnit->results as $result){
-                    if($result->apc == 0){
-                        $submitted = false; 
-                    }
+            if(Auth()->User()->ward_id !=null){
+                 return view('home',['user'=>Auth()->User()]);
+            }else if(Auth()->User()->center_id != null){
+                $lgas = [];
+                foreach ($this->getLgas() as $lga) {
+                    $lgas[] = Lga::find($lga);
                 }
+                return view('home',['user'=>Auth()->User(),'lgas'=>$lgas,'availableIncidence'=>$this->availableIncidences()]);
+            }elseif(Auth()->User()->collation_id == 1){
+                $representative = [
+                    ['name'=>'SOKOTO NORTH / SOKOTO SOUTH','result'=>ResultCount::find(5)],
+                    ['name'=>'WAMAKKO / KWARE','result'=>ResultCount::find(6)],
+                    ['name'=>'SILAME / BINJI','result'=>ResultCount::find(7)],
+                    ['name'=>'TANGAZA / GUDU','result'=>ResultCount::find(8)],
+                    ['name'=>'TAMBUWAL / KEBBE','result'=>ResultCount::find(9)],
+                    ['name'=>'YABO / SHAGARI','result'=>ResultCount::find(10)],
+                    ['name'=>'BODINGA / DANGE SHUNI / TURETA','result'=>ResultCount::find(11)],
+                    ['name'=>'WURNO / RABAH','result'=>ResultCount::find(12)],
+                    ['name'=>'GORONYO / GADA','result'=>ResultCount::find(13)],
+                    ['name'=>'SABON BIRNI / ISAH','result'=>ResultCount::find(14)],
+                    ['name'=>'GWADABAWA / ILLELA','result'=>ResultCount::find(15)]
+                ];
+                $senatorial = [
+                    ['name'=>'SOKOTO CENTRAL','result'=>ResultCount::find(2)],
+                    ['name'=>'SOKOTO EAST','result'=>ResultCount::find(3)],
+                    ['name'=>'SOKOTO SOUTH','result'=>ResultCount::find(4)],
+                ];
+                $presidential = ['name'=>'PRESIDENTIAL','result'=>ResultCount::find(1)];
+                return view('home',['representative'=>$representative,'presidential'=> $presidential,'senatorial'=>$senatorial, 'user'=>Auth()->User()]);
             }else{
-                $unit = 0;
-                $register = 0;
-                foreach(Auth()->user()->lga->wards as $ward){
-                    $unit = $unit + count($ward->pollingUnits);
-                    foreach($ward->pollingUnits as $pollingUnit){
-                        $register = $register + $pollingUnit->registered;
+                $submitted = true;
+                if(Auth()->user()->lga_id == null){
+                    $pollingUnits = null;
+                    $registered = null;
+                    foreach(Auth()->user()->pollingUnit->results as $result){
+                        if($result->apc == 0){
+                            $submitted = false; 
+                        }
                     }
+                }else{
+                    $unit = 0;
+                    $register = 0;
+                    foreach(Auth()->user()->lga->wards as $ward){
+                        $unit = $unit + count($ward->pollingUnits);
+                        foreach($ward->pollingUnits as $pollingUnit){
+                            $register = $register + $pollingUnit->registered;
+                        }
+                    }
+                    $pollingUnits = $unit;
+                    $registered = $register;
                 }
-                $pollingUnits = $unit;
-                $registered = $register;
-            }
 
-            return view('home',['submitted'=>$submitted,'register'=>$registered,'pollingUnits'=>$pollingUnits,'user'=>Auth()->User(),'summary'=>$this->localSummary()]);
-        } 
+                return view('home',['submitted'=>$submitted,'register'=>$registered,'pollingUnits'=>$pollingUnits,'user'=>Auth()->User(),'summary'=>$this->localSummary()]);
+            }
+        }
+         
     }
     
     public function accredited(AcreditedFormRequest $request)
@@ -184,17 +189,6 @@ class HomeController extends Controller
     {
         return view('new_result',['id'=>$request->id]);
     }
-    public function incidence(Request $request, Incidence $incidence)
-    {
-        if(isset($request->id)){
-            dd('here');
-        }else{
-           $new_incidence = $incidence->firstOrCreate(['name'=>$request->incidence]);
-           $poll = $new_incidence->pollingUnitIncidences()->create(['polling_unit_id'=>Auth()->User()->polling_unit_id, 'incidence_id'=>$new_incidence->id]); 
-        }
-        
-        session()->flash('message','The was sent successfully');
-        return redirect('/home');
-    }
+    
 
 }

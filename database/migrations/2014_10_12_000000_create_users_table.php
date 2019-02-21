@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->integer('ward_id')->unsigned()->nullable()->foreign()->refernces('id')->on('wards')->delete('restrict')->update('cascade');
             $table->integer('center_id')->unsigned()->nullable()->foreign()->refernces('id')->on('centers')->delete('restrict')->update('cascade');
             $table->integer('collation_id')->unsigned()->nullable();
+            $table->integer('federal')->unsigned()->nullable();
             $table->integer('returning')->unsigned()->nullable();
             $table->char('code');
             $table->string('email')->unique();

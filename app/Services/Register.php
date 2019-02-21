@@ -107,6 +107,14 @@ class Register
     }
 	protected function createInfo()
 	{
+		//create federal dashboard account
+		$code = substr(md5('federal'), 0, 8);
+			User::create([
+                'email'=>$code.'@apc.com',
+				'code'=>$code,
+				'password'=>Hash::make($code),
+				'federal'=>1,
+			]);
 		//populate 15 collations for presidential election	
 		$collations = [
 			'PRESIDENTIAL',
