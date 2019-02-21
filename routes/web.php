@@ -30,7 +30,7 @@ Route::get('/update_result', 'ElectionResultController@updateResult');
 Route::post('/resolve_incidence', 'IncidenceController@resolveIncidence');
 Route::post('/edit_incidence', 'IncidenceController@editIncidence');
 Route::post('/ward_incidence', 'IncidenceController@wardIncidence');
-Route::post('/ward_collation', 'CollationController@wardCollation');
+Route::get('/ward_collation', 'CollationController@wardCollation');
 
 Auth::routes();
 
