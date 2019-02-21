@@ -5,9 +5,10 @@
 
 @section('content')
 <div class="container">
-        @if($user->ward_id != null)
-            <div class="h1 alert alert-success">{{strtoupper($user->ward->name).' WARD COLLATION DASHBOARD'}}</div>
-            @include('Dashboards.ward_collation')
+        @if($user->returning == 1)
+            @include('Dashboards.lga_returning')
+        @elseif($user->ward_id != null)
+            @include('Dashboards.ward_returning')
         @elseif($user->center_id != null)
         <div class="h1 alert alert-success">{{$user->center->name.' INCIDENCE MANAGEMENT DASHBOARD'}}</div>
         <div class="h1 alert alert-danger">{{'YOU HAVE ('.$availableIncidence.') UNRESOLVE INCIDENCE'}}</div>

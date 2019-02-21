@@ -1,120 +1,103 @@
-@extends('layouts.app')
+<div class="alert alert-success h3">{{strtoupper($user->lga->name).' LOCAL GOVERNMENT RETURNING OFFICER'}}</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">          
+                @foreach($user->lga->returningResults as $result)
+                    @if($result->type_id == 1)
+                    <span class="h3" style="color: seagreen;">Presidential</span>
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Registered Voters</th>
+                                <th>Accredited Voters</th>
+                                <th>APC</th>
+                                <th>PDP</th>
+                                <th>Others</th>
+                                <th>Valid Votes</th>
+                                <th>Invalid Votes</th>
+                                <th>Total Votes Cast</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{$result->registered == 0 ? 'Not Available' : $result->registered}}</td>
+                                <td>{{$result->acredited == 0 ? 'Not Available' : $result->acredited}}</td>
+                                <td>{{$result->apc == 0 ? 'Not Available' : $result->apc}}</td>
+                                <td>{{$result->pdp == 0 ? 'Not Available' : $result->pdp}}</td>
+                                <td>{{$result->other == 0 ? 'Not Available' : $result->other}}</td>
+                                <td>{{$result->pdp + $result->apc + $result->other == 0 ? 'Not Available' : $result->pdp + $result->apc + $result->other}}</td>
+                                <td>{{$result->invalid == 0 ? 'Not Available' : $result->invalid}}</td>
+                                <td>{{$result->pdp + $result->apc + $result->other + $result->invalid == 0 ? 'Not Available' : $result->pdp + $result->apc + $result->other + $result->invalid}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    @elseif($result->type_id == 2)
+                    <span class="h3" style="color: seagreen">Senatorial</span>
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Registered Voters</th>
+                                <th>Accredited Voters</th>
+                                <th>APC</th>
+                                <th>PDP</th>
+                                <th>Others</th>
+                                <th>Valid Votes</th>
+                                <th>Invalid Votes</th>
+                                <th>Total Votes Cast</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                 <td>{{$result->registered == 0 ? 'Not Available' : $result->registered}}</td>
+                                <td>{{$result->acredited == 0 ? 'Not Available' : $result->acredited}}</td>
+                                <td>{{$result->apc == 0 ? 'Not Available' : $result->apc}}</td>
+                                <td>{{$result->pdp == 0 ? 'Not Available' : $result->pdp}}</td>
+                                <td>{{$result->other == 0 ? 'Not Available' : $result->other}}</td>
+                                <td>{{$result->pdp + $result->apc + $result->other == 0 ? 'Not Available' : $result->pdp + $result->apc + $result->other}}</td>
+                                <td>{{$result->invalid == 0 ? 'Not Available' : $result->invalid}}</td>
+                                <td>{{$result->pdp + $result->apc + $result->other + $result->invalid == 0 ? 'Not Available' : $result->pdp + $result->apc + $result->other + $result->invalid}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    @else
+                    <span class="h3" style="color: seagreen">Representatives</span>
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Registered Voters</th>
+                                <th>Accredited Voters</th>
+                                <th>APC</th>
+                                <th>PDP</th>
+                                <th>Others</th>
+                                <th>Valid Votes</th>
+                                <th>Invalid Votes</th>
+                                <th>Total Votes Cast</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{$result->registered == 0 ? 'Not Available' : $result->registered}}</td>
+                                <td>{{$result->acredited == 0 ? 'Not Available' : $result->acredited}}</td>
+                                <td>{{$result->apc == 0 ? 'Not Available' : $result->apc}}</td>
+                                <td>{{$result->pdp == 0 ? 'Not Available' : $result->pdp}}</td>
+                                <td>{{$result->other == 0 ? 'Not Available' : $result->other}}</td>
+                                <td>{{$result->pdp + $result->apc + $result->other == 0 ? 'Not Available' : $result->pdp + $result->apc + $result->other}}</td>
+                                <td>{{$result->invalid == 0 ? 'Not Available' : $result->invalid}}</td>
+                                <td>{{$result->pdp + $result->apc + $result->other + $result->invalid == 0 ? 'Not Available' : $result->pdp + $result->apc + $result->other + $result->invalid}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    @endif
+                @endforeach
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">  
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-header h3">Send Result</div>
-
-                <div class="card-body">
-                    <form action="/result" method="post">
-                        @csrf
-                        <input type="hidden" name="id" value="{{$id}}">
-                        <fieldset>
-                            <legend>WARD INFORMATION</legend>
-                            <input class="form-control" type="text" value="{{old('registered')}}" name="registered" placeholder="REGISTERED VOTERS"><br>
-                                @if ($errors->has('registered'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('registered') }}</strong>
-                                    </span>
-                                @endif
-                            <input class="form-control" type="text" value="{{old('acredited')}}" name="acredited" placeholder="ACREDITED VOTERS"><br>
-                                @if ($errors->has('acredited'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('acredited') }}</strong>
-                                    </span>
-                                @endif
-                        </fieldset>
-                        <fieldset>
-                                <legend style="color: seagreen">PRESIDENTIAL ELECTION RESULT</legend>
-                                <input class="form-control" type="text" value="{{old('presidential_apc')}}" name="presidential_apc" placeholder="APC"><br>
-                                @if ($errors->has('presidential_apc'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('presidential_apc') }}</strong>
-                                    </span>
-                                @endif
-                                <input class="form-control" type="text" value="{{old('presidential_pdp')}}" name="presidential_pdp" placeholder="PDP"><br>
-                                @if ($errors->has('presidential_pdp'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('presidential_pdp') }}</strong>
-                                    </span>
-                                @endif
-                                <input class="form-control" type="text" value="{{old('presidential_other')}}" name="presidential_other" placeholder="OTHER"><br>
-                                @if ($errors->has('presidential_other'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('presidential_other') }}</strong>
-                                    </span>
-                                @endif
-                                <input class="form-control" type="text" value="{{old('presidential_invalid_vote')}}" name="presidential_invalid_vote" placeholder="INVALID VOTE">
-                                @if ($errors->has('presidential_invalid_vote'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('presidential_invalid_vote') }}</strong>
-                                    </span>
-                                @endif
-                            </fieldset>
-                            <fieldset>
-                                <legend style="color: seagreen">SENATORIAL ELECTION RESULT</legend>
-                                <input class="form-control" type="text" value="{{old('senatorial_apc')}}" name="senatorial_apc" placeholder="APC"><br>
-                                @if ($errors->has('senatorial_apc'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('senatorial_apc') }}</strong>
-                                    </span>
-                                @endif
-                                <input class="form-control" type="text" value="{{old('senatorial_pdp')}}" name="senatorial_pdp" placeholder="PDP"><br>
-                                @if ($errors->has('senatorial_pdp'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('senatorial_pdp') }}</strong>
-                                    </span>
-                                @endif
-                                <input class="form-control" type="text" value="{{old('senatorial_other')}}" name="senatorial_other" placeholder="OTHER"><br>
-                                @if ($errors->has('senatorial_other'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('senatorial_other') }}</strong>
-                                    </span>
-                                @endif
-                                <input class="form-control" type="text" value="{{old('senatorial_invalid_vote')}}" name="senatorial_invalid_vote" placeholder="INVALID VOTE">
-                                @if ($errors->has('senatorial_invalid_vote'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('senatorial_invalid_vote') }}</strong>
-                                    </span>
-                                @endif
-                            </fieldset>
-                            <fieldset>
-                                <legend style="color: seagreen">REPRESENTATIVE ELECTION RESULT</legend>
-                                <input class="form-control" type="text" value="{{old('representative_apc')}}" name="representative_apc" placeholder="APC"><br>
-                                @if ($errors->has('representative_apc'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('representative_apc') }}</strong>
-                                    </span>
-                                @endif
-                                <input class="form-control" type="text" value="{{old('representative_pdp')}}" name="representative_pdp" placeholder="PDP"><br>
-                                @if ($errors->has('representative_pdp'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('representative_pdp') }}</strong>
-                                    </span>
-                                @endif
-                                <input class="form-control" type="text" value="{{old('representative_other')}}" name="representative_other" placeholder="OTHER"><br>
-                                @if ($errors->has('representative_other'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('representative_other') }}</strong>
-                                    </span>
-                                @endif
-                                <input class="form-control" type="text" value="{{old('representative_invalid_vote')}}" name="representative_invalid_vote" placeholder="INVALID VOTE">
-                                @if ($errors->has('representative_invalid_vote'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('representative_invalid_vote') }}</strong>
-                                    </span>
-                                @endif
-                            </fieldset>
-                        <input type="submit" class="btn btn-primary" value="Send">
-                        <a class="btn btn-primary" href="/home">Go Back</a>
-                    </form>
-                </div>
+                @if($result->apc == 0)
+                  <a class="btn btn-primary" href="/return_result">Insert Result</a>
+                @else
+                  <a class="btn btn-primary" href="/edit_return_result">Edit Result</a>
+                @endif
+               
             </div>
-        </div>
+        </div>   
     </div>
 </div>
-@endsection    
-        
-

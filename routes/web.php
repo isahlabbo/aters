@@ -32,6 +32,9 @@ Route::post('/ward_incidence', 'IncidenceController@wardIncidence');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/edit_return_result', 'ReturnResultController@edit');
+Route::get('/return_result', 'ReturnResultController@index');
+Route::post('/new_return_result', 'ReturnResultController@newResult');
 Route::post('/add_result', 'HomeController@newResult');
 Route::post('/edit_result', 'ElectionResultController@editResult');
 Route::post('/new_incidence', 'IncidenceController@newIncidence');
