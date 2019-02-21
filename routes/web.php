@@ -25,6 +25,8 @@ Route::get('/', function () {
 Route::post('/accredited', 'HomeController@accredited');
 Route::post('/registered', 'HomeController@registered');
 Route::post('/result', 'ElectionResultController@sendResult');
+Route::post('/result_update', 'ElectionResultController@resultUpdate');
+Route::get('/update_result', 'ElectionResultController@updateResult');
 Route::post('/resolve_incidence', 'IncidenceController@resolveIncidence');
 Route::post('/edit_incidence', 'IncidenceController@editIncidence');
 Route::post('/ward_incidence', 'IncidenceController@wardIncidence');

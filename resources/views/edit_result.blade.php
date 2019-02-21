@@ -8,7 +8,7 @@
                 <div class="card-header h3" style="color: white; background-color: seagreen; ">Edit Result</div>
 
                 <div class="card-body">
-                    <form action="/result" method="post">
+                    <form action="/result_update" method="post">
                         @csrf
                         <input type="hidden" name="id" value="{{$pollingUnit['id']}}">
                         <fieldset>

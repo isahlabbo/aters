@@ -60,7 +60,7 @@
         </div>
         @endforeach
         @elseif($user->collation_id != null)
-        <div class="alert alert-success">SOKOTO APC 2019 ELECTION DASHBOARD COLLATION CENTER</div>
+        <div class="alert alert-success">SOKOTO APC 2019 ELECTION DASHBOARD COLLATION CENTER </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">

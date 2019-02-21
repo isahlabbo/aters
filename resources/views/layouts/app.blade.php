@@ -48,7 +48,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->name }} <span class="caret">DisConnect</span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -57,10 +57,12 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('DisConnect') }}
                                     </a>
-
+                                    @if(Auth()->User()->collation_id != null)
+                                    <a href="/update_result" class="dropdown-item" >UPDATE RESULT</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+                                    @endif
                                 </div>
                             </li>
                         @endguest
