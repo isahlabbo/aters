@@ -130,7 +130,7 @@ class Register
             'BODINGA / DANGE SHUNI / TURETA',
             'WURNO / RABAH',
             'GORONYO / GADA',
-            'SABON BIRNI / ISAH',
+            'SABON BIRNI / ISA',
             'GWADABAWA / ILLELA'
 		];
 		//populate the incidences table
