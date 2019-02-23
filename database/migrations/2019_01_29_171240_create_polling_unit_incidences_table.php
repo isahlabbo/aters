@@ -15,7 +15,7 @@ class CreatePollingUnitIncidencesTable extends Migration
     {
         Schema::create('polling_unit_incidences', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('polling_unit_id')->unsigned()->nullable()->foreign()->refernces('id')->on('polling_units')->delete('restrict')->update('cascade');;
+            $table->integer('polling_unit_id')->unsigned()->nullable()->foreign()->refernces('id')->on('polling_units')->delete('restrict')->update('cascade');
             $table->integer('incidence_id')->unsigned()->nullable()->foreign()->refernces('id')->on('incidences')->delete('restrict')->update('cascade');
             $table->timestamps();
         });

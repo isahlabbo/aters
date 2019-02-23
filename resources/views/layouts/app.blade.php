@@ -27,6 +27,13 @@
                 <a class="navbar-brand h3" href="{{ url('/') }}" style="color: white">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                @auth
+                @if(Auth()->User()->federal == 1)
+                <a class="navbar-brand h3" href="{{ url('/federal_incidence') }}" style="color: white">
+                    {{ 'INCIDENCES' }}
+                </a>
+                @endif
+                @endauth
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

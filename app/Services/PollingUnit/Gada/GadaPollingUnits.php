@@ -26,6 +26,8 @@ class GadaPollingUnits
         	['name'=>'Kwarma','pollingUnits'=> new Kwarma],
         	['name'=>'Kyadawa','pollingUnits'=> new Kyadawa],
         	['name'=>'Tsitse','pollingUnits'=> new Tsitse],
+
+        	
         ];
 	}
 

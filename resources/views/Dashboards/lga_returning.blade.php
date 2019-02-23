@@ -1,4 +1,4 @@
-<div class="alert alert-success h3">{{strtoupper($user->lga->name).' LOCAL GOVERNMENT RETURNING OFFICER'}}</div>
+<div class="alert alert-success h3">{{strtoupper($user->lga->name).' LOCAL GOVERNMENT RETURNING OFFICER DASHBOARD'}}</div>
 <div class="row">
     <div class="col-md-12">
         <div class="card">
@@ -49,7 +49,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                 <td>{{$result->registered == 0 ? 'Not Available' : $result->registered}}</td>
+                                <td>{{$result->registered == 0 ? 'Not Available' : $result->registered}}</td>
                                 <td>{{$result->acredited == 0 ? 'Not Available' : $result->acredited}}</td>
                                 <td>{{$result->apc == 0 ? 'Not Available' : $result->apc}}</td>
                                 <td>{{$result->pdp == 0 ? 'Not Available' : $result->pdp}}</td>

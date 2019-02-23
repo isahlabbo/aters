@@ -15,7 +15,7 @@ class CreateWardsTable extends Migration
     {
         Schema::create('wards', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('lga_id');
+            $table->integer('lga_id')->unsigned()->nullable()->foreign()->refernces('id')->on('lgas')->delete('restrict')->update('cascade');
             $table->string('name');
             $table->timestamps();
         });

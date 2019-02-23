@@ -6,6 +6,7 @@ use App\Lga;
 use App\Ward;
 use App\Center;
 use App\User;
+use App\PollingUnitIncidence;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,9 @@ use App\User;
 Route::get('/', function () {
     return view('auth.login');
 });
-
+Route::get('/federal_incidence', function () {
+    return view('Dashboards.incidence',['count'=>1,'incidences'=>PollingUnitIncidence::all()]);
+});
 Route::post('/accredited', 'HomeController@accredited');
 Route::post('/registered', 'HomeController@registered');
 Route::post('/result', 'ElectionResultController@sendResult');
