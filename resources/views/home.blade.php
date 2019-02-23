@@ -345,10 +345,14 @@
                         <div class="card-header h3"  style="background-color: seagreen;color:white">{{$ward->name.' Ward'}} {{count($ward->pollingUnits).' POLLING UNITS'}}</div>
                         <div class="card-body">
                             <div class="row">
-                            @foreach($ward->pollingUnits as $pollingUnit)    
+                                <?php
+                                 $count = 1 
+                                 ?>
+                            @foreach($ward->pollingUnits as $pollingUnit)
+                                
                                 <div class="col-md-12">
                                     <div class="card">
-                                        <div class="card-header" style="background-color: seagreen; color: white">{{$pollingUnit->name. ' POLLING UNIT'}} {{'CODE '. $pollingUnit->user->code}}</div>
+                                        <div class="card-header" style="background-color: seagreen; color: white">{{$pollingUnit->name. ' POLLING UNIT'}} {{'AGENT CODE '. $pollingUnit->user->code}} {{'POLLING UNIT CODE '. '0'.$count++}}</div>
                                         <div class="card-body">
                                             @foreach($pollingUnit->results as $result)
                                             @if($result->type_id == 1)

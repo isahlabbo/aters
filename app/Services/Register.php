@@ -165,27 +165,7 @@ class Register
 			'SOKOTO EAST', 
 			'SOKOTO SOUTH'
         ];
-        $officials = [
-	            'Aliyu Magatakarda',
-	            'Ahmad Aliyu',
-	            'Faruku Malami',
-	            'Maigari Dingyadi',
-	            'Yusuf Suleiman',
-	            'Isah Sadiq Achida',
-	            'Abubakar Gidado',
-	            'Kabir Mahe',
-	            'Bashir Hussaini',
-	            'Ibrahim Muhammed Kangiwa'
-            ];
-        foreach($officials as $official){
-        	$code = substr(md5($official), 0, 8);
-        	User::firstOrCreate([
-				'email'=>$code.'@apc.com',
-				'code'=>$code,
-				'password'=>Hash::make($code),
-                'collation_id'=>2
-        	]);
-        }
+        
         //firstOrCreate three zones using their array
 		foreach ($centers as $center) {
 			$userCenter = Center::firstOrCreate(['name'=>$center]);
