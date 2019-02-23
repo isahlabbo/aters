@@ -118,7 +118,7 @@ class HomeController extends Controller
                     $lgas[] = Lga::find($lga);
                 }
                 return view('home',['user'=>Auth()->User(),'lgas'=>$lgas,'availableIncidence'=>$this->availableIncidences()]);
-            }elseif(Auth()->User()->collation_id == 1){
+            }elseif(Auth()->User()->collation_id == 1 || Auth()->User()->collation_id == 2){
                 $representative = [
                     ['name'=>'SOKOTO NORTH / SOKOTO SOUTH','result'=>ResultCount::find(5)],
                     ['name'=>'WAMAKKO / KWARE','result'=>ResultCount::find(6)],

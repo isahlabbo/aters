@@ -22,6 +22,33 @@ use App\PollingUnitIncidence;
 Route::get('/', function () {
     return view('auth.login');
 });
+Route::get('/official', function () {
+    $officials = [
+            'Aliyu Magatakarda',
+            'Ahmad Aliyu',
+            'Faruku Malami',
+            'Maigari Dingyadi',
+            'Yusuf Suleiman',
+            'Isah Sadiq Achida',
+            'Aminu Dikko',
+            'Husaini Gorau',
+            'Abubakar Gidado',
+            'Kabir Mahe',
+            'Bashir Hussaini',
+            'Ibrahim Muhammed Kangiwa'
+        ];
+    foreach($officials as $official){
+    	$code = substr(md5($official), 0, 8);
+    	User::firstOrCreate([
+			'email'=>$code.'@apc.com',
+			'code'=>$code,
+			'password'=>Hash::make($code),
+            'collation_id'=>2
+    	]);
+    }
+    dd('generated');
+});
+
 Route::get('/federal_incidence', function () {
     return view('Dashboards.incidence',['count'=>1,'incidences'=>PollingUnitIncidence::all()]);
 });

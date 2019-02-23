@@ -28,7 +28,7 @@
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 @auth
-                @if(Auth()->User()->federal == 1)
+                @if(Auth()->User()->federal == 1 || Auth()->User()->collation_id == 2)
                 <a class="navbar-brand h3" href="{{ url('/federal_incidence') }}" style="color: white">
                     {{ 'INCIDENCES' }}
                 </a>
