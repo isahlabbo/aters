@@ -115,6 +115,7 @@ class Ward extends Model
             'apc' => $apc,
             'other' => $other,
             'invalid' => $invalid,
+            'valid' => $valid,
             'acredited' => $acredited,
             'registered' => $registered
         ];

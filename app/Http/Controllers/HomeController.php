@@ -33,7 +33,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-
+    public function centerLga($lgas)
+    {
+        $lga = [];
+        foreach($lgas as $this_lga){
+            $lga[] = $this_lga;
+        }
+        return $lga;
+    }
     protected function localSummary()
     {
         if(Auth()->User()->lga_id != null){
@@ -105,9 +112,98 @@ class HomeController extends Controller
                 break;
         }
     }
-    public function FunctionName($value='')
-    {
-        # code...
+    public function getPresidentialResult()
+    {   
+        $pdp = 0;
+        $apc = 0;
+        $other = 0;
+        $invalid = 0;
+        $valid = 0;
+        $registered = 0;
+        $acredited = 0;
+        
+        for ($i=1; $i <=23 ; $i++) {
+            $lga = Lga::find($i)->presidential(); 
+            $pdp = $pdp + $lga['pdp'];
+            $apc = $apc + $lga['apc'];
+            $other = $other + $lga['other'];
+            $valid = $lga['valid'];
+            $invalid = $lga['invalid'];
+            $registered = $lga['registered'];
+            $acredited = $lga['acredited'];
+        }  
+           
+     
+        return [
+            'pdp' => $pdp,
+            'apc' => $apc,
+            'other' => $other,
+            'invalid' => $invalid,
+            'valid' => $valid,
+            'acredited' => $acredited,
+            'registered' => $registered
+        ];
+    }
+    public function getSenatorialResult($datas)
+    {   
+        $pdp = 0;
+        $apc = 0;
+        $other = 0;
+        $invalid = 0;
+        $valid = 0;
+        $registered = 0;
+        $acredited = 0;
+        
+        foreach ($datas as $data) {
+            $lga = Lga::find($data)->senatorial(); 
+            $pdp = $pdp + $lga['pdp'];
+            $apc = $apc + $lga['apc'];
+            $other = $other + $lga['other'];
+            $valid = $lga['valid'];
+            $invalid = $lga['invalid'];
+            $registered = $lga['registered'];
+            $acredited = $lga['acredited'];
+        }  
+           
+        return [
+            'pdp' => $pdp,
+            'apc' => $apc,
+            'other' => $other,
+            'invalid' => $invalid,
+            'acredited' => $acredited,
+            'registered' => $registered
+        ];
+    }
+    public function getRepresentativeResult($datas)
+    {   
+        $pdp = 0;
+        $apc = 0;
+        $other = 0;
+        $invalid = 0;
+        $valid = 0;
+        $registered = 0;
+        $acredited = 0;
+        
+        foreach ($datas as $data) {
+
+            $lga = Lga::find($data)->representative(); 
+            $pdp = $pdp + $lga['pdp'];
+            $apc = $apc + $lga['apc'];
+            $other = $other + $lga['other'];
+            $valid = $lga['valid'];
+            $invalid = $lga['invalid'];
+            $registered = $lga['registered'];
+            $acredited = $lga['acredited'];
+          
+        }
+        return [
+            'pdp' => $pdp,
+            'apc' => $apc,
+            'other' => $other,
+            'invalid' => $invalid,
+            'acredited' => $acredited,
+            'registered' => $registered
+        ];
     }
     public function index()
     {
@@ -124,24 +220,49 @@ class HomeController extends Controller
                 return view('home',['user'=>Auth()->User(),'lgas'=>$lgas,'availableIncidence'=>$this->availableIncidences()]);
             }elseif(Auth()->User()->collation_id == 1 || Auth()->User()->collation_id == 2){
                 $representative = [
-                    ['name'=>'SOKOTO NORTH / SOKOTO SOUTH','result'=>ResultCount::find(5)],
-                    ['name'=>'WAMAKKO / KWARE','result'=>ResultCount::find(6)],
-                    ['name'=>'SILAME / BINJI','result'=>ResultCount::find(7)],
-                    ['name'=>'TANGAZA / GUDU','result'=>ResultCount::find(8)],
-                    ['name'=>'TAMBUWAL / KEBBE','result'=>ResultCount::find(9)],
-                    ['name'=>'YABO / SHAGARI','result'=>ResultCount::find(10)],
-                    ['name'=>'BODINGA / DANGE SHUNI / TURETA','result'=>ResultCount::find(11)],
-                    ['name'=>'WURNO / RABAH','result'=>ResultCount::find(12)],
-                    ['name'=>'GORONYO / GADA','result'=>ResultCount::find(13)],
-                    ['name'=>'SABON BIRNI / ISA','result'=>ResultCount::find(14)],
-                    ['name'=>'GWADABAWA / ILLELA','result'=>ResultCount::find(15)]
+                    ['name'=>'SOKOTO NORTH / SOKOTO SOUTH','result'=>$this->getRepresentativeResult(['16','17'])],
+                    ['name'=>'WAMAKKO / KWARE','result'=>$this->getRepresentativeResult(['11','21'])],
+                    ['name'=>'SILAME / BINJI','result'=>$this->getRepresentativeResult(['1','15'])],
+                    ['name'=>'TANGAZA / GUDU','result'=>$this->getRepresentativeResult(['6','19'])],
+                    ['name'=>'TAMBUWAL / KEBBE','result'=>$this->getRepresentativeResult(['10','18'])],
+                    ['name'=>'YABO / SHAGARI','result'=>$this->getRepresentativeResult(['14','23'])],
+                    ['name'=>'BODINGA / DANGE SHUNI / TURETA','result'=>$this->getRepresentativeResult(['2','3','20'])],
+                    ['name'=>'WURNO / RABAH','result'=>$this->getRepresentativeResult(['12','22'])],
+                    ['name'=>'GORONYO / GADA','result'=>$this->getRepresentativeResult(['4','5'])],
+                    ['name'=>'SABON BIRNI / ISA','result'=>$this->getRepresentativeResult(['9','13'])],
+                    ['name'=>'GWADABAWA / ILLELA','result'=>$this->getRepresentativeResult(['7','8'])]
                 ];
                 $senatorial = [
-                    ['name'=>'SOKOTO CENTRAL','result'=>ResultCount::find(2)],
-                    ['name'=>'SOKOTO EAST','result'=>ResultCount::find(3)],
-                    ['name'=>'SOKOTO SOUTH','result'=>ResultCount::find(4)],
+                    ['name'=>'SOKOTO CENTRAL','result'=>$this->getSenatorialResult(['16',
+                    '17',
+                    '21',
+                    '11',
+                    '15',
+                    '1',
+                    '19',
+                    '6'])],
+                    ['name'=>'SOKOTO EAST','result'=>$this->getSenatorialResult([
+                    '7',
+                    '8',
+                    '4',
+                    '22',
+                    '12',
+                    '5',
+                    '13',
+                    '9'
+                ])],
+                    ['name'=>'SOKOTO SOUTH','result'=>$this->getSenatorialResult([
+                    '2', 
+                    '3', 
+                    '20', 
+                    '14', 
+                    '23', 
+                    '18', 
+                    '10' 
+                ])],
                 ];
-                $presidential = ['name'=>'PRESIDENTIAL','result'=>ResultCount::find(1)];
+               
+                $presidential = ['name'=>'PRESIDENTIAL','result'=>$this->getPresidentialResult()];
                 return view('home',['representative'=>$representative,'presidential'=> $presidential,'senatorial'=>$senatorial, 'user'=>Auth()->User()]);
             }else{
                 $submitted = true;
