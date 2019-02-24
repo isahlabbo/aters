@@ -28,10 +28,7 @@ class PollingUnit extends Model
     	return $this->belongsTo(Ward::class);
     }
 
-    public function count()
-    {
-        return 1;
-    }
+    
 
     public function submitted()
     {

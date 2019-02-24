@@ -69,6 +69,7 @@ class Lga extends Model
             $acredited = $ward->presidential()['acredited'];
            
         }
+        
         return [
             'pdp' => $pdp,
             'apc' => $apc,

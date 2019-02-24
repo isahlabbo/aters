@@ -127,10 +127,10 @@ class HomeController extends Controller
             $pdp = $pdp + $lga['pdp'];
             $apc = $apc + $lga['apc'];
             $other = $other + $lga['other'];
-            $valid = $lga['valid'];
-            $invalid = $lga['invalid'];
-            $registered = $lga['registered'];
-            $acredited = $lga['acredited'];
+            $valid = $valid + $lga['valid'];
+            $invalid = $invalid + $lga['invalid'];
+            $registered = $registered + $lga['registered'];
+            $acredited = $acredited + $lga['acredited'];
         }  
            
      
@@ -159,10 +159,10 @@ class HomeController extends Controller
             $pdp = $pdp + $lga['pdp'];
             $apc = $apc + $lga['apc'];
             $other = $other + $lga['other'];
-            $valid = $lga['valid'];
-            $invalid = $lga['invalid'];
-            $registered = $lga['registered'];
-            $acredited = $lga['acredited'];
+            $valid = $valid + $lga['valid'];
+            $invalid = $invalid + $lga['invalid'];
+            $registered = $registered + $lga['registered'];
+            $acredited = $acredited + $lga['acredited'];
         }  
            
         return [

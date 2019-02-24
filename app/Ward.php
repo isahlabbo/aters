@@ -36,16 +36,16 @@ class Ward extends Model
         $acredited = 0;
         
         foreach ($this->returningResults as $result) {
-            if($result->type_id == 3){
+            if($result->type_id == 1){
                 $pdp = $pdp + $result->pdp;
                 $apc = $apc + $result->apc;
                 $other = $other + $result->other;
-                $invalid = $result->invalid;
-                $valid = $result->valid;
-                $registered = $result->registered;
-                $acredited = $result->acredited;
+                $invalid = $invalid + $result->invalid;
+                $registered = $registered + $result->registered;
+                $acredited = $acredited + $result->acredited;
             }
         }
+        
         return [
             'pdp' => $pdp,
             'apc' => $apc,
@@ -72,10 +72,9 @@ class Ward extends Model
                 $pdp = $pdp + $result->pdp;
                 $apc = $apc + $result->apc;
                 $other = $other + $result->other;
-                $invalid = $result->invalid;
-                $valid = $result->valid;
-                $registered = $result->registered;
-                $acredited = $result->acredited;
+                $invalid = $invalid + $result->invalid;
+                $registered = $registered + $result->registered;
+                $acredited = $acredited + $result->acredited;
             }
         }
         return [
@@ -104,10 +103,9 @@ class Ward extends Model
                 $pdp = $pdp + $result->pdp;
                 $apc = $apc + $result->apc;
                 $other = $other + $result->other;
-                $invalid = $result->invalid;
-                $valid = $result->valid;
-                $registered = $result->registered;
-                $acredited = $result->acredited;
+                $invalid = $invalid + $result->invalid;
+                $registered = $registered + $result->registered;
+                $acredited = $acredited + $result->acredited;
             }
         }
         return [
