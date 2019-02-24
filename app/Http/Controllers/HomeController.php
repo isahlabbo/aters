@@ -105,6 +105,10 @@ class HomeController extends Controller
                 break;
         }
     }
+    public function FunctionName($value='')
+    {
+        # code...
+    }
     public function index()
     {
         if(Auth()->User()->federal == 1){
@@ -129,7 +133,7 @@ class HomeController extends Controller
                     ['name'=>'BODINGA / DANGE SHUNI / TURETA','result'=>ResultCount::find(11)],
                     ['name'=>'WURNO / RABAH','result'=>ResultCount::find(12)],
                     ['name'=>'GORONYO / GADA','result'=>ResultCount::find(13)],
-                    ['name'=>'SABON BIRNI / ISAH','result'=>ResultCount::find(14)],
+                    ['name'=>'SABON BIRNI / ISA','result'=>ResultCount::find(14)],
                     ['name'=>'GWADABAWA / ILLELA','result'=>ResultCount::find(15)]
                 ];
                 $senatorial = [

@@ -20,7 +20,7 @@ class Ward extends Model
     {
     	return $this->belongsTo(Lga::class);
     }
-    
+
     public function returningResults()
     {
         return $this->hasMany(WardReturningResult::class);
@@ -35,16 +35,16 @@ class Ward extends Model
         $registered = 0;
         $acredited = 0;
         
-        foreach ($this->pollingUnits as $pollingUnit) {
-            
-            $pdp = $pdp + $pollingUnit->presidential()['pdp'];
-            $apc = $apc + $pollingUnit->presidential()['apc'];
-            $other = $other + $pollingUnit->presidential()['other'];
-            $invalid = $pollingUnit->presidential()['invalid'];
-            $valid = $pollingUnit->presidential()['valid'];
-            $registered = $pollingUnit->presidential()['registered'];
-            $acredited = $pollingUnit->presidential()['acredited'];
-           
+        foreach ($this->returningResults as $result) {
+            if($result->type_id == 3){
+                $pdp = $pdp + $result->pdp;
+                $apc = $apc + $result->apc;
+                $other = $other + $result->other;
+                $invalid = $result->invalid;
+                $valid = $result->valid;
+                $registered = $result->registered;
+                $acredited = $result->acredited;
+            }
         }
         return [
             'pdp' => $pdp,
@@ -67,16 +67,16 @@ class Ward extends Model
         $registered = 0;
         $acredited = 0;
         
-        foreach ($this->pollingUnits as $pollingUnit) {
-            // if($this->hasResult($pollingUnit)){
-	            $pdp = $pdp + $pollingUnit->senatorial()['pdp'];
-	            $apc = $apc + $pollingUnit->senatorial()['apc'];
-	            $other = $other + $pollingUnit->senatorial()['other'];
-	            $invalid = $pollingUnit->senatorial()['invalid'];
-	            $valid = $pollingUnit->senatorial()['valid'];
-	            $registered = $pollingUnit->senatorial()['registered'];
-	            $acredited = $pollingUnit->senatorial()['acredited'];
-            // }
+        foreach ($this->returningResults as $result) {
+            if($result->type_id == 2){
+                $pdp = $pdp + $result->pdp;
+                $apc = $apc + $result->apc;
+                $other = $other + $result->other;
+                $invalid = $result->invalid;
+                $valid = $result->valid;
+                $registered = $result->registered;
+                $acredited = $result->acredited;
+            }
         }
         return [
             'pdp' => $pdp,
@@ -99,16 +99,16 @@ class Ward extends Model
         $registered = 0;
         $acredited = 0;
         
-        foreach ($this->pollingUnits as $pollingUnit) {
-            
-            $pdp = $pdp + $pollingUnit->representative()['pdp'];
-            $apc = $apc + $pollingUnit->representative()['apc'];
-            $other = $other + $pollingUnit->representative()['other'];
-            $invalid = $pollingUnit->representative()['invalid'];
-            $valid = $pollingUnit->representative()['valid'];
-            $registered = $pollingUnit->representative()['registered'];
-            $acredited = $pollingUnit->representative()['acredited'];
-           
+        foreach ($this->returningResults as $result) {
+            if($result->type_id == 3){
+                $pdp = $pdp + $result->pdp;
+                $apc = $apc + $result->apc;
+                $other = $other + $result->other;
+                $invalid = $result->invalid;
+                $valid = $result->valid;
+                $registered = $result->registered;
+                $acredited = $result->acredited;
+            }
         }
         return [
             'pdp' => $pdp,
