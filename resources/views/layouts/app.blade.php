@@ -28,9 +28,14 @@
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 @auth
-                @if(Auth()->User()->federal == 1 || Auth()->User()->collation_id == 2)
+                @if(Auth()->User()->federal == 1 || Auth()->User()->collation_id == 2 || Auth()->User()->collation_id == 1)
                 <a class="navbar-brand h3" href="{{ url('/federal_incidence') }}" style="color: white">
                     {{ 'INCIDENCES' }}
+                </a>
+                @endif
+                @if(Auth()->User()->federal == 1 || Auth()->User()->collation_id == 2 || Auth()->User()->collation_id == 1)
+                <a class="navbar-brand h3" href="{{ url('/generate_result') }}" style="color: white">
+                    {{ 'RESULT' }}
                 </a>
                 @endif
                 @endauth
