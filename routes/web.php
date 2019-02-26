@@ -22,6 +22,9 @@ use App\PollingUnitIncidence;
 Route::get('/', function () {
     return view('auth.login');
 });
+Route::get('/generate_result', function () {
+    return view('Dashboards.result',['lgas'=>Lga::all()]);
+});
 Route::get('/official', function () {
     $officials = [
             'Aliyu Magatakarda',
