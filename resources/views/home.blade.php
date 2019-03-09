@@ -195,7 +195,7 @@
                 <div class="card">
                     <div class="card-header h2" style="color: white; background-color: seagreen">{{'Summary'}}</div>
                     <div class="card-body">
-                        <span class="h3" style="color: seagreen">Presidential</span>
+                        <span class="h3" style="color: seagreen">GOVERNATORIAL</span>
                         <table class="table table-default table-responsive">
                             <thead>
                                 <tr>
@@ -211,28 +211,28 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{{$summary['presidential'][0]->registered == 0 ? 'Not Available' : $summary['presidential'][0]->registered}}</td>
+                                    <td>{{$summary['governor'][0]->registered == 0 ? 'Not Available' : $summary['governor'][0]->registered}}</td>
 
-                                    <td>{{$summary['presidential'][0]->acredited == 0 ? 'Not Available' : $summary['presidential'][0]->acredited}}</td>
+                                    <td>{{$summary['governor'][0]->acredited == 0 ? 'Not Available' : $summary['governor'][0]->acredited}}</td>
 
-                                    <td>{{$summary['presidential'][0]->apc == 0 ? 'Not Available' : $summary['presidential'][0]->apc}}</td>
+                                    <td>{{$summary['governor'][0]->apc == 0 ? 'Not Available' : $summary['governor'][0]->apc}}</td>
 
-                                    <td>{{$summary['presidential'][0]->pdp == 0 ? 'Not Available' : $summary['presidential'][0]->pdp}}</td>
+                                    <td>{{$summary['governor'][0]->pdp == 0 ? 'Not Available' : $summary['governor'][0]->pdp}}</td>
 
-                                    <td>{{$summary['presidential'][0]->other == 0 ? 'Not Available' : $summary['presidential'][0]->other}}</td>
+                                    <td>{{$summary['governor'][0]->other == 0 ? 'Not Available' : $summary['governor'][0]->other}}</td>
 
-                                    <td>{{$summary['presidential'][0]->valid == 0 ? 'Not Available' : $summary['presidential'][0]->valid}}</td>
+                                    <td>{{$summary['governor'][0]->valid == 0 ? 'Not Available' : $summary['governor'][0]->valid}}</td>
 
-                                    <td>{{$summary['presidential'][0]->invalid == 0 ? 'Not Available' : $summary['presidential'][0]->invalid}}</td>
+                                    <td>{{$summary['governor'][0]->invalid == 0 ? 'Not Available' : $summary['governor'][0]->invalid}}</td>
 
-                                    <td>{{$summary['presidential'][0]->valid + $summary['presidential'][0]->invalid == 0 ? 'Not Available' : $summary['presidential'][0]->valid + $summary['presidential'][0]->invalid}}</td>
+                                    <td>{{$summary['governor'][0]->valid + $summary['governor'][0]->invalid == 0 ? 'Not Available' : $summary['governor'][0]->valid + $summary['governor'][0]->invalid}}</td>
 
                                 </tr>
                                 
 
                             </tbody>
                         </table>
-                        <span class="h3" style="color: seagreen">Senatorial</span>
+                        <span class="h3" style="color: seagreen">HOUSE OF ASSEMBLY</span>
                         <table class="table table-default table-responsive">
                             <thead>
                                 <tr>
@@ -248,64 +248,28 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{{$summary['senatorial'][0]->registered == 0 ? 'Not Available' : $summary['senatorial'][0]->registered}}</td>
+                                    <td>{{$summary['assembly'][0]->registered == 0 ? 'Not Available' : $summary['assembly'][0]->registered}}</td>
 
-                                    <td>{{$summary['senatorial'][0]->acredited == 0 ? 'Not Available' : $summary['senatorial'][0]->acredited}}</td>
+                                    <td>{{$summary['assembly'][0]->acredited == 0 ? 'Not Available' : $summary['assembly'][0]->acredited}}</td>
 
-                                    <td>{{$summary['senatorial'][0]->apc == 0 ? 'Not Available' : $summary['senatorial'][0]->apc}}</td>
+                                    <td>{{$summary['assembly'][0]->apc == 0 ? 'Not Available' : $summary['assembly'][0]->apc}}</td>
 
-                                    <td>{{$summary['senatorial'][0]->pdp == 0 ? 'Not Available' : $summary['senatorial'][0]->pdp}}</td>
+                                    <td>{{$summary['assembly'][0]->pdp == 0 ? 'Not Available' : $summary['assembly'][0]->pdp}}</td>
 
-                                    <td>{{$summary['senatorial'][0]->other == 0 ? 'Not Available' : $summary['senatorial'][0]->other}}</td>
+                                    <td>{{$summary['assembly'][0]->other == 0 ? 'Not Available' : $summary['assembly'][0]->other}}</td>
 
-                                    <td>{{$summary['senatorial'][0]->valid == 0 ? 'Not Available' : $summary['senatorial'][0]->valid}}</td>
+                                    <td>{{$summary['assembly'][0]->valid == 0 ? 'Not Available' : $summary['assembly'][0]->valid}}</td>
 
-                                    <td>{{$summary['senatorial'][0]->invalid == 0 ? 'Not Available' : $summary['senatorial'][0]->invalid}}</td>
+                                    <td>{{$summary['assembly'][0]->invalid == 0 ? 'Not Available' : $summary['assembly'][0]->invalid}}</td>
 
-                                    <td>{{$summary['senatorial'][0]->valid + $summary['senatorial'][0]->invalid == 0 ? 'Not Available' : $summary['senatorial'][0]->valid + $summary['senatorial'][0]->invalid}}</td>
-                                </tr>
-                                
-
-                            </tbody>
-                        </table>
-                        <span class="h3" style="color: seagreen">Representative</span>
-                        <table class="table table-default table-responsive">
-                            <thead>
-                                <tr>
-                                    <th>Registered Voters</th>
-                                    <th>Acredited Voters</th>
-                                    <th>APC</th>
-                                    <th>PDP</th>
-                                    <th>Others</th>
-                                    <th>Valid Votes</th>
-                                    <th>Invalid Votes</th>
-                                    <th>Total Votes Cast</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{{$summary['representative'][0]->registered == 0 ? 'Not Available' : $summary['representative'][0]->registered}}</td>
-
-                                    <td>{{$summary['representative'][0]->acredited == 0 ? 'Not Available' : $summary['representative'][0]->acredited}}</td>
-
-                                    <td>{{$summary['representative'][0]->apc == 0 ? 'Not Available' : $summary['representative'][0]->apc}}</td>
-
-                                    <td>{{$summary['representative'][0]->pdp == 0 ? 'Not Available' : $summary['representative'][0]->pdp}}</td>
-
-                                    <td>{{$summary['representative'][0]->other == 0 ? 'Not Available' : $summary['representative'][0]->other}}</td>
-
-                                    <td>{{$summary['representative'][0]->valid == 0 ? 'Not Available' : $summary['representative'][0]->valid}}</td>
-
-                                    <td>{{$summary['representative'][0]->invalid == 0 ? 'Not Available' : $summary['representative'][0]->invalid}}</td>
-
-                                    <td>{{$summary['representative'][0]->valid + $summary['representative'][0]->invalid == 0 ? 'Not Available' : $summary['representative'][0]->valid + $summary['representative'][0]->invalid}}</td>
+                                    <td>{{$summary['assembly'][0]->valid + $summary['assembly'][0]->invalid == 0 ? 'Not Available' : $summary['assembly'][0]->valid + $summary['assembly'][0]->invalid}}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-            @foreach($user->lga->wards as $ward)
+           @foreach($user->lga->wards as $ward)
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header h3"  style="background-color: seagreen;color:white">{{$ward->name.' Ward'}} {{count($ward->pollingUnits).' POLLING UNITS'}}</div>
@@ -322,7 +286,7 @@
                                         <div class="card-body">
                                             @foreach($pollingUnit->results as $result)
                                             @if($result->type_id == 1)
-                                            <span class="h3" style="color: seagreen;">Presidential</span>
+                                            <span class="h3" style="color: seagreen;">GOVERNATORIAL</span>
                                             <table class="table table-responsive">
                                                 <thead>
                                                     <tr>
@@ -349,8 +313,8 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            @elseif($result->type_id == 2)
-                                            <span class="h3" style="color: seagreen">Senatorial</span>
+                                            @else
+                                            <span class="h3" style="color: seagreen">HOUSE OF ASSEMBLY</span>
                                             <table class="table table-responsive">
                                                 <thead>
                                                     <tr>
@@ -377,34 +341,6 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            @else
-                                            <span class="h3" style="color: seagreen">Representatives</span>
-                                            <table class="table table-responsive">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Registered Voters</th>
-                                                        <th>Accredited Voters</th>
-                                                        <th>APC</th>
-                                                        <th>PDP</th>
-                                                        <th>Others</th>
-                                                        <th>Valid</th>
-                                                        <th>Invalid</th>
-                                                        <th>Total Votes Cast</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>{{$pollingUnit->registered == 0 ? 'Not Available' : $pollingUnit->registered}}</td>
-                                                        <td>{{$pollingUnit->acredited == 0 ? 'Not Available' : $pollingUnit->acredited}}</td>
-                                                        <td>{{$result->apc == 0 ? 'Not Available' : $result->apc}}</td>
-                                                        <td>{{$result->pdp == 0 ? 'Not Available' : $result->pdp}}</td>
-                                                        <td>{{$result->other == 0 ? 'Not Available' : $result->other}}</td>
-                                                        <td>{{$result->valid_vote == 0 ? 'Not Available' : $result->valid_vote}}</td>
-                                                        <td>{{$result->invalid_vote == 0 ? 'Not Available' : $result->invalid_vote}}</td>
-                                                        <td>{{$result->valid_vote + $result->invalid_vote == 0 ? 'Not Available' : $result->valid_vote + $result->invalid_vote}}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
                                             @endif
                                             @endforeach
                                             @if($pollingUnit->submitted() == false)
@@ -421,7 +357,7 @@
                             </div>   
                         </div>
                     </div>
-                </div>
+                </div> 
         
             @endforeach
         </div>

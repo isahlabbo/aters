@@ -124,7 +124,7 @@ class Lga extends Model
         $acredited = 0;
         
         foreach ($this->resultCounts as $result) {
-            if($result->type_id == 2) {
+            if($result->type_id == 1) {
                 $pdp = $pdp + $result['pdp'];
                 $apc = $apc + $result['apc'];
                 $other = $other + $result['other'];

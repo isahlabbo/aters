@@ -46,9 +46,8 @@ class HomeController extends Controller
         if(Auth()->User()->lga_id != null){
             
             return [
-                'presidential' => LgaResultCount::where(['lga_id'=>Auth()->User()->lga_id,'type_id'=>1])->get(),
-                'senatorial' => LgaResultCount::where(['lga_id'=>Auth()->User()->lga_id,'type_id'=>2])->get(),
-                'representative' => LgaResultCount::where(['lga_id'=>Auth()->User()->lga_id,'type_id'=>3])->get(),
+                'governor' => LgaResultCount::where(['lga_id'=>Auth()->User()->lga_id,'type_id'=>1])->get(),
+                'assembly' => LgaResultCount::where(['lga_id'=>Auth()->User()->lga_id,'type_id'=>2])->get(),
             ];
         }else{
             return [];
@@ -123,7 +122,7 @@ class HomeController extends Controller
         $acredited = 0;
         
         for ($i=1; $i <=23 ; $i++) {
-            $lga = Lga::find($i)->returnGovernor(); 
+            $lga = Lga::find($i)->governor(); 
             $pdp = $pdp + $lga['pdp'];
             $apc = $apc + $lga['apc'];
             $other = $other + $lga['other'];
@@ -144,7 +143,7 @@ class HomeController extends Controller
         ];
     }
 
-    public function getSenatorialResult($datas)
+    public function getAssemblyResult($datas)
     {
 
         $pdp = 0;
@@ -156,8 +155,7 @@ class HomeController extends Controller
         $acredited = 0;
         
         foreach ($datas as $data) {
-
-            $lga = Lga::find($data)->assembly(); 
+            $lga = Ward::find($data)->assembly(); 
             $pdp = $pdp + $lga['pdp'];
             $apc = $apc + $lga['apc'];
             $other = $other + $lga['other'];
@@ -193,24 +191,30 @@ class HomeController extends Controller
                 return view('home',['user'=>Auth()->User(),'lgas'=>$lgas,'availableIncidence'=>$this->availableIncidences()]);
             }elseif(Auth()->User()->collation_id == 1 || Auth()->User()->collation_id == 2){
                 $assembly = [
-                    ['name'=>'BINJI','result'=>$this->getGovernatorialResult(['1'])],
-                    ['name'=>'BODINGA','result'=>$this->getGovernatorialResult(['2'])],
-                    ['name'=>'DANGE SHUNI','result'=>$this->getGovernatorialResult(['3'])],
-                    ['name'=>'GADA','result'=>$this->getGovernatorialResult(['4'])],
-                    ['name'=>'GORONYO','result'=>$this->getGovernatorialResult(['5'])],
-                    ['name'=>'GUDU','result'=>$this->getGovernatorialResult(['6'])],
-                    ['name'=>'GWADABAWA','result'=>$this->getGovernatorialResult(['7'])],
-                    ['name'=>'ILLELA','result'=>$this->getGovernatorialResult(['8'])],
-                    ['name'=>'ISA','result'=>$this->getGovernatorialResult(['9'])],
+                    ['name'=>'BINJI','result'=>$this->getGovernatorialResult([1,2,3,4,5,6,7,8,9,10])],
+                    ['name'=>'BODINGA NORTH','result'=>$this->getGovernatorialResult([11,14,17,20,21])],
+                    ['name'=>'BODINGA SOUTH','result'=>$this->getGovernatorialResult([12,13,15,16,18,19])],
+                    ['name'=>'DANGE SHUNI','result'=>$this->getGovernatorialResult([22,23,24,25,26,27,28,29,30,31,32])],
+                    ['name'=>'GADA','result'=>$this->getGovernatorialResult([33,34,35,36,37,38,39,40,41,42,43])],
+                    ['name'=>'GORONYO','result'=>$this->getGovernatorialResult([44,45,46,47,48,49,50,51,52,53,54])],
+                    ['name'=>'GUDU','result'=>$this->getGovernatorialResult([55,56,57,58,59,60,61,62,63,64])],
+                    ['name'=>'GWADABAWA NORTH','result'=>$this->getGovernatorialResult([68,69,70,73,74,75])],
+                    ['name'=>'GWADABAWA SOUTH','result'=>$this->getGovernatorialResult([65,66,67,71,72])],
+                    ['name'=>'ILLELA','result'=>$this->getGovernatorialResult([76,77,78,79,80,81,82,83,84,85,86])],
+                    ['name'=>'ISA','result'=>$this->getGovernatorialResult([87,88,89,90,91,92,93,94,95,96,])],
                     ['name'=>'KEBBE','result'=>$this->getGovernatorialResult(['10'])],
                     ['name'=>'KWARE','result'=>$this->getGovernatorialResult(['11'])],
                     ['name'=>'RABAH','result'=>$this->getGovernatorialResult(['12'])],
-                    ['name'=>'SABON BIRNI','result'=>$this->getGovernatorialResult(['13'])],
+                    ['name'=>'SABON BIRNI NORTH','result'=>$this->getGovernatorialResult(['13'])],
+                    ['name'=>'SABON BIRNI SOUTH','result'=>$this->getGovernatorialResult(['13'])],
                     ['name'=>'SHAGARI','result'=>$this->getGovernatorialResult(['14'])],
                     ['name'=>'SILAME','result'=>$this->getGovernatorialResult(['15'])],
-                    ['name'=>'SOKOTO NORTH','result'=>$this->getGovernatorialResult(['16'])],
-                    ['name'=>'SOKOTO SOUTH','result'=>$this->getGovernatorialResult(['17'])],
-                    ['name'=>'TAMBUWAL','result'=>$this->getGovernatorialResult(['18'])],
+                    ['name'=>'SOKOTO NORTH I','result'=>$this->getGovernatorialResult(['16'])],
+                    ['name'=>'SOKOTO NORTH II','result'=>$this->getGovernatorialResult(['16'])],
+                    ['name'=>'SOKOTO SOUTH I','result'=>$this->getGovernatorialResult(['17'])],
+                    ['name'=>'SOKOTO SOUTH II','result'=>$this->getGovernatorialResult(['17'])],
+                    ['name'=>'TAMBUWAL EAST','result'=>$this->getGovernatorialResult(['18'])],
+                    ['name'=>'TAMBUWAL WEST','result'=>$this->getGovernatorialResult(['18'])],
                     ['name'=>'TANGAZA','result'=>$this->getGovernatorialResult(['19'])],
                     ['name'=>'TURETA','result'=>$this->getGovernatorialResult(['20'])],
                     ['name'=>'WAMAKKO','result'=>$this->getGovernatorialResult(['21'])],

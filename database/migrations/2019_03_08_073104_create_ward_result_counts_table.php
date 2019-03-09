@@ -23,6 +23,7 @@ class CreateWardResultCountsTable extends Migration
             $table->integer('invalid')->default(0);
             $table->integer('apc')->default(0);
             $table->integer('pdp')->default(0);
+            $table->integer('other')->default(0);
             $table->timestamps();
         });
     }
