@@ -255,11 +255,11 @@ class Register
 									$agent->results()->create(['type_id'=>1,'collation_id'=>$collation[0]]);
 									$agent->results()->create(['type_id'=>2,'collation_id'=>$collation[1]]);
 								//firstOrCreate agent of the polling unit
-								// $agent->user()->create([
-        //                             'email'=>'a'.$this->agentCode($agent->id).'@apc.com',
-								// 	'code'=>'a'.$this->agentCode($agent->id),
-								// 	'password'=>Hash::make('a'.$this->agentCode($agent->id)),
-								// ]);
+								$agent->user()->create([
+                                    'email'=>'a'.$this->agentCode($agent->id).'@apc.com',
+									'code'=>'a'.$this->agentCode($agent->id),
+									'password'=>Hash::make('a'.$this->agentCode($agent->id)),
+								]);
 							}
 
 						}
