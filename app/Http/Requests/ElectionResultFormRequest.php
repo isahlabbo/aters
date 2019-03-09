@@ -24,20 +24,16 @@ class ElectionResultFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'senatorial_apc' => 'required|integer',
-            'senatorial_pdp' => 'required|integer',
-            'senatorial_other' => 'required|integer',
-            'senatorial_invalid_vote' => 'required|integer',
+            'assembly_apc' => 'required|integer',
+            'assembly_pdp' => 'required|integer',
+            'assembly_other' => 'required|integer',
+            'assembly_invalid_vote' => 'required|integer',
 
-            'presidential_apc' => 'required|integer',
-            'presidential_pdp' => 'required|integer',
-            'presidential_other' => 'required|integer',
-            'presidential_invalid_vote' => 'required|integer',
+            'governor_apc' => 'required|integer',
+            'governor_pdp' => 'required|integer',
+            'governor_other' => 'required|integer',
+            'governor_invalid_vote' => 'required|integer'
 
-            'representative_apc' => 'required|integer',
-            'representative_pdp' => 'required|integer',
-            'representative_other' => 'required|integer',
-            'representative_invalid_vote' => 'required|integer'
         ];
     }
 }

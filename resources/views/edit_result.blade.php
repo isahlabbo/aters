@@ -27,86 +27,60 @@
                                 @endif
                         </fieldset>
                         <fieldset>
-                                <legend style="color: seagreen">PRESIDENTIAL ELECTION RESULT</legend>
-                                <input class="form-control" type="text" value="{{$presidential['apc']}}" name="presidential_apc" placeholder="APC"><br>
-                                @if ($errors->has('presidential_apc'))
+                                <legend style="color: seagreen">GOVERNATORIAL ELECTION RESULT</legend>
+                                <input class="form-control" type="text" value="{{$governor['apc']}}" name="governor_apc" placeholder="APC"><br>
+                                @if ($errors->has('governor_apc'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('presidential_apc') }}</strong>
+                                        <strong>{{ $errors->first('governor_apc') }}</strong>
                                     </span>
                                 @endif
-                                <input class="form-control" type="text" value="{{$presidential['pdp']}}" name="presidential_pdp" placeholder="PDP"><br>
-                                @if ($errors->has('presidential_pdp'))
+                                <input class="form-control" type="text" value="{{$governor['pdp']}}" name="governor_pdp" placeholder="PDP"><br>
+                                @if ($errors->has('governor_pdp'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('presidential_pdp') }}</strong>
+                                        <strong>{{ $errors->first('governor_pdp') }}</strong>
                                     </span>
                                 @endif
-                                <input class="form-control" type="text" value="{{$presidential['other']}}" name="presidential_other" placeholder="OTHER"><br>
-                                @if ($errors->has('presidential_other'))
+                                <input class="form-control" type="text" value="{{$governor['other']}}" name="governor_other" placeholder="OTHER"><br>
+                                @if ($errors->has('governor_other'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('presidential_other') }}</strong>
+                                        <strong>{{ $errors->first('governor_other') }}</strong>
                                     </span>
                                 @endif
-                                <input class="form-control" type="text" value="{{$presidential['invalid']}}" name="presidential_invalid_vote" placeholder="INVALID VOTE">
-                                @if ($errors->has('presidential_invalid_vote'))
+                                <input class="form-control" type="text" value="{{$governor['invalid']}}" name="governor_invalid_vote" placeholder="INVALID VOTE">
+                                @if ($errors->has('governor_invalid_vote'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('presidential_invalid_vote') }}</strong>
-                                    </span>
-                                @endif
-                            </fieldset>
-                            <fieldset>
-                                <legend style="color: seagreen">SENATORIAL ELECTION RESULT</legend>
-                                <input class="form-control" type="text" value="{{$senatorial['apc']}}" name="senatorial_apc" placeholder="APC"><br>
-                                @if ($errors->has('senatorial_apc'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('senatorial_apc') }}</strong>
-                                    </span>
-                                @endif
-                                <input class="form-control" type="text" value="{{$senatorial['pdp']}}" name="senatorial_pdp" placeholder="PDP"><br>
-                                @if ($errors->has('senatorial_pdp'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('senatorial_pdp') }}</strong>
-                                    </span>
-                                @endif
-                                <input class="form-control" type="text" value="{{$senatorial['other']}}" name="senatorial_other" placeholder="OTHER"><br>
-                                @if ($errors->has('senatorial_other'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('senatorial_other') }}</strong>
-                                    </span>
-                                @endif
-                                <input class="form-control" type="text" value="{{$senatorial['invalid']}}" name="senatorial_invalid_vote" placeholder="INVALID VOTE">
-                                @if ($errors->has('senatorial_invalid_vote'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('senatorial_invalid_vote') }}</strong>
+                                        <strong>{{ $errors->first('governor_invalid_vote') }}</strong>
                                     </span>
                                 @endif
                             </fieldset>
                             <fieldset>
-                                <legend style="color: seagreen">REPRESENTATIVE ELECTION RESULT</legend>
-                                <input class="form-control" type="text" value="{{$representative['apc']}}" name="representative_apc" placeholder="APC"><br>
-                                @if ($errors->has('representative_apc'))
+                                <legend style="color: seagreen">HOUSE OF ASSEMBLY ELECTION RESULT</legend>
+                                <input class="form-control" type="text" value="{{$assembly['apc']}}" name="assembly_apc" placeholder="APC"><br>
+                                @if ($errors->has('assembly_apc'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('representative_apc') }}</strong>
+                                        <strong>{{ $errors->first('assembly_apc') }}</strong>
                                     </span>
                                 @endif
-                                <input class="form-control" type="text" value="{{$representative['pdp']}}" name="representative_pdp" placeholder="PDP"><br>
-                                @if ($errors->has('representative_pdp'))
+                                <input class="form-control" type="text" value="{{$assembly['pdp']}}" name="assembly_pdp" placeholder="PDP"><br>
+                                @if ($errors->has('assembly_pdp'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('representative_pdp') }}</strong>
+                                        <strong>{{ $errors->first('assembly_pdp') }}</strong>
                                     </span>
                                 @endif
-                                <input class="form-control" type="text" value="{{$representative['other']}}" name="representative_other" placeholder="OTHER"><br>
-                                @if ($errors->has('representative_other'))
+                                <input class="form-control" type="text" value="{{$assembly['other']}}" name="assembly_other" placeholder="OTHER"><br>
+                                @if ($errors->has('assembly_other'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('representative_other') }}</strong>
+                                        <strong>{{ $errors->first('assembly_other') }}</strong>
                                     </span>
                                 @endif
-                                <input class="form-control" type="text" value="{{$representative['invalid']}}" name="representative_invalid_vote" placeholder="INVALID VOTE">
-                                @if ($errors->has('representative_invalid_vote'))
+                                <input class="form-control" type="text" value="{{$assembly['invalid']}}" name="assembly_invalid_vote" placeholder="INVALID VOTE">
+                                @if ($errors->has('assembly_invalid_vote'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('representative_invalid_vote') }}</strong>
+                                        <strong>{{ $errors->first('assembly_invalid_vote') }}</strong>
                                     </span>
                                 @endif
                             </fieldset>
+                            
                         <input type="submit" class="btn btn-primary" value="Save">
                         <a class="btn btn-primary" href="/home">Go Back</a>
                     </form>

@@ -12,7 +12,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Key') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Keys') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="text" placeholder="Enter your key" class="form-control{{ $errors->has('key') ? ' is-invalid' : '' }}" name="key" required>

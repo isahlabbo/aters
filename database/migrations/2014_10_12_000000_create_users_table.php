@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->integer('federal')->unsigned()->nullable();
             $table->integer('returning')->unsigned()->nullable();
             $table->char('code');
-            $table->string('email')->unique();
+            $table->string('email')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

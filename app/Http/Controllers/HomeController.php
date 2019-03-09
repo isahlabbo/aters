@@ -112,7 +112,7 @@ class HomeController extends Controller
                 break;
         }
     }
-    public function getPresidentialResult()
+    public function getGovernatorialResult()
     {   
         $pdp = 0;
         $apc = 0;
@@ -123,7 +123,7 @@ class HomeController extends Controller
         $acredited = 0;
         
         for ($i=1; $i <=23 ; $i++) {
-            $lga = Lga::find($i)->presidential(); 
+            $lga = Lga::find($i)->returnGovernor(); 
             $pdp = $pdp + $lga['pdp'];
             $apc = $apc + $lga['apc'];
             $other = $other + $lga['other'];
@@ -131,9 +131,8 @@ class HomeController extends Controller
             $invalid = $invalid + $lga['invalid'];
             $registered = $registered + $lga['registered'];
             $acredited = $acredited + $lga['acredited'];
-        }  
-           
-     
+        }
+
         return [
             'pdp' => $pdp,
             'apc' => $apc,
@@ -144,8 +143,10 @@ class HomeController extends Controller
             'registered' => $registered
         ];
     }
+
     public function getSenatorialResult($datas)
-    {   
+    {
+
         $pdp = 0;
         $apc = 0;
         $other = 0;
@@ -155,7 +156,8 @@ class HomeController extends Controller
         $acredited = 0;
         
         foreach ($datas as $data) {
-            $lga = Lga::find($data)->senatorial(); 
+
+            $lga = Lga::find($data)->assembly(); 
             $pdp = $pdp + $lga['pdp'];
             $apc = $apc + $lga['apc'];
             $other = $other + $lga['other'];
@@ -163,6 +165,7 @@ class HomeController extends Controller
             $invalid = $invalid + $lga['invalid'];
             $registered = $registered + $lga['registered'];
             $acredited = $acredited + $lga['acredited'];
+
         }  
            
         return [
@@ -174,41 +177,11 @@ class HomeController extends Controller
             'registered' => $registered
         ];
     }
-    public function getRepresentativeResult($datas)
-    {   
-        $pdp = 0;
-        $apc = 0;
-        $other = 0;
-        $invalid = 0;
-        $valid = 0;
-        $registered = 0;
-        $acredited = 0;
-        
-        foreach ($datas as $data) {
-
-            $lga = Lga::find($data)->representative(); 
-            $pdp = $pdp + $lga['pdp'];
-            $apc = $apc + $lga['apc'];
-            $other = $other + $lga['other'];
-            $valid = $lga['valid'];
-            $invalid = $lga['invalid'];
-            $registered = $lga['registered'];
-            $acredited = $lga['acredited'];
-          
-        }
-        return [
-            'pdp' => $pdp,
-            'apc' => $apc,
-            'other' => $other,
-            'invalid' => $invalid,
-            'acredited' => $acredited,
-            'registered' => $registered
-        ];
-    }
+   
     public function index()
     {
         if(Auth()->User()->federal == 1){
-             return redirect('/ward_collation');
+            return redirect('/ward_collation');
         }else{
             if(Auth()->User()->ward_id !=null){
                  return view('home',['user'=>Auth()->User()]);
@@ -219,51 +192,34 @@ class HomeController extends Controller
                 }
                 return view('home',['user'=>Auth()->User(),'lgas'=>$lgas,'availableIncidence'=>$this->availableIncidences()]);
             }elseif(Auth()->User()->collation_id == 1 || Auth()->User()->collation_id == 2){
-                $representative = [
-                    ['name'=>'SOKOTO NORTH / SOKOTO SOUTH','result'=>$this->getRepresentativeResult(['16','17'])],
-                    ['name'=>'WAMAKKO / KWARE','result'=>$this->getRepresentativeResult(['11','21'])],
-                    ['name'=>'SILAME / BINJI','result'=>$this->getRepresentativeResult(['1','15'])],
-                    ['name'=>'TANGAZA / GUDU','result'=>$this->getRepresentativeResult(['6','19'])],
-                    ['name'=>'TAMBUWAL / KEBBE','result'=>$this->getRepresentativeResult(['10','18'])],
-                    ['name'=>'YABO / SHAGARI','result'=>$this->getRepresentativeResult(['14','23'])],
-                    ['name'=>'BODINGA / DANGE SHUNI / TURETA','result'=>$this->getRepresentativeResult(['2','3','20'])],
-                    ['name'=>'WURNO / RABAH','result'=>$this->getRepresentativeResult(['12','22'])],
-                    ['name'=>'GORONYO / GADA','result'=>$this->getRepresentativeResult(['4','5'])],
-                    ['name'=>'SABON BIRNI / ISA','result'=>$this->getRepresentativeResult(['9','13'])],
-                    ['name'=>'GWADABAWA / ILLELA','result'=>$this->getRepresentativeResult(['7','8'])]
-                ];
-                $senatorial = [
-                    ['name'=>'SOKOTO CENTRAL','result'=>$this->getSenatorialResult(['16',
-                    '17',
-                    '21',
-                    '11',
-                    '15',
-                    '1',
-                    '19',
-                    '6'])],
-                    ['name'=>'SOKOTO EAST','result'=>$this->getSenatorialResult([
-                    '7',
-                    '8',
-                    '4',
-                    '22',
-                    '12',
-                    '5',
-                    '13',
-                    '9'
-                ])],
-                    ['name'=>'SOKOTO SOUTH','result'=>$this->getSenatorialResult([
-                    '2', 
-                    '3', 
-                    '20', 
-                    '14', 
-                    '23', 
-                    '18', 
-                    '10' 
-                ])],
+                $assembly = [
+                    ['name'=>'BINJI','result'=>$this->getGovernatorialResult(['1'])],
+                    ['name'=>'BODINGA','result'=>$this->getGovernatorialResult(['2'])],
+                    ['name'=>'DANGE SHUNI','result'=>$this->getGovernatorialResult(['3'])],
+                    ['name'=>'GADA','result'=>$this->getGovernatorialResult(['4'])],
+                    ['name'=>'GORONYO','result'=>$this->getGovernatorialResult(['5'])],
+                    ['name'=>'GUDU','result'=>$this->getGovernatorialResult(['6'])],
+                    ['name'=>'GWADABAWA','result'=>$this->getGovernatorialResult(['7'])],
+                    ['name'=>'ILLELA','result'=>$this->getGovernatorialResult(['8'])],
+                    ['name'=>'ISA','result'=>$this->getGovernatorialResult(['9'])],
+                    ['name'=>'KEBBE','result'=>$this->getGovernatorialResult(['10'])],
+                    ['name'=>'KWARE','result'=>$this->getGovernatorialResult(['11'])],
+                    ['name'=>'RABAH','result'=>$this->getGovernatorialResult(['12'])],
+                    ['name'=>'SABON BIRNI','result'=>$this->getGovernatorialResult(['13'])],
+                    ['name'=>'SHAGARI','result'=>$this->getGovernatorialResult(['14'])],
+                    ['name'=>'SILAME','result'=>$this->getGovernatorialResult(['15'])],
+                    ['name'=>'SOKOTO NORTH','result'=>$this->getGovernatorialResult(['16'])],
+                    ['name'=>'SOKOTO SOUTH','result'=>$this->getGovernatorialResult(['17'])],
+                    ['name'=>'TAMBUWAL','result'=>$this->getGovernatorialResult(['18'])],
+                    ['name'=>'TANGAZA','result'=>$this->getGovernatorialResult(['19'])],
+                    ['name'=>'TURETA','result'=>$this->getGovernatorialResult(['20'])],
+                    ['name'=>'WAMAKKO','result'=>$this->getGovernatorialResult(['21'])],
+                    ['name'=>'WURNO','result'=>$this->getGovernatorialResult(['22'])],
+                    ['name'=>'YABO','result'=>$this->getGovernatorialResult(['23'])],
                 ];
                
-                $presidential = ['name'=>'PRESIDENTIAL','result'=>$this->getPresidentialResult()];
-                return view('home',['representative'=>$representative,'presidential'=> $presidential,'senatorial'=>$senatorial, 'user'=>Auth()->User()]);
+                $governatorial = ['name'=>'GOVERNATORIAL','result'=>$this->getGovernatorialResult()];
+                return view('home',['assembly'=>$assembly,'governatorial'=> $governatorial, 'user'=>Auth()->User()]);
             }else{
                 $submitted = true;
                 if(Auth()->user()->lga_id == null){

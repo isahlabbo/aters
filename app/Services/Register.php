@@ -109,7 +109,7 @@ class Register
 	{
 		//create federal dashboard account
 		$code = substr(md5('federal'), 0, 8);
-			User::firstOrCreate([
+			User::create([
                 'email'=>$code.'@apc.com',
 				'code'=>$code,
 				'password'=>Hash::make($code),
@@ -117,21 +117,30 @@ class Register
 			]);
 		//populate 15 collations for presidential election	
 		$collations = [
-			'PRESIDENTIAL',
-			'SOKOTO CENTRAL',
-			'SOKOTO EAST', 
-			'SOKOTO SOUTH',
-            'SOKOTO NORTH / SOKOTO SOUTH',
-            'WAMAKKO / KWARE',
-            'SILAME / BINJI',
-            'TANGAZA / GUDU',
-            'TAMBUWAL / KEBBE',
-            'YABO / SHAGARI',
-            'BODINGA / DANGE SHUNI / TURETA',
-            'WURNO / RABAH',
-            'GORONYO / GADA',
-            'SABON BIRNI / ISA',
-            'GWADABAWA / ILLELA'
+			'GOVERNATORIAL',
+			'BINJI',
+            'BODINGA', 
+            'DANGE SHUNI', 
+            'GADA', 
+            'GORONYO',
+            'GUDU', 
+            'GWADABAWA', 
+            'ILLELA', 
+			'ISA',
+            'KEBBE', 
+            'KWARE',
+            'RABAH',
+			'SABON BIRNI',
+            'SILAME',
+            'SHAGARI',
+            'SOKOTO NORTH',
+            'SOKOTO SOUTH',
+            'TAMBUWAL',
+            'TANGAZA',
+            'TURETA',
+            'WAMAKKO',
+            'WURNO',
+            'YABO'
 		];
 		//populate the incidences table
         $incidences = [
@@ -150,12 +159,10 @@ class Register
         //firstOrCreate all the collation centers
         foreach ($collations as $collation) {
         	$collation = Collation::firstOrCreate(['name'=>$collation]);
-        	if($collation->id == 1){
+        	if ($collation->id == 1) {
         		$type_id = 1;
-        	}elseif($collation->id == 2 || $collation->id == 3 || $collation->id == 4){
+        	} else {
         		$type_id = 2;
-        	}else{
-        		$type_id = 3;
         	}
             $collation->resultCount()->firstOrCreate(['type_id'=>$type_id]);
         }
@@ -170,7 +177,7 @@ class Register
 		foreach ($centers as $center) {
 			$userCenter = Center::firstOrCreate(['name'=>$center]);
 			$code = substr(md5($userCenter->id), 0, 8);
-			$userCenter->user()->firstOrCreate([
+			$userCenter->user()->create([
                 'email'=>$code.'@apc.com',
 				'code'=>$code,
 				'password'=>Hash::make($code)
@@ -178,7 +185,7 @@ class Register
 		}
         //firstOrCreate collation user
 		$code = substr(md5('collation'),0, 8);
-		User::firstOrCreate([
+		User::create([
             'email'=>$code.'@apc.com',
 			'code'=>$code,
 			'password'=>Hash::make($code),
@@ -186,7 +193,7 @@ class Register
 			
 		]);
         //populate types of election
-		$type = ['PRESIDENTIAL','SENATORIAL','HOUSE OF REPS'];
+		$type = ['GOVERNATORIL','HOUSE OF ASSEMBLY'];
         //firstOrCreate the three types of election
         foreach ($type as $name) {
         	Type::firstOrCreate(['name'=>$name]);
@@ -200,63 +207,59 @@ class Register
 				$local = Lga::firstOrCreate(['name'=>$lga['name']]);
                 //firstOrCreate local government returning officer
                 $code = substr(md5($local->id.'r'),0, 8);
-				$local->user()->firstOrCreate([
+				$local->user()->create([
 		            'email'=>$code.'@apc.com',
 					'code'=>$code,
 					'password'=>Hash::make($code),
 					'returning'=> 1
 				]);
                 //firstOrCreate three returning result and result count for each lga
-                for ($i=1; $i <= 3 ; $i++) { 
+                for ($i=1; $i <= 2 ; $i++) { 
                 	$local->resultCounts()->firstOrCreate(['type_id'=>$i]);
                 	$local->returningResults()->firstOrCreate(['type_id'=>$i]);
                 }
 				//firstOrCreate the user of the local government for data entry
 				$code = substr(md5($local->id.'l'),0, 8);
-				$local->user()->firstOrCreate([
+				$local->user()->create([
 		            'email'=>$code.'@apc.com',
 					'code'=>$code,
 					'password'=>Hash::make($code),
 				]);
 
 				foreach ($lga['wards'] as $wards) {
-
 					foreach ($wards as $ward) {
-
                         //register ward
-                        $this_ward = Ward::firstOrCreate(['name'=>$ward['name'],'lga_id'=>$local->id]);
+                        $this_ward = Ward::create(['name'=>$ward['name'],'lga_id'=>$local->id]);
+                        for ($i=1; $i <=2 ; $i++) { 
+                            $this_ward->resultCounts()->create(['type_id' => $i]);
+                        }
+                        
                         $code = substr(md5($this_ward->id.'w'),0, 8);
                         //firstOrCreate ward returning officer
-                        $this_ward->user()->firstOrCreate([
+                        $this_ward->user()->create([
 				            'email'=>$code.'@apc.com',
 							'code'=>$code,
 							'password'=>Hash::make($code),
 							'ward_id'=> $this_ward->id
 						]);
 						//firstOrCreate three ward resturning result for 3 election
-						for ($i=1; $i <= 3 ; $i++) { 
-		                	$this_ward->returningResults()->firstOrCreate(['type_id'=>$i]);
+						for ($i=1; $i <= 2 ; $i++) { 
+		                	$this_ward->returningResults()->create(['type_id'=>$i]);
 		                }
 						foreach ($ward['pollingUnits'] as $pollingUnits) {
-                            
 							foreach ($pollingUnits as $pollingUnit) {
-                                
                                 //firstOrCreate polling unit 
-								$agent = $this_ward->pollingUnits()->firstOrCreate(['name'=>$pollingUnit,'ward_id'=>$this_ward->id]);
+								$agent = $this_ward->pollingUnits()->create(['name'=>$pollingUnit,'ward_id'=>$this_ward->id]);
 								// firstOrCreate polling unit result with zero values
 								    $collation = $this->getCollation($local);
-									Result::firstOrCreate(['type_id'=>1,'polling_unit_id'=>$agent->id,'collation_id'=>$collation[0]]);
-									Result::firstOrCreate(['type_id'=>2,'polling_unit_id'=>$agent->id,'collation_id'=>$collation[1]]);
-									Result::firstOrCreate(['type_id'=>3,'polling_unit_id'=>$agent->id,'collation_id'=>$collation[2]]);
-								
-                         
+									$agent->results()->create(['type_id'=>1,'collation_id'=>$collation[0]]);
+									$agent->results()->create(['type_id'=>2,'collation_id'=>$collation[1]]);
 								//firstOrCreate agent of the polling unit
-								$agent->user()->firstOrCreate([
-                                    'email'=>'a'.$this->agentCode($agent->id).'@apc.com',
-									'code'=>'a'.$this->agentCode($agent->id),
-									'password'=>Hash::make('a'.$this->agentCode($agent->id)),
-		
-								]);
+								// $agent->user()->create([
+        //                             'email'=>'a'.$this->agentCode($agent->id).'@apc.com',
+								// 	'code'=>'a'.$this->agentCode($agent->id),
+								// 	'password'=>Hash::make('a'.$this->agentCode($agent->id)),
+								// ]);
 							}
 
 						}
